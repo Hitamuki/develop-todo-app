@@ -23,6 +23,9 @@
   - xUnit
   - MSTest
   - Moq
+- フォーマッタ
+  - dotnet-format
+  - csharpier
 - 静的解析
   - StyleCop.Analyzers
 - コード分析
