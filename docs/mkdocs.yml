@@ -1,0 +1,12 @@
+# Project information
+site_name: 'サイトの名前'
+
+# Documentation and theme
+docs_dir: 'docs'
+theme: 'material'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: '#'
