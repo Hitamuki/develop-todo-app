@@ -1,4 +1,6 @@
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using TodoApp.Application.Interfaces;
 // using YourNamespace.Models; // モデル層の名前空間を指定
 // using YourNamespace.Services; // サービス層の名前空間を指定
 
@@ -16,7 +18,7 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<YourModel>>> GetAll()
+    public async Task<ActionResult<IEnumerable<TaskEntity>>> GetAll()
     {
         var tasks = await _taskService.GetAllAsync();
         return Ok(tasks);

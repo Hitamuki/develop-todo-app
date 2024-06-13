@@ -1,9 +1,8 @@
 using System.Data;
 
-namespace Domain.Interfaces
+namespace Domain.Interfaces;
+
+public interface IDatabaseConnection
 {
-    public interface IDatabaseConnection
-    {
-        IDbConnection CreateConnection();
-    }
+    IDbConnection CreateConnection();
 }

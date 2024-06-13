@@ -1,25 +1,24 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Interfaces;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
-namespace Infrastructure.DataSource
+namespace Infrastructure.DataSource;
+
+/// <summary>
+/// todo: このクラスは不要
+/// </summary>
+public class DatabaseConnection : IDatabaseConnection
 {
-    public class DatabaseConnection : IDatabaseConnection
+    private readonly IConfiguration _configuration;
+
+    public DatabaseConnection(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
+        _configuration = configuration;
+    }
 
-        public DatabaseConnection(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public IDbConnection CreateConnection()
-        {
-            return new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-        }
+    public IDbConnection CreateConnection()
+    {
+        return new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
     }
 }
