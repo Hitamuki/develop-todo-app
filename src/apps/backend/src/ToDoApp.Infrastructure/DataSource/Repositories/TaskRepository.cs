@@ -1,7 +1,7 @@
+using Domain.Entities;
 using Domain.Interfaces;
-using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using TodoApp.Domain.Repositories;
+using TodoApp.Domain.Interfaces.IRepository;
 
 namespace TodoApp.Infrastructure.DataSource.Repositories;
 

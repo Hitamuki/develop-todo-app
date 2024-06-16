@@ -1,6 +1,6 @@
-using Domain.Models;
+using Domain.Entities;
 
-namespace TodoApp.Domain.Repositories;
+namespace TodoApp.Domain.Interfaces.IRepository;
 
 public interface ITaskRepository
 {

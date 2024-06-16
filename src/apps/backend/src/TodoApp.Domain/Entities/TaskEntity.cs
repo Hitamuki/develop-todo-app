@@ -1,4 +1,4 @@
-namespace Domain.Models;
+namespace Domain.Entities;
 
 public class TaskEntity
 {

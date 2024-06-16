@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
-// データアクセス層の名前空間
-// サービス層の名前空間
+using TodoApp.Application.Interfaces.IService;
+using TodoApp.Application.Services;
+using TodoApp.Domain.Interfaces.IRepository;
+using TodoApp.Infrastructure.DataSource.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +20,11 @@ builder.Services.AddSwaggerGen(c =>
 
 // データベースコンテキストの登録（例: Entity Framework Core）
 // builder.Services.AddDbContext<YourDbContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// アプリケーションサービスの登録
-// builder.Services.AddScoped<IDatabaseConnection, DatabaseConnection>();
-// builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+// サービスの登録
+builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 var app = builder.Build();
 

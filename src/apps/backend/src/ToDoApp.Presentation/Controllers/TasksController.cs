@@ -1,8 +1,6 @@
-using Domain.Models;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using TodoApp.Application.Interfaces;
-// using YourNamespace.Models; // モデル層の名前空間を指定
-// using YourNamespace.Services; // サービス層の名前空間を指定
+using TodoApp.Application.Interfaces.IService;
 
 namespace ToDoApp.Presentation.Controllers;
 

@@ -1,6 +1,6 @@
-using Domain.Models;
+using Domain.Entities;
 
-namespace TodoApp.Application.Interfaces;
+namespace TodoApp.Application.Interfaces.IService;
 
 public interface ITaskService{
     /// <summary>
