@@ -1,0 +1,29 @@
+version: "0.2"
+language: en
+# 無視するファイル
+ignorePaths:
+  - cspell.yml
+  - .git/**
+  - .vscode/**
+  - ./**.yml
+ignoreRegExpList: []
+# 正しいとみなされる単語
+words: []
+# 常に誤りとみなされる単語
+flagWords: []
+# 常に無視する単語
+ignoreWords: []
+# 辞書
+dictionaries:
+  - csharp
+languageSettings:
+  - languageId: csharp
+    dictionaries:
+      - csharp
+# 辞書パッケージ
+dictionaryDefinitions:
+    # 辞書ファイル名
+  - name: domain
+      # カスタム単語ファイルへのパス
+    path: ./.cspell/domain.txt
+    addWords: false
