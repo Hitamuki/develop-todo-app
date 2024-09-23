@@ -17,6 +17,20 @@
 - husky、 lint-staged
   - <https://qiita.com/akym03/items/7e4db720a9e1bfad7747>
 
+## パッケージ管理
+
+- Volta 経由で pnpm を管理
+
+``` bash
+volta install pnpm
+pnpm store prune # キャッシュをクリア
+pnpm install
+npx pnpm --version
+pnpm list
+pnpm add <pkg>
+pnpm remove <pkg>
+```
+
 ## 自動生成README
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
