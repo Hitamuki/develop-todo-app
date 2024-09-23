@@ -20,6 +20,7 @@
 ## パッケージ管理
 
 - Volta 経由で pnpm を管理
+- <https://pnpm.io/ja/motivation>
 
 ``` bash
 volta install pnpm

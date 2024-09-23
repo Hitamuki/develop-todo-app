@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "biome:format": "biome format",
     "biome:lint": "biome lint"
   },
@@ -25,11 +27,18 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+    "@angular-builders/jest": "^18.0.0",
     "@angular-devkit/build-angular": "^18.0.3",
     "@angular/cli": "^18.0.3",
     "@angular/compiler-cli": "^18.0.0",
     "@biomejs/biome": "1.9.2",
+    "@testing-library/angular": "^17.3.1",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.13",
     "biome": "^0.3.3",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.2.4",
     "typescript": "~5.4.2"
   },
   "volta": {
