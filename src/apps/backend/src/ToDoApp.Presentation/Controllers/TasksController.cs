@@ -8,17 +8,17 @@ namespace ToDoApp.Presentation.Controllers;
 [Route("[controller]")]
 public class TasksController : ControllerBase
 {
-    private readonly ITaskService _taskService;
+  private readonly ITaskService _taskService;
 
-    public TasksController(ITaskService taskService)
-    {
-        _taskService = taskService;
-    }
+  public TasksController(ITaskService taskService)
+  {
+    _taskService = taskService;
+  }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<TaskEntity>>> GetAll()
-    {
-        var tasks = await _taskService.GetAllAsync();
-        return Ok(tasks);
-    }
+  [HttpGet]
+  public async Task<ActionResult<IEnumerable<TaskEntity>>> GetAll() // ResponseDtoに変更
+  {
+    var tasks = await _taskService.GetAllAsync();
+    return Ok(tasks);
+  }
 }

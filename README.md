@@ -49,10 +49,19 @@
 - インフラ
   - プライベートリポジトリでソースを管理し、git submoduleでこのリポジトリで操作を可能にする。
   - AWS
+    - Fargate
     - ECS
-    - RDB
-    - S3
+    - RDB or Aurora
     - Lambda
+    - Certificate Manager
+    - Cloud Watch
+    - Cognito
+    - IAM
+    - Event Bridge
+    - ALB
+    - Route53
+    - S3
+    - SES
 
 - 開発その他
   - プロジェクト管理ツールを導入
