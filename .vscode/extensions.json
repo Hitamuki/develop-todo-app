@@ -36,6 +36,7 @@
         "stylelint.vscode-stylelint",
         "theholycoder.swagger-tools",
         "arjun.swagger-viewer",
-        "mosapride.zenkaku"
+        "mosapride.zenkaku",
+        "biomejs.biome"
     ]
 }
