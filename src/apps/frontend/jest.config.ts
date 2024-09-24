@@ -5,6 +5,7 @@ const esmPackages = ["@angular/*", "@testing-library/angular", "@ngrx/*"];
 
 const config: Config = {
   preset: "jest-preset-angular",
+  testMatch: ['<rootDir>/src/**/*.spec.ts'],
   setupFilesAfterEnv: ["<rootDir>/src/setup-jest.ts"],
 };
 
