@@ -15,17 +15,19 @@
     "biome:lint": "biome lint",
     "eslint": "ng lint",
     "prettier": "prettier --write src",
-    "stylelint": "stylelint \"src/**/*.{css,sass}\" --fix",
-    "markuplint": "markuplint \"src/**/*.html\"",
-    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"src/**/*.{css,sass}\" --fix && markuplint \"src/**/*.html\""
+    "stylelint": "stylelint \"./src/**/*.{css,sass}\" --fix",
+    "markuplint": "markuplint \"./src/**/*.html\"",
+    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{css,sass}\" --fix && markuplint \"./src/**/*.html\""
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.0.0",
+    "@angular/cdk": "18.2.11",
     "@angular/common": "^18.0.0",
     "@angular/compiler": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@angular/forms": "^18.0.0",
+    "@angular/material": "18.2.11",
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
