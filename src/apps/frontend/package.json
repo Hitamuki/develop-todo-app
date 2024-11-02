@@ -15,8 +15,9 @@
     "biome:lint": "biome lint",
     "eslint": "ng lint",
     "prettier": "prettier --write src",
-    "stylelint": "stylelint \"**/*.{css,sass}\" --fix",
-    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"**/*.{css,sass}\" --fix"
+    "stylelint": "stylelint \"src/**/*.{css,sass}\" --fix",
+    "markuplint": "markuplint \"src/**/*.html\"",
+    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"src/**/*.{css,sass}\" --fix && markuplint \"src/**/*.html\""
   },
   "private": true,
   "dependencies": {
@@ -51,6 +52,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "jest": "^29.7.0",
     "jest-preset-angular": "^14.2.4",
+    "markuplint": "^3.15.0",
+    "markuplint-angular-parser": "^2.0.0",
     "playwright": "^1.47.2",
     "postcss": "^8.4.47",
     "postcss-angular": "^1.0.3",

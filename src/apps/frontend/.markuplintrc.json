@@ -1,0 +1,6 @@
+{
+  "parser": {
+    ".html$": "markuplint-angular-parser"
+  },
+  "rules": {}
+}
