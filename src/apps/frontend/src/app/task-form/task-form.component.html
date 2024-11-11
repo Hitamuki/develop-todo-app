@@ -1,0 +1,24 @@
+<div class="d-flex align-items-center gap-2 mt-4">
+  <!-- タスク名入力 -->
+  <div class="flex-grow-1">
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>新しいタスク</mat-label>
+      <input matInput type="text" [(ngModel)]="newTask.title" placeholder="タスク名" />
+    </mat-form-field>
+  </div>
+  <!-- 期日入力 -->
+  <div class="flex-grow-1">
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>期日</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="newTask.deadline" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <!-- 追加ボタン -->
+  <div class="flex-grow-1">
+    <button mat-raised-button color="primary" (click)="submit()">追加</button>
+  </div>
+</div>
+<!-- デバッグ用 -->
+<p class="mt-3">newTaskの値: {{ newTask | json }}</p>

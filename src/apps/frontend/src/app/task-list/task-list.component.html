@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <!-- タスク一覧 -->
+  <div class="task-list">
+    <div *ngFor="let task of tasks">
+      <app-task-list-item [task]="task"></app-task-list-item>
+    </div>
+  </div>
+  <!-- 新しいタスク追加フォーム -->
+  <div class="row">
+    <app-task-form (addTask)="addTask($event)"></app-task-form>
+  </div>
+</div>
