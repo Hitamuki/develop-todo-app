@@ -1,0 +1,20 @@
+services:
+  # MySQL
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    container_name: todo_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: UTC
+      # restart: unless-stopped
+    # command: mysqld xxx
+    volumes:
+    # - ./docker/mysql/data:/var/lib/mysql
+    - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+    # build: ./docker/mysql
