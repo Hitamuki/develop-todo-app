@@ -1,0 +1,4 @@
+{
+  "markuplint.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

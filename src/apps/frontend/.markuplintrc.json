@@ -1,6 +1,17 @@
 {
+  "extends": [],
+  "plugins": [],
   "parser": {
     ".html$": "markuplint-angular-parser"
   },
-  "rules": {}
+  "parserOptions": {},
+  "excludeFiles": [],
+  "rules": {
+    "attr-value-quotes": {
+      "severity": "warning",
+      "value": "double"
+    }
+  },
+  "nodeRules": [],
+  "childNodeRules": []
 }
