@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.9.0",
+    "useDocker": true,
+    "generators": {
+      "frontend": {
+        "generatorName": "typescript-angular",
+        "output": "./src/app/api",
+        "glob": "./../../../docs/openapi.yml",
+        "additionalProperties": {
+          "ngVersion": "18.0.0",
+          "fileNaming": "kebab-case",
+          "modelPropertyNaming": "PascalCase",
+          "paramNaming": "camelCase"
+        }
+      }
+    }
+  }
+}

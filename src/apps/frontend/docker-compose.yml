@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+# https://github.com/openapitools/openapi-generator-cli
+  openapi-generator:
+    image: openapitools/openapi-generator-cli
+    volumes:
+      - ./:/local
+    # https://openapi-generator.tech/docs/usage#generate
+    command: generate -g typescript-angular -i local/openapi.yml -o local/src/app/api --additional-properties=ngVersion=18.0.0&=fileNaming=kebab-case&=paramNaming=camelCase
