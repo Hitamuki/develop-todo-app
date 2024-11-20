@@ -9,7 +9,7 @@ import { TaskFormComponent } from '../task-form/task-form.component';
   standalone: true,
   imports: [NgFor, TaskListItemComponent, TaskFormComponent],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.sass'],
+  styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent {
   tasks: Task[] = [

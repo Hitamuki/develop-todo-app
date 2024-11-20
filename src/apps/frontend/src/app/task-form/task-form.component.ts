@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
   standalone: true,
   imports: [FormsModule, JsonPipe, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule],
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.sass',
+  styleUrl: './task-form.component.scss',
 })
 export class TaskFormComponent {
   @Output() addTask = new EventEmitter<Task>();

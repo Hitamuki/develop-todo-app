@@ -16,9 +16,9 @@
     "biome:lint": "biome lint",
     "eslint": "ng lint",
     "prettier": "prettier --write src",
-    "stylelint": "stylelint \"./src/**/*.{css,sass}\" --fix",
-    "markuplint": "markuplint \"./src/**/*.html\"",
-    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{css,sass}\" --fix && markuplint \"./src/**/*.html\""
+    "stylelint": "stylelint \"./src/**/*.{scss,css,sass}\" --fix",
+    "lint:html": "markuplint \"./src/**/*.html\"",
+    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,css,sass}\" --fix && markuplint \"./src/**/*.html\""
   },
   "private": true,
   "dependencies": {
@@ -67,7 +67,6 @@
     "postcss-angular": "^1.0.3",
     "prettier": "^3.3.3",
     "stylelint": "^16.10.0",
-    "stylelint-config-sass-guidelines": "^12.1.0",
     "typescript": "~5.4.2",
     "typescript-eslint": "8.2.0"
   },

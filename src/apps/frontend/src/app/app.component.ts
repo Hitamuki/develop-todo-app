@@ -8,7 +8,7 @@ import { TaskListComponent } from './task-list/task-list.component';
   standalone: true,
   imports: [RouterOutlet, MatSlideToggleModule, TaskListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'frontend';

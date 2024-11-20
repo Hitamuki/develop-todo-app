@@ -9,7 +9,7 @@ import { DatePipe, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf, DatePipe, FormsModule, MatCheckboxModule],
   templateUrl: './task-list-item.component.html',
-  styleUrl: './task-list-item.component.sass',
+  styleUrl: './task-list-item.component.scss',
 })
 export class TaskListItemComponent {
   @Input() task!: Task;
