@@ -18,6 +18,10 @@ export class TaskListComponent {
     { title: '銀行に行く', done: false, deadline: new Date('2020-01-03') },
   ];
 
+  /**
+   * タスクを追加する
+   * @param タスク
+   */
   addTask(task: Task) {
     this.tasks.push(task);
   }

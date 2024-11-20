@@ -23,6 +23,9 @@ export class TaskFormComponent {
     deadline: null,
   };
 
+  /**
+   * タスクを追加する
+   */
   submit() {
     this.addTask.emit({
       title: this.newTask.title,

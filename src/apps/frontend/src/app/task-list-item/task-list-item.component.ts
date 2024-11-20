@@ -14,6 +14,11 @@ import { DatePipe, NgIf } from '@angular/common';
 export class TaskListItemComponent {
   @Input() task!: Task;
 
+  /**
+   * 期日判定
+   * @param 対象のタスク
+   * @returns 期日内の場合true
+   */
   isOverdue(task: Task): boolean | null {
     return !task.done && task.deadline && task.deadline.getTime() < new Date().setHours(0, 0, 0, 0);
   }
