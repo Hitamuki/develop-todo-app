@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,15 +10,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "playwright:test": "playwright test",
-    "playwright:report": "playwright show-report",
-    "biome:format": "biome format",
-    "biome:lint": "biome lint",
-    "eslint": "ng lint",
-    "prettier": "prettier --write src",
-    "stylelint": "stylelint \"./src/**/*.{scss,css,sass}\" --fix",
-    "lint:html": "markuplint \"./src/**/*.html\"",
-    "lint-fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,css,sass}\" --fix && markuplint \"./src/**/*.html\""
+    "test:e2e": "playwright test",
+    "test:e2e-report": "playwright show-report",
+    "format": "prettier --write src",
+    "lint:ts": "ng lint",
+    "lint:css": "stylelint \"./src/**/*.{scss,component.ts,css,sass}\"",
+    "lint:html": "markuplint \"./src/**/*.{html}\"",
+    "lint:fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,component.ts,css,sass}\" --fix && markuplint \"./src/**/*.html\"",
+    "format:biome": "biome format",
+    "lint:biome": "biome lint"
   },
   "private": true,
   "dependencies": {
@@ -67,6 +67,8 @@
     "postcss-angular": "^1.0.3",
     "prettier": "^3.3.3",
     "stylelint": "^16.10.0",
+    "stylelint-config-recess-order": "^5.1.1",
+    "stylelint-config-recommended-scss": "^14.1.0",
     "typescript": "~5.4.2",
     "typescript-eslint": "8.2.0"
   },
