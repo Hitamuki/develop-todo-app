@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
-import type { Task } from '../../models/task';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe, NgIf } from '@angular/common';
+import type { Task } from '../../models/task';
 
+/**
+ *
+ */
 @Component({
   selector: 'app-task-list-item',
   standalone: true,
@@ -16,7 +19,7 @@ export class TaskListItemComponent {
 
   /**
    * 期日判定
-   * @param 対象のタスク
+   * @param task 対象のタスク
    * @returns 期日内の場合true
    */
   isOverdue(task: Task): boolean | null {

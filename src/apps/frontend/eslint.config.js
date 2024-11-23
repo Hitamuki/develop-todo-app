@@ -1,47 +1,122 @@
-// @ts-check
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
-const eslintConfigPrettier = require("eslint-config-prettier");
-const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
+import eslint from '@eslint/js';
+import tsEslint from 'typescript-eslint';
+import angular from 'angular-eslint';
+import jsDoc from 'eslint-plugin-jsdoc';
+import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
+import pluginSecurity from 'eslint-plugin-security';
+import eslintConfigPrettier from 'eslint-config-prettier';
+// import importAccess from 'eslint-plugin-import-access; TODO: importの制限
 
-module.exports = tseslint.config(
+export default tsEslint.config(
   {
-    files: ["**/*.ts"],
+    ignores: ['src/app/api/**'],
+  },
+  {
+    files: ['**/*.{ts,js}'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
+      ...tsEslint.configs.recommended,
+      ...tsEslint.configs.stylistic,
       ...angular.configs.tsRecommended,
-      eslintPluginPrettierRecommended,
-      eslintConfigPrettier,
+      jsDoc.configs['flat/recommended-typescript'],
+      importPlugin.flatConfigs.recommended,
+      pluginSecurity.configs.recommended,
     ],
+    plugins: {
+      'unused-imports': unusedImports,
+    },
     processor: angular.processInlineTemplates,
+    settings: {
+      'import/resolver': {
+        typescript: true,
+        node: true,
+      },
+    },
     rules: {
-      "@angular-eslint/directive-selector": [
-        "error",
+      // デフォルトルール
+      '@angular-eslint/directive-selector': [
+        'error',
         {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
+          type: 'attribute',
+          prefix: 'app',
+          style: 'camelCase',
         },
       ],
-      "@angular-eslint/component-selector": [
-        "error",
+      '@angular-eslint/component-selector': [
+        'error',
         {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
+          type: 'element',
+          prefix: 'app',
+          style: 'kebab-case',
         },
       ],
+      // カスタムルール
+      // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
+      'import/order': [
+        'warn',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+          pathGroups: [
+            // TODO: src/app/api/**の順番をカスタマイズ
+            // {
+            //   "pattern": "",
+            //   "group": "",
+            //   "position": ""
+            // }
+          ],
+        },
+      ],
+      'unused-imports/no-unused-imports': 'warn',
+      'unused-imports/no-unused-vars': 'off', // TODO: @typescript-eslint/no-unused-varsと比較 https://github.com/sweepline/eslint-plugin-unused-imports
+      'jsdoc/require-jsdoc': [
+        'warn',
+        {
+          publicOnly: true,
+          require: {
+            ArrowFunctionExpression: true,
+            ClassDeclaration: true,
+            ClassExpression: true,
+            FunctionDeclaration: true,
+            FunctionExpression: true,
+            MethodDefinition: true,
+          },
+          contexts: [
+            'VariableDeclaration',
+            'TSInterfaceDeclaration',
+            'TSTypeAliasDeclaration',
+            'TSPropertySignature',
+            'TSMethodSignature',
+          ],
+        },
+      ],
+      // TODO: jsdoc記載する
+      // 'jsdoc/require-description': [
+      //   'warn',
+      //   {
+      //     contexts: [
+      //       'ArrowFunctionExpression',
+      //       'ClassDeclaration',
+      //       'ClassExpression',
+      //       'FunctionDeclaration',
+      //       'FunctionExpression',
+      //       'MethodDefinition',
+      //       'PropertyDefinition',
+      //       'VariableDeclaration',
+      //       'TSInterfaceDeclaration',
+      //       'TSTypeAliasDeclaration',
+      //       'TSPropertySignature',
+      //       'TSMethodSignature',
+      //     ],
+      //   },
+      // ],
+      'jsdoc/require-returns': ['off'],
     },
   },
   {
-    files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    files: ['**/*.html'],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {},
-  }
+  },
+  eslintConfigPrettier, // Prettierと競合するルールを無効化する 不要？ https://eslint.org/blog/2023/10/deprecating-formatting-rules/
 );

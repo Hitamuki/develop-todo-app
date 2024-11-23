@@ -3,6 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TaskListComponent } from './task-list/task-list.component';
 
+/**
+ *
+ */
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,6 +13,10 @@ import { TaskListComponent } from './task-list/task-list.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
+/**
+ *
+ */
 export class AppComponent {
   title = 'frontend';
 }

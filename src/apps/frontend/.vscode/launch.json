@@ -6,7 +6,7 @@
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start", // pnpmは未サポート
+      "preLaunchTask": "npm: start", // TODO: yarnに変更？
       "url": "http://localhost:4200/",
       "webRoot": "${workspaceFolder}"
     },
@@ -14,7 +14,7 @@
       "name": "ng test",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: test", // pnpmは未サポート
+      "preLaunchTask": "npm: test", // TODO: yarn
       "url": "http://localhost:9876/debug.html",
       "webRoot": "${workspaceFolder}"
     }

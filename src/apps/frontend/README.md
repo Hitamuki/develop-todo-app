@@ -8,7 +8,7 @@
 - Scss
 - ng-bootstrap
 - VoltaでNode.jsバージョン管理
-- pnpmでパッケージ管理
+- yarnでパッケージ管理
 - jestで単体テスト
 - Cypress,PlaywrightでE2Eテスト
 - ESLint
@@ -19,17 +19,19 @@
 
 ## パッケージ管理
 
-- Volta 経由で pnpm を管理
-- <https://pnpm.io/ja/motivation>
+- Volta 経由で yarn を管理
 
 ``` bash
-volta install pnpm
-pnpm store prune # キャッシュをクリア
-pnpm install
-npx pnpm --version
-pnpm list
-pnpm add <pkg>
-pnpm remove <pkg>
+volta install yarn
+yarn cache clean
+yarn install
+yarn add <pkg>
+# 再インストール
+yarn cache clean
+rm -rf node_modules
+rm yarn.lock
+rm .yarn/install-state.gz
+yarn install
 ```
 
 ## 自動生成README

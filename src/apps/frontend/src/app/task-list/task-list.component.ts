@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
-import type { Task } from '../../models/task';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import type { Task } from '../../models/task';
 
+/**
+ *
+ */
 @Component({
   selector: 'app-task-list',
   standalone: true,
@@ -20,7 +23,7 @@ export class TaskListComponent {
 
   /**
    * タスクを追加する
-   * @param タスク
+   * @param task タスク
    */
   addTask(task: Task) {
     this.tasks.push(task);

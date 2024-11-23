@@ -2,13 +2,13 @@
   "markuplint.enable": true,
   "css.validate": false,
   "scss.validate": false,
-  "[html,scss,ts]": {
+  "[html,css,scss,js,ts]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "always",
+      "source.fixAll.stylelint": "always",
+      "source.fixAll.eslint": "always"
+    }
   },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": "always",
-    "source.fixAll.stylelint": "always",
-    "source.fixAll.eslint": "always"
-  }
 }
