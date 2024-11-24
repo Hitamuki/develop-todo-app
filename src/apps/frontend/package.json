@@ -18,8 +18,10 @@
     "lint:css": "stylelint \"./src/**/*.{scss,component.ts,css,sass}\"",
     "lint:html": "markuplint \"./src/**/*.{html}\"",
     "lint:fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,component.ts,css,sass}\" --fix && markuplint \"./src/**/*.html\"",
-    "format:biome": "biome format",
-    "lint:biome": "biome lint",
+    "format:biome": "biome format ./src",
+    "format:biome-action": "biome format --write ./src",
+    "lint:biome": "biome lint ./src",
+    "lint:biome-action": "biome lint --write ./src",
     "check:eslint": "eslint --inspect-config"
   },
   "private": true,
