@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "kreativ-software.csharpextensions",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.vscodeintellicode-csharp",
+        "k--kato.docomment",
+        "adrianwilczynski.namespace",
+        "formulahendry.dotnet-test-explorer",
+        "ms-azuretools.vscode-docker",
+        "editorconfig.editorconfig",
+        "usernamehw.errorlens",
+        "streetsidesoftware.code-spell-checker",
+        "inferrinizzard.prettier-sql-vscode",
+    ]
+}

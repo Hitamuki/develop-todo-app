@@ -1,6 +1,7 @@
 services:
   # MySQL
   db:
+    # https://github.com/docker-library/docs/tree/master/mysql
     image: mysql:8.0
     ports:
       - 3306:3306
