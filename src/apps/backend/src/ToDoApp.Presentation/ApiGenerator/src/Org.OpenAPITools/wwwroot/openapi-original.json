@@ -1,0 +1,374 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "description" : "ToDoアプリのAPI設計",
+    "title" : "ToDo Application API",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "description" : "開発環境",
+    "url" : "https://localhost:3000/api/v1"
+  }, {
+    "description" : "本番環境",
+    "url" : "https://todo-app.com/api/v1"
+  } ],
+  "tags" : [ {
+    "description" : "タスクに関連する操作。一覧取得、1件取得、新規作成、更新、削除が含まれる。",
+    "name" : "tasks"
+  } ],
+  "paths" : {
+    "/tasks" : {
+      "get" : {
+        "deprecated" : false,
+        "description" : "0件のときは空の配列",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Task"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "200 OK"
+          }
+        },
+        "summary" : "タスク一覧取得",
+        "tags" : [ "tasks" ]
+      },
+      "post" : {
+        "deprecated" : false,
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TaskCreate"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "201 Created"
+          }
+        },
+        "summary" : "タスク新規作成",
+        "tags" : [ "tasks" ]
+      }
+    },
+    "/tasks/{taskId}" : {
+      "delete" : {
+        "deprecated" : false,
+        "parameters" : [ {
+          "description" : "UUID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "taskId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 OK"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                }
+              }
+            },
+            "description" : "400 Bad Request"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                }
+              }
+            },
+            "description" : "404 Not Found"
+          }
+        },
+        "summary" : "タスク削除",
+        "tags" : [ "tasks" ]
+      },
+      "get" : {
+        "deprecated" : false,
+        "parameters" : [ {
+          "description" : "UUID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "taskId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Task"
+                }
+              }
+            },
+            "description" : "200 OK"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                }
+              }
+            },
+            "description" : "400 Bad Request"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                }
+              }
+            },
+            "description" : "404 Not Found"
+          }
+        },
+        "summary" : "タスク1件取得",
+        "tags" : [ "tasks" ]
+      },
+      "put" : {
+        "deprecated" : false,
+        "parameters" : [ {
+          "description" : "UUID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "taskId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 OK"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                }
+              }
+            },
+            "description" : "400 Bad Request"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                }
+              }
+            },
+            "description" : "404 Not Found"
+          }
+        },
+        "summary" : "タスク更新",
+        "tags" : [ "tasks" ]
+      }
+    }
+  },
+  "components" : {
+    "responses" : {
+      "BadRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+            }
+          }
+        },
+        "description" : "400 Bad Request"
+      },
+      "Unauthorized" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_object"
+            }
+          }
+        },
+        "description" : "401 Unauthorized"
+      },
+      "NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+            }
+          }
+        },
+        "description" : "404 Not Found"
+      }
+    },
+    "schemas" : {
+      "Task" : {
+        "example" : {
+          "status_id" : "1",
+          "updated_at" : "2000-01-23T04:56:07.000+00:00",
+          "due_date" : "2000-01-23T04:56:07.000+00:00",
+          "description" : "タスクの詳細",
+          "created_at" : "2000-01-23T04:56:07.000+00:00",
+          "title" : "本日のタスク"
+        },
+        "properties" : {
+          "title" : {
+            "description" : "タイトル",
+            "example" : "本日のタスク",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "詳細",
+            "example" : "タスクの詳細",
+            "type" : "string"
+          },
+          "due_date" : {
+            "description" : "締切日",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "status_id" : {
+            "description" : "ステータスIDを変換してステータスを表示する",
+            "enum" : [ "0", "1", "2" ],
+            "example" : "1",
+            "type" : "string"
+          },
+          "created_at" : {
+            "description" : "作成日時",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "updated_at" : {
+            "description" : "更新日時",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "status", "title" ],
+        "type" : "object"
+      },
+      "TaskCreate" : {
+        "example" : {
+          "status_id" : "1",
+          "due_date" : "2000-01-23T04:56:07.000+00:00",
+          "description" : "タスクの詳細",
+          "title" : "本日のタスク"
+        },
+        "properties" : {
+          "title" : {
+            "description" : "タイトル",
+            "example" : "本日のタスク",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "詳細",
+            "example" : "タスクの詳細",
+            "type" : "string"
+          },
+          "due_date" : {
+            "description" : "締切日",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "status_id" : {
+            "description" : "ステータスIDを変換してステータスを表示する",
+            "enum" : [ "0", "1", "2" ],
+            "example" : "1",
+            "type" : "string"
+          }
+        },
+        "required" : [ "status", "title" ],
+        "type" : "object"
+      },
+      "Error" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "code", "message" ],
+        "type" : "object"
+      },
+      "_tasks__taskId__get_400_response" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Error"
+        }, {
+          "properties" : {
+            "code" : {
+              "example" : 400
+            },
+            "message" : {
+              "example" : "400 Bad Request"
+            }
+          }
+        } ],
+        "example" : {
+          "code" : 400,
+          "message" : "400 Bad Request"
+        }
+      },
+      "_tasks__taskId__get_404_response" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Error"
+        }, {
+          "properties" : {
+            "code" : {
+              "example" : 404
+            },
+            "message" : {
+              "example" : "404 Not Found"
+            }
+          }
+        } ],
+        "example" : {
+          "code" : 404,
+          "message" : "404 Not Found"
+        }
+      },
+      "inline_object" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Error"
+        }, {
+          "properties" : {
+            "code" : {
+              "example" : 401
+            },
+            "message" : {
+              "example" : "401 Unauthorized"
+            }
+          }
+        } ]
+      }
+    }
+  }
+}
