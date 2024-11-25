@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+  # https://github.com/openapitools/openapi-generator-cli
+  # ASP.NET Core Web API用
+  openapi-generator:
+    image: openapitools/openapi-generator-cli
+    volumes:
+      - ./../src/apps/backend/src/TodoApp.Presentation/:/local
+      - ./openapi.yml/:/local/ApiGenerator/openapi.yml
+    # https://openapi-generator.tech/docs/usage#generate
+    command: generate -g aspnetcore -i local/ApiGenerator/openapi.yml -o local/ApiGenerator --additional-properties=aspnetCoreVersion=8.0,swashbuckleVersion=6.4.0
