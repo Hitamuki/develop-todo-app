@@ -9,7 +9,7 @@ services:
       - ./../src/apps/backend/src/TodoApp.Presentation/:/local
       - ./openapi.yml/:/local/ApiGenerator/openapi.yml
     # https://openapi-generator.tech/docs/usage#generate
-    command: generate -g aspnetcore -i local/ApiGenerator/openapi.yml -o local/ApiGenerator --additional-properties=aspnetCoreVersion=8.0,swashbuckleVersion=6.4.0
+    command: generate -g aspnetcore -i local/ApiGenerator/openapi.yml -o local/ApiGenerator --additional-properties=aspnetCoreVersion=8.0,swashbuckleVersion=6.4.0,operationResultTask=true
 
   # swagger-ui:
   #   image: swaggerapi/swagger-ui

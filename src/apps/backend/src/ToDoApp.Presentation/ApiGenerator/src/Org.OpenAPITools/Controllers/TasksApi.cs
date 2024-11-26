@@ -11,6 +11,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +40,7 @@ namespace Org.OpenAPITools.Controllers
         [ValidateModelState]
         [SwaggerOperation("TasksGet")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<Task>), description: "200 OK")]
-        public virtual IActionResult TasksGet()
+        public virtual Task<IActionResult> TasksGet()
         {
 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
@@ -50,7 +52,7 @@ namespace Org.OpenAPITools.Controllers
             ? JsonConvert.DeserializeObject<List<Task>>(exampleJson)
             : default(List<Task>);
             //TODO: Change the data returned
-            return new ObjectResult(example);
+            return Task.FromResult<IActionResult>(new ObjectResult(example));
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace Org.OpenAPITools.Controllers
         [Consumes("application/json")]
         [ValidateModelState]
         [SwaggerOperation("TasksPost")]
-        public virtual IActionResult TasksPost([FromBody]TaskCreate taskCreate)
+        public virtual Task<IActionResult> TasksPost([FromBody]TaskCreate taskCreate)
         {
 
             //TODO: Uncomment the next line to return response 201 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
@@ -85,7 +87,7 @@ namespace Org.OpenAPITools.Controllers
         [SwaggerOperation("TasksTaskIdDelete")]
         [SwaggerResponse(statusCode: 400, type: typeof(TasksTaskIdGet400Response), description: "400 Bad Request")]
         [SwaggerResponse(statusCode: 404, type: typeof(TasksTaskIdGet404Response), description: "404 Not Found")]
-        public virtual IActionResult TasksTaskIdDelete([FromRoute (Name = "taskId")][Required]Guid taskId)
+        public virtual Task<IActionResult> TasksTaskIdDelete([FromRoute (Name = "taskId")][Required]Guid taskId)
         {
 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
@@ -112,7 +114,7 @@ namespace Org.OpenAPITools.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(Task), description: "200 OK")]
         [SwaggerResponse(statusCode: 400, type: typeof(TasksTaskIdGet400Response), description: "400 Bad Request")]
         [SwaggerResponse(statusCode: 404, type: typeof(TasksTaskIdGet404Response), description: "404 Not Found")]
-        public virtual IActionResult TasksTaskIdGet([FromRoute (Name = "taskId")][Required]Guid taskId)
+        public virtual Task<IActionResult> TasksTaskIdGet([FromRoute (Name = "taskId")][Required]Guid taskId)
         {
 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
@@ -130,7 +132,7 @@ namespace Org.OpenAPITools.Controllers
             ? JsonConvert.DeserializeObject<Task>(exampleJson)
             : default(Task);
             //TODO: Change the data returned
-            return new ObjectResult(example);
+            return Task.FromResult<IActionResult>(new ObjectResult(example));
         }
 
         /// <summary>
@@ -146,7 +148,7 @@ namespace Org.OpenAPITools.Controllers
         [SwaggerOperation("TasksTaskIdPut")]
         [SwaggerResponse(statusCode: 400, type: typeof(TasksTaskIdGet400Response), description: "400 Bad Request")]
         [SwaggerResponse(statusCode: 404, type: typeof(TasksTaskIdGet404Response), description: "404 Not Found")]
-        public virtual IActionResult TasksTaskIdPut([FromRoute (Name = "taskId")][Required]Guid taskId)
+        public virtual Task<IActionResult> TasksTaskIdPut([FromRoute (Name = "taskId")][Required]Guid taskId)
         {
 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
