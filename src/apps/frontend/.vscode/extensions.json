@@ -10,6 +10,7 @@
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
     "yusukehirao.vscode-markuplint",
+    "deque-systems.vscode-axe-linter",
     "orta.vscode-jest",
     "firsttris.vscode-jest-runner",
     "ms-playwright.playwright",
