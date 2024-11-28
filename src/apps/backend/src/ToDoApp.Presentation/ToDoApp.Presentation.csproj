@@ -12,6 +12,7 @@
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
+    <ProjectReference Include="..\OpenApiGenerator\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
     <ProjectReference Include="..\TodoApp.Application\TodoApp.Application.csproj" />
     <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
     <ProjectReference Include="..\TodoApp.Infrastructure/TodoApp.Infrastructure.csproj" />
