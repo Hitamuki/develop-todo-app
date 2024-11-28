@@ -11,12 +11,9 @@ src/Org.OpenAPITools/Dockerfile
 src/Org.OpenAPITools/Filters/BasePathFilter.cs
 src/Org.OpenAPITools/Filters/GeneratePathParamsValidationFilter.cs
 src/Org.OpenAPITools/Formatters/InputFormatterStream.cs
-src/Org.OpenAPITools/Models/Error.cs
-src/Org.OpenAPITools/Models/InlineObject.cs
-src/Org.OpenAPITools/Models/Task.cs
-src/Org.OpenAPITools/Models/TaskCreate.cs
-src/Org.OpenAPITools/Models/TasksTaskIdGet400Response.cs
-src/Org.OpenAPITools/Models/TasksTaskIdGet404Response.cs
+src/Org.OpenAPITools/Models/ErrorResponseDto.cs
+src/Org.OpenAPITools/Models/TaskGetResponseDto.cs
+src/Org.OpenAPITools/Models/TaskPostRequestDto.cs
 src/Org.OpenAPITools/OpenApi/TypeExtensions.cs
 src/Org.OpenAPITools/Org.OpenAPITools.csproj
 src/Org.OpenAPITools/Program.cs

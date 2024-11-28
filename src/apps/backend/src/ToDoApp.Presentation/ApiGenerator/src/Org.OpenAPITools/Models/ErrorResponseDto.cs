@@ -24,23 +24,21 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class TasksTaskIdGet404Response : IEquatable<TasksTaskIdGet404Response>
+    public partial class ErrorResponseDto : IEquatable<ErrorResponseDto>
     {
         /// <summary>
         /// Gets or Sets Code
         /// </summary>
-        /* <example>404</example> */
         [Required]
-        [DataMember(Name="code", EmitDefaultValue=true)]
-        public Object Code { get; set; }
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
-        /* <example>404 Not Found</example> */
         [Required]
-        [DataMember(Name="message", EmitDefaultValue=true)]
-        public Object Message { get; set; }
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -49,7 +47,7 @@ namespace Org.OpenAPITools.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TasksTaskIdGet404Response {\n");
+            sb.Append("class ErrorResponseDto {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
@@ -74,15 +72,15 @@ namespace Org.OpenAPITools.Models
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((TasksTaskIdGet404Response)obj);
+            return obj.GetType() == GetType() && Equals((ErrorResponseDto)obj);
         }
 
         /// <summary>
-        /// Returns true if TasksTaskIdGet404Response instances are equal
+        /// Returns true if ErrorResponseDto instances are equal
         /// </summary>
-        /// <param name="other">Instance of TasksTaskIdGet404Response to be compared</param>
+        /// <param name="other">Instance of ErrorResponseDto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TasksTaskIdGet404Response other)
+        public bool Equals(ErrorResponseDto other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -121,12 +119,12 @@ namespace Org.OpenAPITools.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(TasksTaskIdGet404Response left, TasksTaskIdGet404Response right)
+        public static bool operator ==(ErrorResponseDto left, ErrorResponseDto right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TasksTaskIdGet404Response left, TasksTaskIdGet404Response right)
+        public static bool operator !=(ErrorResponseDto left, ErrorResponseDto right)
         {
             return !Equals(left, right);
         }

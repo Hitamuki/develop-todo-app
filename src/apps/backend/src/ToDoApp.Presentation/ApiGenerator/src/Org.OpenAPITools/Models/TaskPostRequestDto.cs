@@ -24,7 +24,7 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class TaskCreate : IEquatable<TaskCreate>
+    public partial class TaskPostRequestDto : IEquatable<TaskPostRequestDto>
     {
         /// <summary>
         /// タイトル
@@ -94,7 +94,7 @@ namespace Org.OpenAPITools.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TaskCreate {\n");
+            sb.Append("class TaskPostRequestDto {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
@@ -121,15 +121,15 @@ namespace Org.OpenAPITools.Models
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((TaskCreate)obj);
+            return obj.GetType() == GetType() && Equals((TaskPostRequestDto)obj);
         }
 
         /// <summary>
-        /// Returns true if TaskCreate instances are equal
+        /// Returns true if TaskPostRequestDto instances are equal
         /// </summary>
-        /// <param name="other">Instance of TaskCreate to be compared</param>
+        /// <param name="other">Instance of TaskPostRequestDto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TaskCreate other)
+        public bool Equals(TaskPostRequestDto other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -182,12 +182,12 @@ namespace Org.OpenAPITools.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(TaskCreate left, TaskCreate right)
+        public static bool operator ==(TaskPostRequestDto left, TaskPostRequestDto right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TaskCreate left, TaskCreate right)
+        public static bool operator !=(TaskPostRequestDto left, TaskPostRequestDto right)
         {
             return !Equals(left, right);
         }

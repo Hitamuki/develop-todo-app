@@ -24,7 +24,7 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class Task : IEquatable<Task>
+    public partial class TaskGetResponseDto : IEquatable<TaskGetResponseDto>
     {
         /// <summary>
         /// タイトル
@@ -108,7 +108,7 @@ namespace Org.OpenAPITools.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Task {\n");
+            sb.Append("class TaskGetResponseDto {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
@@ -137,15 +137,15 @@ namespace Org.OpenAPITools.Models
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Task)obj);
+            return obj.GetType() == GetType() && Equals((TaskGetResponseDto)obj);
         }
 
         /// <summary>
-        /// Returns true if Task instances are equal
+        /// Returns true if TaskGetResponseDto instances are equal
         /// </summary>
-        /// <param name="other">Instance of Task to be compared</param>
+        /// <param name="other">Instance of TaskGetResponseDto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Task other)
+        public bool Equals(TaskGetResponseDto other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -212,12 +212,12 @@ namespace Org.OpenAPITools.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(Task left, Task right)
+        public static bool operator ==(TaskGetResponseDto left, TaskGetResponseDto right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Task left, Task right)
+        public static bool operator !=(TaskGetResponseDto left, TaskGetResponseDto right)
         {
             return !Equals(left, right);
         }

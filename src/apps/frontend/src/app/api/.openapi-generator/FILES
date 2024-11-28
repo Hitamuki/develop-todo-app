@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.module.ts
 api/api.ts
@@ -8,11 +7,9 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
-model/model-error.ts
+model/error-response-dto.ts
 model/models.ts
-model/task-create.ts
-model/task.ts
-model/tasks-task-id-get400-response.ts
-model/tasks-task-id-get404-response.ts
+model/task-get-response-dto.ts
+model/task-post-request-dto.ts
 param.ts
 variables.ts

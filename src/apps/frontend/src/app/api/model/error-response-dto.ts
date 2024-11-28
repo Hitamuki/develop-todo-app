@@ -9,8 +9,8 @@
  */
 
 
-export interface TasksTaskIdGet400Response { 
-    Code: any | null;
-    Message: any | null;
+export interface ErrorResponseDto { 
+    Code: string;
+    Message: string;
 }
 

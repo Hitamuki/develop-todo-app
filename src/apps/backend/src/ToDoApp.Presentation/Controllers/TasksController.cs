@@ -19,33 +19,33 @@ public class TasksController : TasksApiController
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> TasksGet()
+  public override async Task<IActionResult> Gets()
   {
     var tasks = await _taskService.GetAllAsync();
     // TODO: サービスクラスでEntityからDTOに変換
-    return Ok(new List<Org.OpenAPITools.Models.Task>());
+    return Ok(new List<TaskGetResponseDto>());
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> TasksPost([FromBody] TaskCreate taskCreate)
+  public override async Task<IActionResult> Post([FromBody] TaskPostRequestDto taskPostRequestDto)
   {
     return Created();
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> TasksTaskIdDelete([FromRoute(Name = "taskId")][Required] Guid taskId)
+  public override async Task<IActionResult> Delete([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
     return NoContent();
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> TasksTaskIdGet([FromRoute(Name = "taskId")][Required] Guid taskId)
+  public override async Task<IActionResult> Get([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
     return Ok();
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> TasksTaskIdPut([FromRoute(Name = "taskId")][Required] Guid taskId)
+  public override async Task<IActionResult> Put([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
     return NoContent();
   }

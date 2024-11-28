@@ -1,5 +1,7 @@
 # ToDo
 
+- openapi-generatorで不要になったファイルを削除したい（1回全削除？）
+
 - 設計
   - <https://qiita.com/EasyCoder/items/04d9a9776557c8d8f840>
   - <https://zenn.dev/eguchi244_dev/books/laravel-tutorial-books/viewer/laravel-todo-app-design>

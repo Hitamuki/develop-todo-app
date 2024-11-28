@@ -21,13 +21,14 @@
       "get" : {
         "deprecated" : false,
         "description" : "0件のときは空の配列",
+        "operationId" : "Gets",
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/Task"
+                    "$ref" : "#/components/schemas/TaskGetResponseDto"
                   },
                   "type" : "array"
                 }
@@ -41,11 +42,12 @@
       },
       "post" : {
         "deprecated" : false,
+        "operationId" : "Post",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/TaskCreate"
+                "$ref" : "#/components/schemas/TaskPostRequestDto"
               }
             }
           }
@@ -62,6 +64,7 @@
     "/tasks/{taskId}" : {
       "delete" : {
         "deprecated" : false,
+        "operationId" : "Delete",
         "parameters" : [ {
           "description" : "UUID",
           "explode" : false,
@@ -82,7 +85,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -92,7 +95,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -104,6 +107,7 @@
       },
       "get" : {
         "deprecated" : false,
+        "operationId" : "Get",
         "parameters" : [ {
           "description" : "UUID",
           "explode" : false,
@@ -121,7 +125,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Task"
+                  "$ref" : "#/components/schemas/TaskGetResponseDto"
                 }
               }
             },
@@ -131,7 +135,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -141,7 +145,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -153,6 +157,7 @@
       },
       "put" : {
         "deprecated" : false,
+        "operationId" : "Put",
         "parameters" : [ {
           "description" : "UUID",
           "explode" : false,
@@ -173,7 +178,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -183,7 +188,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+                  "$ref" : "#/components/schemas/ErrorResponseDto"
                 }
               }
             },
@@ -201,7 +206,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/_tasks__taskId__get_400_response"
+              "$ref" : "#/components/schemas/ErrorResponseDto"
             }
           }
         },
@@ -211,7 +216,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_object"
+              "$ref" : "#/components/schemas/ErrorResponseDto"
             }
           }
         },
@@ -221,7 +226,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/_tasks__taskId__get_404_response"
+              "$ref" : "#/components/schemas/ErrorResponseDto"
             }
           }
         },
@@ -229,7 +234,7 @@
       }
     },
     "schemas" : {
-      "Task" : {
+      "TaskGetResponseDto" : {
         "example" : {
           "status_id" : "1",
           "updated_at" : "2000-01-23T04:56:07.000+00:00",
@@ -274,7 +279,7 @@
         "required" : [ "status", "title" ],
         "type" : "object"
       },
-      "TaskCreate" : {
+      "TaskPostRequestDto" : {
         "example" : {
           "status_id" : "1",
           "due_date" : "2000-01-23T04:56:07.000+00:00",
@@ -307,7 +312,11 @@
         "required" : [ "status", "title" ],
         "type" : "object"
       },
-      "Error" : {
+      "ErrorResponseDto" : {
+        "example" : {
+          "code" : "code",
+          "message" : "message"
+        },
         "properties" : {
           "code" : {
             "type" : "string"
@@ -318,56 +327,6 @@
         },
         "required" : [ "code", "message" ],
         "type" : "object"
-      },
-      "_tasks__taskId__get_400_response" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Error"
-        }, {
-          "properties" : {
-            "code" : {
-              "example" : 400
-            },
-            "message" : {
-              "example" : "400 Bad Request"
-            }
-          }
-        } ],
-        "example" : {
-          "code" : 400,
-          "message" : "400 Bad Request"
-        }
-      },
-      "_tasks__taskId__get_404_response" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Error"
-        }, {
-          "properties" : {
-            "code" : {
-              "example" : 404
-            },
-            "message" : {
-              "example" : "404 Not Found"
-            }
-          }
-        } ],
-        "example" : {
-          "code" : 404,
-          "message" : "404 Not Found"
-        }
-      },
-      "inline_object" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Error"
-        }, {
-          "properties" : {
-            "code" : {
-              "example" : 401
-            },
-            "message" : {
-              "example" : "401 Unauthorized"
-            }
-          }
-        } ]
       }
     }
   }

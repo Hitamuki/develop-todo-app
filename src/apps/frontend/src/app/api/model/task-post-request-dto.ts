@@ -9,7 +9,7 @@
  */
 
 
-export interface Task { 
+export interface TaskPostRequestDto { 
     /**
      * タイトル
      */
@@ -25,17 +25,9 @@ export interface Task {
     /**
      * ステータスIDを変換してステータスを表示する
      */
-    StatusId?: Task.StatusIdEnum;
-    /**
-     * 作成日時
-     */
-    CreatedAt?: string;
-    /**
-     * 更新日時
-     */
-    UpdatedAt?: string;
+    StatusId?: TaskPostRequestDto.StatusIdEnum;
 }
-export namespace Task {
+export namespace TaskPostRequestDto {
     export type StatusIdEnum = '0' | '1' | '2';
     export const StatusIdEnum = {
         _0: '0' as StatusIdEnum,

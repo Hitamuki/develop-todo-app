@@ -7,7 +7,7 @@
 
 ## 実装
 
-- OpenAPIのファイル命名をDDDに合わせる
+- openapi-generatorで不要になったファイルを削除したい（1回全削除？）
 - package.json詳細化(description、private、author、license)
 - gitignore見直し
 - cspell整理

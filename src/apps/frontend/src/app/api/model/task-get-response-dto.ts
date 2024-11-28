@@ -9,7 +9,7 @@
  */
 
 
-export interface TaskCreate { 
+export interface TaskGetResponseDto { 
     /**
      * タイトル
      */
@@ -25,9 +25,17 @@ export interface TaskCreate {
     /**
      * ステータスIDを変換してステータスを表示する
      */
-    StatusId?: TaskCreate.StatusIdEnum;
+    StatusId?: TaskGetResponseDto.StatusIdEnum;
+    /**
+     * 作成日時
+     */
+    CreatedAt?: string;
+    /**
+     * 更新日時
+     */
+    UpdatedAt?: string;
 }
-export namespace TaskCreate {
+export namespace TaskGetResponseDto {
     export type StatusIdEnum = '0' | '1' | '2';
     export const StatusIdEnum = {
         _0: '0' as StatusIdEnum,

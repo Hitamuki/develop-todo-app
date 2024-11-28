@@ -27,6 +27,7 @@ paths:
         - tasks
       summary: タスク一覧取得
       description: 0件のときは空の配列 # 検索に対応
+      operationId: Gets
       deprecated: false
       responses:
         200:
@@ -36,17 +37,18 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Task"
+                  $ref: "#/components/schemas/TaskGetResponseDto"
     post:
       tags:
         - tasks
       summary: タスク新規作成
+      operationId: Post
       deprecated: false
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TaskCreate"
+              $ref: "#/components/schemas/TaskPostRequestDto"
       responses:
         201:
           description: 201 Created
@@ -55,6 +57,7 @@ paths:
       tags:
         - tasks
       summary: タスク1件取得
+      operationId: Get
       deprecated: false
       parameters:
         - in: path
@@ -71,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Task"
+                $ref: "#/components/schemas/TaskGetResponseDto"
         400:
           $ref: "#/components/responses/BadRequest"
         404:
@@ -80,6 +83,7 @@ paths:
       tags:
         - tasks
       summary: タスク更新
+      operationId: Put
       deprecated: false
       parameters:
         - in: path
@@ -101,6 +105,7 @@ paths:
       tags:
         - tasks
       summary: タスク削除
+      operationId: Delete
       deprecated: false
       parameters:
         - in: path
@@ -126,39 +131,36 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: "#/components/schemas/Error"
-              - properties:
-                  code:
-                    example: 400
-                  message:
-                    example: 400 Bad Request
+            $ref: "#/components/schemas/ErrorResponseDto"
+            properties:
+              code:
+                example: 400
+              message:
+                example: 400 Bad Request
     Unauthorized:
       description: 401 Unauthorized
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: "#/components/schemas/Error"
-              - properties:
-                  code:
-                    example: 401
-                  message:
-                    example: 401 Unauthorized
+            $ref: "#/components/schemas/ErrorResponseDto"
+            properties:
+              code:
+                example: 401
+              message:
+                example: 401 Unauthorized
     NotFound:
       description: 404 Not Found
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: "#/components/schemas/Error"
-              - properties:
-                  code:
-                    example: 404
-                  message:
-                    example: 404 Not Found
+            $ref: "#/components/schemas/ErrorResponseDto"
+            properties:
+              code:
+                example: 404
+              message:
+                example: 404 Not Found
   schemas:
-    Task:
+    TaskGetResponseDto:
       type: object
       required:
         - title
@@ -193,7 +195,7 @@ components:
           type: string
           format: date-time
           description: 更新日時
-    TaskCreate:
+    TaskPostRequestDto:
       type: object
       required:
         - title
@@ -220,7 +222,7 @@ components:
             - 0
             - 1
             - 2
-    Error:
+    ErrorResponseDto:
       type: object
       properties:
         code:
