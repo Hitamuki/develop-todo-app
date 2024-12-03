@@ -48,5 +48,18 @@
 <https://learn.microsoft.com/ja-jp/aspnet/core/tutorials/getting-started-with-nswag?view=aspnetcore-8.0&tabs=visual-studio-code>
 
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
-HTTPS 開発証明書
-  dotnet dev-certs https --trust
+
+## コマンド
+
+フォーマット TODO: shで実行
+
+```bash
+OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
+dotnet format --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
+```
+
+HTTPS 開発証明書 ※初回のみ
+
+```bash
+dotnet dev-certs https --trust
+```
