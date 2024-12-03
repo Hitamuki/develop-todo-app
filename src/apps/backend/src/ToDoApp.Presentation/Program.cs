@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TodoApp.Application.Interfaces.IService;
 using TodoApp.Application.Services;
 using TodoApp.Domain.Interfaces.IRepository;
 using TodoApp.Infrastructure.DataSource;
 using TodoApp.Infrastructure.DataSource.Repositories;
+using TodoApp.Infrastructure.EFCoreGenerator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +26,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // データベースコンテキストの登録
-builder.Services.AddDbContext<MySqlDbContext>(options =>
-  options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<TodoContext>(options =>
+  options.UseMySQL(builder.Configuration.GetConnectionString("TodoContext")));
 
 // サービスの登録
 builder.Services.AddScoped<ITaskService, TaskService>();
@@ -38,13 +43,21 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
+// HTTPS リダイレクトを追加
 app.UseHttpsRedirection();
 
+// ルーティングを有効化
+app.UseRouting();
+
+// 認可ミドルウェアを追加
 app.UseAuthorization();
 
+// エンドポイントの設定
 app.UseEndpoints(endpoints =>
 {
+  // コントローラーをエンドポイントにマップ
   _ = endpoints.MapControllers();
 });
 
+// アプリケーションを実行
 app.Run();

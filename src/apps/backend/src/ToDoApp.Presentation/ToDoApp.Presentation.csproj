@@ -3,12 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- <ImplicitUsings>enable</ImplicitUsings> -->
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
@@ -16,6 +12,11 @@
     <ProjectReference Include="..\TodoApp.Application\TodoApp.Application.csproj" />
     <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
     <ProjectReference Include="..\TodoApp.Infrastructure/TodoApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <!-- NuGet パッケージ参照 -->
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
 </Project>

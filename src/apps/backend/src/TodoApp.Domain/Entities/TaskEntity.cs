@@ -2,11 +2,58 @@ namespace Domain.Entities;
 
 public class TaskEntity
 {
-    public int Id { get; set; }
-    public required string Title { get; set; }
-    public string? Content { get; set; }
-    public DateTime? Deadline { get; set; }
-    public string? Category { get; set; }
-    public byte? Flag { get; set; }
-    public DateTime CreatedAd { get; set; }
+  /// <summary>
+  /// UUID
+  /// </summary>
+  public Guid Id { get; set; }
+
+  /// <summary>
+  /// ユーザーID(users.id)
+  /// </summary>
+  public Guid UserId { get; set; }
+
+  /// <summary>
+  /// タイトル
+  /// </summary>
+  public string Title { get; set; }
+
+  /// <summary>
+  /// 詳細
+  /// </summary>
+  public string Description { get; set; }
+
+  /// <summary>
+  /// 締切日
+  /// </summary>
+  public DateTime? DueDate { get; set; }
+
+  /// <summary>
+  /// ステータスID（m_task_statusのIDを参照）
+  /// </summary>
+  public int StatusId { get; set; }
+
+  /// <summary>
+  /// 論理削除フラグ
+  /// </summary>
+  public bool? IsDeleted { get; set; }
+
+  /// <summary>
+  /// 登録日時
+  /// </summary>
+  public DateTime? CreatedAt { get; set; }
+
+  /// <summary>
+  /// 登録ユーザー
+  /// </summary>
+  public Guid? CreatedBy { get; set; }
+
+  /// <summary>
+  /// 更新日時
+  /// </summary>
+  public DateTime? UpdatedAt { get; set; }
+
+  /// <summary>
+  /// 更新ユーザー
+  /// </summary>
+  public Guid? UpdatedBy { get; set; }
 }
