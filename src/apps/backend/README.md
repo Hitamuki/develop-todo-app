@@ -18,14 +18,14 @@
 - OpenAPI Specificationのopenapi.ymlを生成
 - MySQL操作
   - Entity Framework Core
-  - Dapper
+  - (Dapper)
 - 単体テスト
   - xUnit
-  - MSTest
+  - (MSTest)
   - Moq
 - フォーマッタ
   - dotnet-format
-  - csharpier
+  - (csharpier)
 - 静的解析
   - StyleCop.Analyzers
 - コード分析
@@ -39,7 +39,10 @@
 - パッケージ、ツール
   - dotnet-reportgenerator-globaltool 単体テストのコードカバレッジ
   - FluentValidation APIの入力検証
-  - Serilog、NLog、log4net ログ
+  - ログ
+    - NLog
+    - (Serilog)
+    - (log4net)
 ※バックエンドの共通メソッドを管理するNugetパッケージを作成
 
 ## メモ
@@ -49,13 +52,15 @@
 
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
+memo.mdを作成し、参考にURLなどを記載
+
 ## コマンド
 
-フォーマット TODO: shで実行
+フォーマット TODO: shファイルで実行
 
 ```bash
-OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
-dotnet format --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
+# OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
+dotnet format style --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
 ```
 
 HTTPS 開発証明書 ※初回のみ
