@@ -14,7 +14,7 @@
     "enabled": true
   },
   "formatter": {
-    "enabled": true,
+    "enabled": false,
     "formatWithErrors": false,
     "ignore": [],
     "indentStyle": "space",
@@ -28,7 +28,7 @@
   },
   "json": {},
   "linter": {
-    "enabled": true,
+    "enabled": false,
     "ignore": [],
     "rules": {
       "recommended": true,
