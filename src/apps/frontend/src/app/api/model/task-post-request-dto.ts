@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { StatusIdEnum } from './status-id-enum';
 
 
 export interface TaskPostRequestDto { 
@@ -22,18 +23,9 @@ export interface TaskPostRequestDto {
      * 締切日
      */
     DueDate?: string;
-    /**
-     * ステータスIDを変換してステータスを表示する
-     */
-    StatusId?: TaskPostRequestDto.StatusIdEnum;
+    StatusId?: StatusIdEnum;
 }
 export namespace TaskPostRequestDto {
-    export type StatusIdEnum = '0' | '1' | '2';
-    export const StatusIdEnum = {
-        _0: '0' as StatusIdEnum,
-        _1: '1' as StatusIdEnum,
-        _2: '2' as StatusIdEnum
-    };
 }
 
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
@@ -7,18 +7,17 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <Version>1.0.0</Version>
+    <OutputType>Library</OutputType>
     <AssemblyName>Org.OpenAPITools</AssemblyName>
     <PackageId>Org.OpenAPITools</PackageId>
-    <UserSecretsId>e09a85b4-98a0-47bf-bc82-ceaa925e8538</UserSecretsId>
+    <UserSecretsId>1f7144f2-44ad-4e47-bc47-66286ced7032</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="JsonSubTypes" Version="1.8.0" />
   </ItemGroup>
   <ItemGroup>

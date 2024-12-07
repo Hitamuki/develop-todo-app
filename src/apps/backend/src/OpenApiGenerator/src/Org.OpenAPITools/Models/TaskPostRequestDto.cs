@@ -24,7 +24,7 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class TaskPostRequestDto : IEquatable<TaskPostRequestDto>
+    public class TaskPostRequestDto : IEquatable<TaskPostRequestDto>
     {
         /// <summary>
         /// タイトル
@@ -50,40 +50,9 @@ namespace Org.OpenAPITools.Models
         [DataMember(Name="due_date", EmitDefaultValue=true)]
         public DateTime DueDate { get; set; }
 
-
         /// <summary>
-        /// ステータスIDを変換してステータスを表示する
+        /// Gets or Sets StatusId
         /// </summary>
-        /// <value>ステータスIDを変換してステータスを表示する</value>
-        [TypeConverter(typeof(CustomEnumConverter<StatusIdEnum>))]
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public enum StatusIdEnum
-        {
-            
-            /// <summary>
-            /// Enum _0Enum for 0
-            /// </summary>
-            [EnumMember(Value = "0")]
-            _0Enum = 1,
-            
-            /// <summary>
-            /// Enum _1Enum for 1
-            /// </summary>
-            [EnumMember(Value = "1")]
-            _1Enum = 2,
-            
-            /// <summary>
-            /// Enum _2Enum for 2
-            /// </summary>
-            [EnumMember(Value = "2")]
-            _2Enum = 3
-        }
-
-        /// <summary>
-        /// ステータスIDを変換してステータスを表示する
-        /// </summary>
-        /// <value>ステータスIDを変換してステータスを表示する</value>
-        /* <example>1</example> */
         [DataMember(Name="status_id", EmitDefaultValue=true)]
         public StatusIdEnum StatusId { get; set; }
 

@@ -16,9 +16,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Newtonsoft.Json;
 using Org.OpenAPITools.Attributes;
 using Org.OpenAPITools.Models;
 
@@ -28,7 +25,7 @@ namespace Org.OpenAPITools.Controllers
     /// 
     /// </summary>
     [ApiController]
-    public class TasksApiController : ControllerBase
+    public abstract class TasksApiController : ControllerBase
     { 
         /// <summary>
         /// タスク削除
@@ -40,21 +37,9 @@ namespace Org.OpenAPITools.Controllers
         [HttpDelete]
         [Route("/api/v1/tasks/{taskId}")]
         [ValidateModelState]
-        [SwaggerOperation("Delete")]
-        [SwaggerResponse(statusCode: 400, type: typeof(ErrorResponseDto), description: "400 Bad Request")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponseDto), description: "404 Not Found")]
-        public virtual Task<IActionResult> Delete([FromRoute (Name = "taskId")][Required]Guid taskId)
-        {
-
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200);
-            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400, default(ErrorResponseDto));
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponseDto));
-
-            throw new NotImplementedException();
-        }
+        [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
+        [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
+        public abstract Task<IActionResult> Delete([FromRoute (Name = "taskId")][Required]Guid taskId);
 
         /// <summary>
         /// タスク1件取得
@@ -66,30 +51,10 @@ namespace Org.OpenAPITools.Controllers
         [HttpGet]
         [Route("/api/v1/tasks/{taskId}")]
         [ValidateModelState]
-        [SwaggerOperation("Get")]
-        [SwaggerResponse(statusCode: 200, type: typeof(TaskGetResponseDto), description: "200 OK")]
-        [SwaggerResponse(statusCode: 400, type: typeof(ErrorResponseDto), description: "400 Bad Request")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponseDto), description: "404 Not Found")]
-        public virtual Task<IActionResult> Get([FromRoute (Name = "taskId")][Required]Guid taskId)
-        {
-
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(TaskGetResponseDto));
-            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400, default(ErrorResponseDto));
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponseDto));
-            string exampleJson = null;
-            exampleJson = "{\n  \"status_id\" : \"1\",\n  \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"due_date\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"description\" : \"タスクの詳細\",\n  \"created_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"title\" : \"本日のタスク\"\n}";
-            exampleJson = "{\n  \"code\" : \"code\",\n  \"message\" : \"message\"\n}";
-            exampleJson = "{\n  \"code\" : \"code\",\n  \"message\" : \"message\"\n}";
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<TaskGetResponseDto>(exampleJson)
-            : default(TaskGetResponseDto);
-            //TODO: Change the data returned
-            return Task.FromResult<IActionResult>(new ObjectResult(example));
-        }
+        [ProducesResponseType(statusCode: 200, type: typeof(TaskGetResponseDto))]
+        [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
+        [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
+        public abstract Task<IActionResult> Get([FromRoute (Name = "taskId")][Required]Guid taskId);
 
         /// <summary>
         /// タスク一覧取得
@@ -99,22 +64,8 @@ namespace Org.OpenAPITools.Controllers
         [HttpGet]
         [Route("/api/v1/tasks")]
         [ValidateModelState]
-        [SwaggerOperation("Gets")]
-        [SwaggerResponse(statusCode: 200, type: typeof(List<TaskGetResponseDto>), description: "200 OK")]
-        public virtual Task<IActionResult> Gets()
-        {
-
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(List<TaskGetResponseDto>));
-            string exampleJson = null;
-            exampleJson = "[ {\n  \"status_id\" : \"1\",\n  \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"due_date\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"description\" : \"タスクの詳細\",\n  \"created_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"title\" : \"本日のタスク\"\n}, {\n  \"status_id\" : \"1\",\n  \"updated_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"due_date\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"description\" : \"タスクの詳細\",\n  \"created_at\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"title\" : \"本日のタスク\"\n} ]";
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<List<TaskGetResponseDto>>(exampleJson)
-            : default(List<TaskGetResponseDto>);
-            //TODO: Change the data returned
-            return Task.FromResult<IActionResult>(new ObjectResult(example));
-        }
+        [ProducesResponseType(statusCode: 200, type: typeof(List<TaskGetResponseDto>))]
+        public abstract Task<IActionResult> Gets();
 
         /// <summary>
         /// タスク新規作成
@@ -125,15 +76,7 @@ namespace Org.OpenAPITools.Controllers
         [Route("/api/v1/tasks")]
         [Consumes("application/json")]
         [ValidateModelState]
-        [SwaggerOperation("Post")]
-        public virtual Task<IActionResult> Post([FromBody]TaskPostRequestDto taskPostRequestDto)
-        {
-
-            //TODO: Uncomment the next line to return response 201 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(201);
-
-            throw new NotImplementedException();
-        }
+        public abstract Task<IActionResult> Post([FromBody]TaskPostRequestDto taskPostRequestDto);
 
         /// <summary>
         /// タスク更新
@@ -145,20 +88,8 @@ namespace Org.OpenAPITools.Controllers
         [HttpPut]
         [Route("/api/v1/tasks/{taskId}")]
         [ValidateModelState]
-        [SwaggerOperation("Put")]
-        [SwaggerResponse(statusCode: 400, type: typeof(ErrorResponseDto), description: "400 Bad Request")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponseDto), description: "404 Not Found")]
-        public virtual Task<IActionResult> Put([FromRoute (Name = "taskId")][Required]Guid taskId)
-        {
-
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200);
-            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400, default(ErrorResponseDto));
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponseDto));
-
-            throw new NotImplementedException();
-        }
+        [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
+        [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
+        public abstract Task<IActionResult> Put([FromRoute (Name = "taskId")][Required]Guid taskId);
     }
 }

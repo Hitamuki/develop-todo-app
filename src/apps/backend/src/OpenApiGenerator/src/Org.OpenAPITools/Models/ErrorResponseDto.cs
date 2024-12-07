@@ -24,7 +24,7 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class ErrorResponseDto : IEquatable<ErrorResponseDto>
+    public class ErrorResponseDto : IEquatable<ErrorResponseDto>
     {
         /// <summary>
         /// Gets or Sets Code

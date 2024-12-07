@@ -160,6 +160,14 @@ components:
               message:
                 example: 404 Not Found
   schemas:
+    StatusIdEnum:
+      type: number
+      description: ステータスIDを変換してステータスを表示する
+      example: 1
+      enum:
+        - 1
+        - 2
+        - 3
     TaskGetResponseDto:
       type: object
       required:
@@ -180,13 +188,7 @@ components:
           description: 締切日
           example: 2024/11/18
         status_id:
-          type: string
-          description: ステータスIDを変換してステータスを表示する
-          example: 1
-          enum:
-            - 0
-            - 1
-            - 2
+          $ref: "#/components/schemas/StatusIdEnum"
         created_at:
           type: string
           format: date-time
@@ -215,13 +217,7 @@ components:
           description: 締切日
           example: 2024/11/18
         status_id:
-          type: string
-          description: ステータスIDを変換してステータスを表示する
-          example: 1
-          enum:
-            - 0
-            - 1
-            - 2
+          $ref: "#/components/schemas/StatusIdEnum"
     ErrorResponseDto:
       type: object
       properties:

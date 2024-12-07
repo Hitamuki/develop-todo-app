@@ -9,6 +9,7 @@ git_push.sh
 index.ts
 model/error-response-dto.ts
 model/models.ts
+model/status-id-enum.ts
 model/task-get-response-dto.ts
 model/task-post-request-dto.ts
 param.ts

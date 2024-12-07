@@ -11,9 +11,21 @@ using TodoApp.Infrastructure.DataSource;
 using TodoApp.Infrastructure.DataSource.Repositories;
 using TodoApp.Infrastructure.EFCoreGenerator;
 
+var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy(name: corsPolicy,
+    policy =>
+    {
+      policy.AllowAnyOrigin();
+      // .WithOrigins("https://*.example.com") // TODO: AllowAnyOrigin切り替え
+      // .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,7 +52,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
-  app.UseSwaggerUI();
+  app.UseSwaggerUI(options =>
+  {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+  });
 }
 
 // HTTPS リダイレクトを追加
@@ -49,15 +65,13 @@ app.UseHttpsRedirection();
 // ルーティングを有効化
 app.UseRouting();
 
+app.UseCors(corsPolicy);
+
 // 認可ミドルウェアを追加
 app.UseAuthorization();
 
-// エンドポイントの設定
-app.UseEndpoints(endpoints =>
-{
-  // コントローラーをエンドポイントにマップ
-  _ = endpoints.MapControllers();
-});
+// コントローラーをエンドポイントにマップ
+app.MapControllers();
 
 // アプリケーションを実行
 app.Run();
