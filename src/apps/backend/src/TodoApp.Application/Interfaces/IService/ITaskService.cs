@@ -9,4 +9,6 @@ public interface ITaskService
   /// </summary>
   /// <returns>すべてのタスク</returns>
   Task<IEnumerable<TaskEntity>> GetAllAsync();
+
+  Task<TaskEntity> GetByIdAsync(Guid id);
 }

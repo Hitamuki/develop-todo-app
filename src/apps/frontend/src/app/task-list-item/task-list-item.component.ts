@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe, NgIf } from '@angular/common';
-import type { Task } from '../../models/task';
+import { TaskGetResponseDto } from '../api';
 
 /**
  *
@@ -15,14 +15,15 @@ import type { Task } from '../../models/task';
   styleUrl: './task-list-item.component.scss',
 })
 export class TaskListItemComponent {
-  @Input() task!: Task;
+  @Input() task!: TaskGetResponseDto;
 
   /**
    * 期日判定
    * @param task 対象のタスク
    * @returns 期日内の場合true
    */
-  isOverdue(task: Task): boolean | null {
-    return !task.done && task.deadline && task.deadline.getTime() < new Date().setHours(0, 0, 0, 0);
+  isOverdue(task: TaskGetResponseDto): boolean | null {
+    const dueDate = new Date(task.DueDate as string);
+    return task.StatusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
   }
 }

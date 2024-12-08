@@ -184,7 +184,7 @@ components:
           example: タスクの詳細
         due_date:
           type: string
-          format: date-time
+          format: date
           description: 締切日
           example: 2024/11/18
         status_id:
@@ -213,7 +213,7 @@ components:
           example: タスクの詳細
         due_date:
           type: string
-          format: date-time
+          format: date
           description: 締切日
           example: 2024/11/18
         status_id:

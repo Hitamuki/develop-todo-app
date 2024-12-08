@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import type { Task } from '../../models/task';
+import { TaskGetResponseDto } from '../api';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 /**
  *
@@ -13,17 +13,22 @@ import type { Task } from '../../models/task';
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [FormsModule, JsonPipe, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss',
 })
 export class TaskFormComponent {
-  @Output() addTask = new EventEmitter<Task>();
+  @Output() addTask = new EventEmitter<TaskGetResponseDto>();
 
-  newTask: Task = {
-    title: '',
-    done: false,
-    deadline: null,
+  newTask: TaskGetResponseDto = {
+    Title: '',
+    StatusId: 1,
+    DueDate: undefined,
+  };
+  defaultNewTask: TaskGetResponseDto = {
+    Title: '',
+    StatusId: 1,
+    DueDate: undefined,
   };
 
   /**
@@ -31,14 +36,10 @@ export class TaskFormComponent {
    */
   submit() {
     this.addTask.emit({
-      title: this.newTask.title,
-      done: false,
-      deadline: this.newTask.deadline ? new Date(this.newTask.deadline) : null,
+      Title: this.newTask.Title,
+      StatusId: 1,
+      DueDate: this.newTask.DueDate ? new Date(this.newTask.DueDate).toDateString() : undefined,
     });
-    this.newTask = {
-      title: '',
-      done: false,
-      deadline: null,
-    };
+    this.newTask = this.defaultNewTask;
   }
 }

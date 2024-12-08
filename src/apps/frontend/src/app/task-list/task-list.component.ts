@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
-import type { Task } from '../../models/task';
+import { TaskGetResponseDto, TasksService } from '../api';
 
 /**
  *
@@ -14,18 +14,48 @@ import type { Task } from '../../models/task';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
-export class TaskListComponent {
-  tasks: Task[] = [
-    { title: '牛乳を買う', done: false, deadline: new Date('2021-01-01') },
-    { title: '可燃ゴミを出す', done: true, deadline: new Date('2020-01-02') },
-    { title: '銀行に行く', done: false, deadline: new Date('2020-01-03') },
-  ];
+export class TaskListComponent implements OnInit {
+  // ----------------------
+  // パブリック変数
+  // ----------------------
+  tasks: TaskGetResponseDto[] = [];
+
+  // ----------------------
+  // プライベート変数
+  // ----------------------
+
+  // ----------------------
+  // パブリックメソッド
+  // ----------------------
+  /**
+   * コンストラクタ
+   * @param taskService タスクのAPI
+   */
+  constructor(private taskService: TasksService) {}
+
+  /**
+   * 初期化処理
+   */
+  ngOnInit() {
+    this.taskService.gets().subscribe((result) => {
+      this.tasks = result;
+    });
+    // this.tasks=[
+      // { Title: '牛乳を買う', StatusId: 1, DueDate: new Date('2021-01-01').toDateString() },
+      // { Title: '可燃ゴミを出す', StatusId: 3, DueDate: new Date('2020-01-02').toDateString() },
+      // { Title: '銀行に行く', StatusId: 1, DueDate: new Date('2020-01-03').toDateString() },
+    // ];
+  }
 
   /**
    * タスクを追加する
    * @param task タスク
    */
-  addTask(task: Task) {
+  addTask(task: TaskGetResponseDto) {
     this.tasks.push(task);
   }
+
+  // ----------------------
+  // プライベートメソッド
+  // ----------------------
 }

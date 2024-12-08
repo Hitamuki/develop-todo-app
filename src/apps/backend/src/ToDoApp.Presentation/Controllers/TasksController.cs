@@ -24,9 +24,19 @@ public class TasksController : TasksApiController
   /// <inheritdoc/> 
   public override async Task<IActionResult> Gets()
   {
-    var tasks = await _taskService.GetAllAsync();
+    IEnumerable<TaskEntity> tasks = await _taskService.GetAllAsync();
     // TODO: サービスクラスでEntityからDTOに変換
-    return Ok(new List<TaskGetResponseDto>());
+    var taskGetResponseDtos = tasks.Select(task => new TaskGetResponseDto
+    {
+      Title = task.Title,
+      Description = task.Description,
+      DueDate = task.DueDate ?? DateTime.MinValue,
+      StatusId = (StatusIdEnum)task.StatusId,
+      CreatedAt = task.CreatedAt ?? DateTime.MinValue,
+      UpdatedAt = task.UpdatedAt ?? DateTime.MinValue,
+    });
+
+    return Ok(taskGetResponseDtos);
   }
 
   /// <inheritdoc/> 
@@ -44,7 +54,19 @@ public class TasksController : TasksApiController
   /// <inheritdoc/> 
   public override async Task<IActionResult> Get([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
-    return Ok();
+    var task = await _taskService.GetByIdAsync(taskId);
+
+    // TODO: サービスクラスでEntityからDTOに変換
+    var taskGetResponseDto = new TaskGetResponseDto
+    {
+      Title = task.Title,
+      Description = task.Description,
+      DueDate = task.DueDate ?? DateTime.MinValue,
+      StatusId = (StatusIdEnum)task.StatusId,
+      CreatedAt = task.CreatedAt ?? DateTime.MinValue,
+      UpdatedAt = task.UpdatedAt ?? DateTime.MinValue,
+    };
+    return Ok(taskGetResponseDto);
   }
 
   /// <inheritdoc/> 

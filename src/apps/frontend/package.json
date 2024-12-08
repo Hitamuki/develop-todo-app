@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -53,6 +52,7 @@
     "@openapitools/openapi-generator-cli": "^2.15.3",
     "@playwright/test": "^1.47.2",
     "@testing-library/angular": "^17.3.1",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/eslint-plugin-security": "^3",

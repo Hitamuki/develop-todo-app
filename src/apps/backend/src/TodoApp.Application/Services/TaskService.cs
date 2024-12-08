@@ -22,4 +22,9 @@ public class TaskService : ITaskService
   {
     return await _taskRepository.GetAllAsync();
   }
+
+  public async Task<TaskEntity> GetByIdAsync(Guid id)
+  {
+    return await _taskRepository.GetByIdAsync(id);
+  }
 }
