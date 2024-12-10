@@ -94,6 +94,11 @@ paths:
             type: string
             format: uuid
             example: xxx-xxx-xxx-xxx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskPutRequestDto"      
       responses:
         200:
           description: 200 OK
@@ -186,7 +191,7 @@ components:
           type: string
           format: date
           description: 締切日
-          example: 2024/11/18
+          example: 2024-11-18
         status_id:
           $ref: "#/components/schemas/StatusIdEnum"
         created_at:
@@ -215,7 +220,28 @@ components:
           type: string
           format: date
           description: 締切日
-          example: 2024/11/18
+          example: 2024-11-18
+        status_id:
+          $ref: "#/components/schemas/StatusIdEnum"
+    TaskPutRequestDto:
+      type: object
+      required:
+        - title
+        - status
+      properties:
+        title:
+          type: string
+          description: タイトル
+          example: 本日のタスク
+        description:
+          type: string
+          description: 詳細
+          example: タスクの詳細
+        due_date:
+          type: string
+          format: date
+          description: 締切日
+          example: 2024-11-18
         status_id:
           $ref: "#/components/schemas/StatusIdEnum"
     ErrorResponseDto:

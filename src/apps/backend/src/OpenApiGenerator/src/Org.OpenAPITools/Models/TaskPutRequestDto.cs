@@ -24,7 +24,7 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public class TaskGetResponseDto : IEquatable<TaskGetResponseDto>
+    public class TaskPutRequestDto : IEquatable<TaskPutRequestDto>
     {
         /// <summary>
         /// タイトル
@@ -57,33 +57,17 @@ namespace Org.OpenAPITools.Models
         public StatusIdEnum StatusId { get; set; }
 
         /// <summary>
-        /// 作成日時
-        /// </summary>
-        /// <value>作成日時</value>
-        [DataMember(Name="created_at", EmitDefaultValue=true)]
-        public DateTime CreatedAt { get; set; }
-
-        /// <summary>
-        /// 更新日時
-        /// </summary>
-        /// <value>更新日時</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=true)]
-        public DateTime UpdatedAt { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TaskGetResponseDto {\n");
+            sb.Append("class TaskPutRequestDto {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
             sb.Append("  StatusId: ").Append(StatusId).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,15 +90,15 @@ namespace Org.OpenAPITools.Models
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((TaskGetResponseDto)obj);
+            return obj.GetType() == GetType() && Equals((TaskPutRequestDto)obj);
         }
 
         /// <summary>
-        /// Returns true if TaskGetResponseDto instances are equal
+        /// Returns true if TaskPutRequestDto instances are equal
         /// </summary>
-        /// <param name="other">Instance of TaskGetResponseDto to be compared</param>
+        /// <param name="other">Instance of TaskPutRequestDto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TaskGetResponseDto other)
+        public bool Equals(TaskPutRequestDto other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -139,16 +123,6 @@ namespace Org.OpenAPITools.Models
                     StatusId == other.StatusId ||
                     
                     StatusId.Equals(other.StatusId)
-                ) && 
-                (
-                    CreatedAt == other.CreatedAt ||
-                    
-                    CreatedAt.Equals(other.CreatedAt)
-                ) && 
-                (
-                    UpdatedAt == other.UpdatedAt ||
-                    
-                    UpdatedAt.Equals(other.UpdatedAt)
                 );
         }
 
@@ -170,10 +144,6 @@ namespace Org.OpenAPITools.Models
                     hashCode = hashCode * 59 + DueDate.GetHashCode();
                     
                     hashCode = hashCode * 59 + StatusId.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + CreatedAt.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + UpdatedAt.GetHashCode();
                 return hashCode;
             }
         }
@@ -181,12 +151,12 @@ namespace Org.OpenAPITools.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(TaskGetResponseDto left, TaskGetResponseDto right)
+        public static bool operator ==(TaskPutRequestDto left, TaskPutRequestDto right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TaskGetResponseDto left, TaskGetResponseDto right)
+        public static bool operator !=(TaskPutRequestDto left, TaskPutRequestDto right)
         {
             return !Equals(left, right);
         }

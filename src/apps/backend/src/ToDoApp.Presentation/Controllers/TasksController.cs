@@ -24,13 +24,15 @@ public class TasksController : TasksApiController
   /// <inheritdoc/> 
   public override async Task<IActionResult> Gets()
   {
-    IEnumerable<TaskEntity> tasks = await _taskService.GetAllAsync();
+    // TODO: クエリパラメータから検索
+    IEnumerable<TaskEntity> tasks = await _taskService.SearchAsync();
     // TODO: サービスクラスでEntityからDTOに変換
+    // TODO: サービスクラスのDTOとOpenAPIのDTOをマッピング
     var taskGetResponseDtos = tasks.Select(task => new TaskGetResponseDto
     {
       Title = task.Title,
       Description = task.Description,
-      DueDate = task.DueDate ?? DateTime.MinValue,
+      DueDate = task.DueDate ?? DateOnly.MinValue,
       StatusId = (StatusIdEnum)task.StatusId,
       CreatedAt = task.CreatedAt ?? DateTime.MinValue,
       UpdatedAt = task.UpdatedAt ?? DateTime.MinValue,
@@ -42,26 +44,38 @@ public class TasksController : TasksApiController
   /// <inheritdoc/> 
   public override async Task<IActionResult> Post([FromBody] TaskPostRequestDto taskPostRequestDto)
   {
+    // TODO: サービスクラスでEntityからDTOに変換
+    var taskEntity = new TaskEntity
+    {
+      Title = taskPostRequestDto.Title,
+      Description = taskPostRequestDto.Description,
+      DueDate = taskPostRequestDto.DueDate,
+      StatusId = (int)taskPostRequestDto.StatusId,
+    };
+    // TODO: バリデーション
+
+    await _taskService.CreateAsync(taskEntity);
     return Created();
   }
 
   /// <inheritdoc/> 
   public override async Task<IActionResult> Delete([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
+    await _taskService.DeleteAsync(taskId);
     return NoContent();
   }
 
   /// <inheritdoc/> 
   public override async Task<IActionResult> Get([FromRoute(Name = "taskId")][Required] Guid taskId)
   {
-    var task = await _taskService.GetByIdAsync(taskId);
+    var task = await _taskService.FindByIdAsync(taskId);
 
     // TODO: サービスクラスでEntityからDTOに変換
     var taskGetResponseDto = new TaskGetResponseDto
     {
       Title = task.Title,
       Description = task.Description,
-      DueDate = task.DueDate ?? DateTime.MinValue,
+      DueDate = task.DueDate ?? DateOnly.MinValue,
       StatusId = (StatusIdEnum)task.StatusId,
       CreatedAt = task.CreatedAt ?? DateTime.MinValue,
       UpdatedAt = task.UpdatedAt ?? DateTime.MinValue,
@@ -70,8 +84,19 @@ public class TasksController : TasksApiController
   }
 
   /// <inheritdoc/> 
-  public override async Task<IActionResult> Put([FromRoute(Name = "taskId")][Required] Guid taskId)
+  public override async Task<IActionResult> Put([FromRoute(Name = "taskId")][Required] Guid taskId, [FromBody] TaskPutRequestDto taskPutRequestDto)
   {
+    // TODO: サービスクラスでEntityからDTOに変換
+    var taskEntity = new TaskEntity
+    {
+      Title = taskPutRequestDto.Title,
+      Description = taskPutRequestDto.Description,
+      DueDate = taskPutRequestDto.DueDate,
+      StatusId = (int)taskPutRequestDto.StatusId,
+    };
+    // TODO: バリデーション
+
+    await _taskService.UpdateAsync(taskId, taskEntity);
     return NoContent();
   }
 

@@ -18,13 +18,34 @@ public class TaskService : ITaskService
     _logger = logger;
   }
 
-  public async Task<IEnumerable<TaskEntity>> GetAllAsync()
+  public async Task<IEnumerable<TaskEntity>> SearchAsync()
   {
-    return await _taskRepository.GetAllAsync();
+    // TODO: サービスクラスでEntityからDTOに変換
+    return await _taskRepository.SearchAsync();
   }
 
-  public async Task<TaskEntity> GetByIdAsync(Guid id)
+  public async Task<TaskEntity> FindByIdAsync(Guid id)
   {
-    return await _taskRepository.GetByIdAsync(id);
+    // TODO: ステータスはマスタテーブルの文字列で返す
+    return await _taskRepository.FindByIdAsync(id);
   }
+
+  public async Task CreateAsync(TaskEntity entity)
+  {
+    entity.Id = Guid.NewGuid();
+    entity.UserId = Guid.Parse("ca62e350-b039-11ef-88cc-0242ac1a0002"); // TODO: 暫定
+    await _taskRepository.CreateAsync(entity);
+  }
+
+  public async Task UpdateAsync(Guid id, TaskEntity entity)
+  {
+    // TODO: 更新ユーザー取得
+    await _taskRepository.UpdateAsync(id, entity);
+  }
+
+  public async Task DeleteAsync(Guid id)
+  {
+    await _taskRepository.DeleteAsync(id);
+  }
+
 }

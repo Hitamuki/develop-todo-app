@@ -48,7 +48,7 @@ namespace Org.OpenAPITools.Models
         /// </summary>
         /// <value>締切日</value>
         [DataMember(Name="due_date", EmitDefaultValue=true)]
-        public DateTime DueDate { get; set; }
+        public DateOnly DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets StatusId

@@ -82,14 +82,16 @@ namespace Org.OpenAPITools.Controllers
         /// タスク更新
         /// </summary>
         /// <param name="taskId">UUID</param>
+        /// <param name="taskPutRequestDto"></param>
         /// <response code="200">200 OK</response>
         /// <response code="400">400 Bad Request</response>
         /// <response code="404">404 Not Found</response>
         [HttpPut]
         [Route("/api/v1/tasks/{taskId}")]
+        [Consumes("application/json")]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
         [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
-        public abstract Task<IActionResult> Put([FromRoute (Name = "taskId")][Required]Guid taskId);
+        public abstract Task<IActionResult> Put([FromRoute (Name = "taskId")][Required]Guid taskId, [FromBody]TaskPutRequestDto taskPutRequestDto);
     }
 }

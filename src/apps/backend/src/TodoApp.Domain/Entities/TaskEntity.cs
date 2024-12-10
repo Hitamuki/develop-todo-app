@@ -15,22 +15,22 @@ public class TaskEntity
   /// <summary>
   /// タイトル
   /// </summary>
-  public string Title { get; set; }
+  public string Title { get; set; } // TODO: 文字数制限
 
   /// <summary>
   /// 詳細
   /// </summary>
-  public string Description { get; set; }
+  public string Description { get; set; } // TODO: 文字数制限
 
   /// <summary>
   /// 締切日
   /// </summary>
-  public DateTime? DueDate { get; set; }
+  public DateOnly? DueDate { get; set; }
 
   /// <summary>
   /// ステータスID（m_task_statusのIDを参照）
   /// </summary>
-  public int StatusId { get; set; }
+  public int StatusId { get; set; } // TODO: バリューオブジェクト
 
   /// <summary>
   /// 論理削除フラグ

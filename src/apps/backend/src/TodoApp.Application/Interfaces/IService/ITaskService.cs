@@ -8,7 +8,14 @@ public interface ITaskService
   /// すべてのタスクを取得する
   /// </summary>
   /// <returns>すべてのタスク</returns>
-  Task<IEnumerable<TaskEntity>> GetAllAsync();
+  Task<IEnumerable<TaskEntity>> SearchAsync();
 
-  Task<TaskEntity> GetByIdAsync(Guid id);
+  Task<TaskEntity> FindByIdAsync(Guid id);
+
+  Task CreateAsync(TaskEntity entity);
+
+  Task UpdateAsync(Guid id, TaskEntity entity);
+
+  Task DeleteAsync(Guid id);
+
 }
