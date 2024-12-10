@@ -31,7 +31,7 @@ public partial class Task
     /// <summary>
     /// 締切日
     /// </summary>
-    public DateTime? DueDate { get; set; }
+    public DateOnly? DueDate { get; set; }
 
     /// <summary>
     /// ステータスID（m_task_statusのIDを参照）

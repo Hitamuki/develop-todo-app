@@ -40,8 +40,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // データベースコンテキストの登録
-builder.Services.AddDbContext<TodoContext>(options =>
-  options.UseMySQL(builder.Configuration.GetConnectionString("TodoContext")));
+builder.Services.AddDbContext<TodoContext>();
+// builder.Services.AddDbContext<TodoContext>(options =>
+//   options.UseMySql(builder.Configuration.GetConnectionString("TodoContext"),
+//     ServerVersion.Parse("8.0.40-mysql")));
 
 // サービスの登録
 builder.Services.AddScoped<ITaskService, TaskService>();

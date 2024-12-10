@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace TodoApp.Infrastructure.EFCoreGenerator;
 
@@ -23,15 +24,21 @@ public partial class TodoContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=127.0.0.1;port=3306;Database=todo;User=user;Password=password;");
+        => optionsBuilder.UseMySql("server=127.0.0.1;port=3306;database=todo;user=user;password=password", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.40-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder
+            .UseCollation("utf8mb4_general_ci")
+            .HasCharSet("utf8mb4");
+
         modelBuilder.Entity<MTaskStatus>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("m_task_status", tb => tb.HasComment("タスクステータスマスタ"));
+            entity
+                .ToTable("m_task_status", tb => tb.HasComment("タスクステータスマスタ"))
+                .UseCollation("utf8mb4_unicode_ci");
 
             entity.Property(e => e.Id)
                 .HasComment("ID")
@@ -58,7 +65,9 @@ public partial class TodoContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("tasks", tb => tb.HasComment("タスク"));
+            entity
+                .ToTable("tasks", tb => tb.HasComment("タスク"))
+                .UseCollation("utf8mb4_unicode_ci");
 
             entity.HasIndex(e => e.CreatedBy, "fk_tasks_created_by");
 
@@ -85,7 +94,6 @@ public partial class TodoContext : DbContext
                 .HasColumnName("description");
             entity.Property(e => e.DueDate)
                 .HasComment("締切日")
-                .HasColumnType("date")
                 .HasColumnName("due_date");
             entity.Property(e => e.IsDeleted)
                 .HasDefaultValueSql("'0'")
@@ -135,7 +143,9 @@ public partial class TodoContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("users", tb => tb.HasComment("ユーザー"));
+            entity
+                .ToTable("users", tb => tb.HasComment("ユーザー"))
+                .UseCollation("utf8mb4_unicode_ci");
 
             entity.HasIndex(e => e.Email, "email").IsUnique();
 
