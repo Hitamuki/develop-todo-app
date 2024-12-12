@@ -20,26 +20,31 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class TaskFormComponent {
   @Output() addTask = new EventEmitter<TaskGetResponseDto>();
 
-  newTask: TaskGetResponseDto = {
-    Title: '',
-    StatusId: 1,
-    DueDate: undefined,
-  };
-  defaultNewTask: TaskGetResponseDto = {
-    Title: '',
-    StatusId: 1,
-    DueDate: undefined,
-  };
+  newTask: TaskGetResponseDto = this.resetTask();
 
   /**
    * タスクを追加する
    */
   submit() {
-    this.addTask.emit({
-      Title: this.newTask.Title,
-      StatusId: 1,
-      DueDate: this.newTask.DueDate ? new Date(this.newTask.DueDate).toDateString() : undefined,
-    });
-    this.newTask = this.defaultNewTask;
+    if (!this.newTask.title) {
+      console.error('Title is required');
+      return;
+    }
+
+    const task: TaskGetResponseDto = {
+      ...this.newTask,
+      dueDate: this.newTask.dueDate ? this.newTask.dueDate : undefined,
+    };
+
+    this.addTask.emit(task);
+    this.newTask = this.resetTask();
+  }
+
+  private resetTask(): TaskGetResponseDto {
+    return {
+      title: '',
+      statusId: 1,
+      dueDate: undefined,
+    };
   }
 }

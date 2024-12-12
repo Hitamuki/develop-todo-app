@@ -10,7 +10,7 @@
 import { StatusIdEnum } from './status-id-enum';
 
 
-export interface TaskPostRequestDto { 
+export interface TaskPutRequestDto { 
     /**
      * タイトル
      */
@@ -25,7 +25,7 @@ export interface TaskPostRequestDto {
     dueDate?: string;
     statusId?: StatusIdEnum;
 }
-export namespace TaskPostRequestDto {
+export namespace TaskPutRequestDto {
 }
 
 

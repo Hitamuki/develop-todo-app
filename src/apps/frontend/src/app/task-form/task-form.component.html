@@ -3,14 +3,14 @@
   <div class="flex-grow-1">
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>新しいタスク</mat-label>
-      <input matInput type="text" [(ngModel)]="newTask.Title" placeholder="タスク名" />
+      <input matInput type="text" [(ngModel)]="newTask.title" placeholder="タスク名" />
     </mat-form-field>
   </div>
   <!-- 期日入力 -->
   <div class="flex-grow-1">
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>期日を選択</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="newTask.DueDate" />
+      <input matInput [matDatepicker]="picker" [(ngModel)]="newTask.dueDate" />
       <!-- <mat-h​​int>YYYY/MM/DD</mat-h​​int> -->
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>

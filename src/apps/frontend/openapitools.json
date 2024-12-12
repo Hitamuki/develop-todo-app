@@ -12,7 +12,7 @@
         "additionalProperties": {
           "ngVersion": "18.0.0",
           "fileNaming": "kebab-case",
-          "modelPropertyNaming": "PascalCase",
+          "modelPropertyNaming": "camelCase",
           "paramNaming": "camelCase"
         }
       }

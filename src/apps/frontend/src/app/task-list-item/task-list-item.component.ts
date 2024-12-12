@@ -23,7 +23,9 @@ export class TaskListItemComponent {
    * @returns 期日内の場合true
    */
   isOverdue(task: TaskGetResponseDto): boolean | null {
-    const dueDate = new Date(task.DueDate as string);
-    return task.StatusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
+    if (!task?.dueDate) return null;
+    const dueDate = new Date(task.dueDate as string);
+    if (isNaN(dueDate.getTime())) return null;
+    return task.statusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
   }
 }

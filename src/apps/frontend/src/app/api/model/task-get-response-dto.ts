@@ -14,24 +14,24 @@ export interface TaskGetResponseDto {
     /**
      * タイトル
      */
-    Title: string;
+    title: string;
     /**
      * 詳細
      */
-    Description?: string;
+    description?: string;
     /**
      * 締切日
      */
-    DueDate?: string;
-    StatusId?: StatusIdEnum;
+    dueDate?: string;
+    statusId?: StatusIdEnum;
     /**
      * 作成日時
      */
-    CreatedAt?: string;
+    createdAt?: string;
     /**
      * 更新日時
      */
-    UpdatedAt?: string;
+    updatedAt?: string;
 }
 export namespace TaskGetResponseDto {
 }

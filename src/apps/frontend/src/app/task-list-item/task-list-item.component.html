@@ -1,9 +1,9 @@
 <div class="d-flex align-items-center mb-2">
   <!-- チェックボックスとタスクタイトル -->
-  <mat-checkbox [checked]="task.StatusId === 3">
-    <span>{{ task.Title }}</span>
-    <span *ngIf="task.DueDate">（期日：{{ task.DueDate | date: 'yyyy/MM/dd' }}）</span>
-    <!-- 期日超過ラベル -->
-    <span *ngIf="isOverdue(task)" class="text-danger ms-2">期日超過</span>
+  <mat-checkbox [checked]="task.statusId === 3">
+    <span>{{ task.title }}</span>
+    <span *ngIf="task.dueDate">（期日：{{ task.dueDate | date: 'yyyy/MM/dd' }}）</span>
   </mat-checkbox>
+  <!-- 期日超過ラベル -->
+  <span *ngIf="isOverdue(task)" class="text-danger ms-2">期日超過</span>
 </div>
