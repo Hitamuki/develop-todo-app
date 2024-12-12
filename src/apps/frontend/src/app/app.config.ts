@@ -2,9 +2,9 @@ import { type ApplicationConfig, provideZoneChangeDetection } from '@angular/cor
 import { provideRouter } from '@angular/router';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { routes } from './app.routes';
 import { BASE_PATH } from './api';
 
 /**
