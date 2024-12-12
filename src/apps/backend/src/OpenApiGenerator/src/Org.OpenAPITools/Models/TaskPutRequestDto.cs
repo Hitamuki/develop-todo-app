@@ -40,20 +40,21 @@ namespace Org.OpenAPITools.Models
         /// </summary>
         /// <value>詳細</value>
         /* <example>タスクの詳細</example> */
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name="description", EmitDefaultValue=true)]
         public string Description { get; set; }
 
         /// <summary>
         /// 締切日
         /// </summary>
         /// <value>締切日</value>
-        [DataMember(Name="due_date", EmitDefaultValue=true)]
-        public DateOnly DueDate { get; set; }
+        /* <example>Mon Nov 18 00:00:00 UTC 2024</example> */
+        [DataMember(Name="dueDate", EmitDefaultValue=true)]
+        public DateOnly? DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets StatusId
         /// </summary>
-        [DataMember(Name="status_id", EmitDefaultValue=true)]
+        [DataMember(Name="statusId", EmitDefaultValue=true)]
         public StatusIdEnum StatusId { get; set; }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Org.OpenAPITools.Models
                 ) && 
                 (
                     DueDate == other.DueDate ||
-                    
+                    DueDate != null &&
                     DueDate.Equals(other.DueDate)
                 ) && 
                 (
@@ -140,7 +141,7 @@ namespace Org.OpenAPITools.Models
                     hashCode = hashCode * 59 + Title.GetHashCode();
                     if (Description != null)
                     hashCode = hashCode * 59 + Description.GetHashCode();
-                    
+                    if (DueDate != null)
                     hashCode = hashCode * 59 + DueDate.GetHashCode();
                     
                     hashCode = hashCode * 59 + StatusId.GetHashCode();

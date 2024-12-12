@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { JsonPipe, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { TaskGetResponseDto, TasksService } from '../api';
@@ -33,7 +33,6 @@ export class TaskListComponent implements OnInit {
    */
   constructor(
     private tasksService: TasksService,
-    private cdr: ChangeDetectorRef,
   ) {}
 
   /**

@@ -185,22 +185,26 @@ components:
           example: 本日のタスク
         description:
           type: string
+          nullable: true
           description: 詳細
           example: タスクの詳細
-        due_date:
+        dueDate:
           type: string
           format: date
+          nullable: true
           description: 締切日
           example: 2024-11-18
-        status_id:
+        statusId:
           $ref: "#/components/schemas/StatusIdEnum"
-        created_at:
+        createdAt:
           type: string
           format: date-time
+          nullable: true
           description: 作成日時
-        updated_at:
+        updatedAt:
           type: string
           format: date-time
+          nullable: true
           description: 更新日時
     TaskPostRequestDto:
       type: object
@@ -214,14 +218,16 @@ components:
           example: 本日のタスク
         description:
           type: string
+          nullable: true
           description: 詳細
           example: タスクの詳細
-        due_date:
+        dueDate:
           type: string
           format: date
+          nullable: true
           description: 締切日
           example: 2024-11-18
-        status_id:
+        statusId:
           $ref: "#/components/schemas/StatusIdEnum"
     TaskPutRequestDto:
       type: object
@@ -235,14 +241,16 @@ components:
           example: 本日のタスク
         description:
           type: string
+          nullable: true
           description: 詳細
           example: タスクの詳細
-        due_date:
+        dueDate:
           type: string
           format: date
+          nullable: true
           description: 締切日
           example: 2024-11-18
-        status_id:
+        statusId:
           $ref: "#/components/schemas/StatusIdEnum"
     ErrorResponseDto:
       type: object

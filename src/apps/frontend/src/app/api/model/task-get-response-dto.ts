@@ -18,20 +18,20 @@ export interface TaskGetResponseDto {
     /**
      * 詳細
      */
-    description?: string;
+    description?: string | null;
     /**
      * 締切日
      */
-    dueDate?: string;
+    dueDate?: string | null;
     statusId?: StatusIdEnum;
     /**
      * 作成日時
      */
-    createdAt?: string;
+    createdAt?: string | null;
     /**
      * 更新日時
      */
-    updatedAt?: string;
+    updatedAt?: string | null;
 }
 export namespace TaskGetResponseDto {
 }

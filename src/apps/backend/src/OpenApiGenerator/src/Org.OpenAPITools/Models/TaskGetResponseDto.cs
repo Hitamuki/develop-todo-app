@@ -40,35 +40,36 @@ namespace Org.OpenAPITools.Models
         /// </summary>
         /// <value>詳細</value>
         /* <example>タスクの詳細</example> */
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name="description", EmitDefaultValue=true)]
         public string Description { get; set; }
 
         /// <summary>
         /// 締切日
         /// </summary>
         /// <value>締切日</value>
-        [DataMember(Name="due_date", EmitDefaultValue=true)]
-        public DateOnly DueDate { get; set; }
+        /* <example>Mon Nov 18 00:00:00 UTC 2024</example> */
+        [DataMember(Name="dueDate", EmitDefaultValue=true)]
+        public DateOnly? DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets StatusId
         /// </summary>
-        [DataMember(Name="status_id", EmitDefaultValue=true)]
+        [DataMember(Name="statusId", EmitDefaultValue=true)]
         public StatusIdEnum StatusId { get; set; }
 
         /// <summary>
         /// 作成日時
         /// </summary>
         /// <value>作成日時</value>
-        [DataMember(Name="created_at", EmitDefaultValue=true)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name="createdAt", EmitDefaultValue=true)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// 更新日時
         /// </summary>
         /// <value>更新日時</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=true)]
-        public DateTime UpdatedAt { get; set; }
+        [DataMember(Name="updatedAt", EmitDefaultValue=true)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,7 +133,7 @@ namespace Org.OpenAPITools.Models
                 ) && 
                 (
                     DueDate == other.DueDate ||
-                    
+                    DueDate != null &&
                     DueDate.Equals(other.DueDate)
                 ) && 
                 (
@@ -142,12 +143,12 @@ namespace Org.OpenAPITools.Models
                 ) && 
                 (
                     CreatedAt == other.CreatedAt ||
-                    
+                    CreatedAt != null &&
                     CreatedAt.Equals(other.CreatedAt)
                 ) && 
                 (
                     UpdatedAt == other.UpdatedAt ||
-                    
+                    UpdatedAt != null &&
                     UpdatedAt.Equals(other.UpdatedAt)
                 );
         }
@@ -166,13 +167,13 @@ namespace Org.OpenAPITools.Models
                     hashCode = hashCode * 59 + Title.GetHashCode();
                     if (Description != null)
                     hashCode = hashCode * 59 + Description.GetHashCode();
-                    
+                    if (DueDate != null)
                     hashCode = hashCode * 59 + DueDate.GetHashCode();
                     
                     hashCode = hashCode * 59 + StatusId.GetHashCode();
-                    
+                    if (CreatedAt != null)
                     hashCode = hashCode * 59 + CreatedAt.GetHashCode();
-                    
+                    if (UpdatedAt != null)
                     hashCode = hashCode * 59 + UpdatedAt.GetHashCode();
                 return hashCode;
             }

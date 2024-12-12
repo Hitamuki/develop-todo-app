@@ -75,10 +75,10 @@ public class TasksController : TasksApiController
     {
       Title = task.Title,
       Description = task.Description,
-      DueDate = task.DueDate ?? DateOnly.MinValue,
+      DueDate = task.DueDate,
       StatusId = (StatusIdEnum)task.StatusId,
-      CreatedAt = task.CreatedAt ?? DateTime.MinValue,
-      UpdatedAt = task.UpdatedAt ?? DateTime.MinValue,
+      CreatedAt = task.CreatedAt,
+      UpdatedAt = task.UpdatedAt,
     };
     return Ok(taskGetResponseDto);
   }

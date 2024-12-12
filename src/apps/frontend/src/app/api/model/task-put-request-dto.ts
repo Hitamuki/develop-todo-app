@@ -18,11 +18,11 @@ export interface TaskPutRequestDto {
     /**
      * 詳細
      */
-    description?: string;
+    description?: string | null;
     /**
      * 締切日
      */
-    dueDate?: string;
+    dueDate?: string | null;
     statusId?: StatusIdEnum;
 }
 export namespace TaskPutRequestDto {
