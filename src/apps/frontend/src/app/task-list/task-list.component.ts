@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
+
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { TaskGetResponseDto, TasksService } from '../api';
@@ -10,7 +10,7 @@ import { TaskGetResponseDto, TasksService } from '../api';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [NgFor, TaskListItemComponent, TaskFormComponent],
+  imports: [TaskListItemComponent, TaskFormComponent],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })

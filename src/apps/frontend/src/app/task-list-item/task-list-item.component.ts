@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { TaskGetResponseDto } from '../api';
 
 /**
@@ -10,7 +10,7 @@ import { TaskGetResponseDto } from '../api';
 @Component({
   selector: 'app-task-list-item',
   standalone: true,
-  imports: [NgIf, DatePipe, FormsModule, MatCheckboxModule],
+  imports: [DatePipe, FormsModule, MatCheckboxModule],
   templateUrl: './task-list-item.component.html',
   styleUrl: './task-list-item.component.scss',
 })
