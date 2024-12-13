@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
@@ -15,10 +15,14 @@ import { TaskGetResponseDto, TasksService } from '../api';
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
+  private tasksService = inject(TasksService);
+
   // ----------------------
   // パブリック変数
   // ----------------------
   tasks: TaskGetResponseDto[] = [];
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
 
   // ----------------------
   // プライベート変数
@@ -27,14 +31,6 @@ export class TaskListComponent implements OnInit {
   // ----------------------
   // パブリックメソッド
   // ----------------------
-  /**
-   * コンストラクタ
-   * @param tasksService タスクのAPI
-   */
-  constructor(
-    private tasksService: TasksService,
-  ) {}
-
   /**
    * 初期化処理
    */
