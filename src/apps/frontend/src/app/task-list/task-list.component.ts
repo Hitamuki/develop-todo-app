@@ -1,8 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatIconModule } from '@angular/material/icon';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { TaskGetResponseDto, TasksService } from '../api';
+import { TaskAddEditComponent } from '../modals/task-add-edit/task-add-edit.component';
 
 /**
  *
@@ -10,19 +13,18 @@ import { TaskGetResponseDto, TasksService } from '../api';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [TaskListItemComponent, TaskFormComponent],
+  imports: [TaskListItemComponent, TaskFormComponent, MatIconModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
   private tasksService = inject(TasksService);
+  private modalService = inject(NgbModal);
 
   // ----------------------
   // パブリック変数
   // ----------------------
   tasks: TaskGetResponseDto[] = [];
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
 
   // ----------------------
   // プライベート変数
@@ -44,6 +46,17 @@ export class TaskListComponent implements OnInit {
    */
   addTask(task: TaskGetResponseDto) {
     this.tasks = [...this.tasks, task];
+  }
+
+  /**
+   *
+   */
+  openModal() {
+    this.modalService.open(TaskAddEditComponent, {
+      size: 'xl',
+      centered: true,
+      scrollable: true
+    });
   }
 
   // ----------------------

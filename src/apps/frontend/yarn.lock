@@ -6096,6 +6096,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bootstrap-icons@npm:^1.11.3":
+  version: 1.11.3
+  resolution: "bootstrap-icons@npm:1.11.3"
+  checksum: 10c0/37eefd418c6bbbb304bdff0f2ed527f82c3c6f331d3e3a7c4aa8bbdbaf7118bb86725b024f85e7d738c613d48c7353cd81c09e58e9d8d34c5633960fdec8410b
+  languageName: node
+  linkType: hard
+
 "bootstrap@npm:^5.3.3":
   version: 5.3.3
   resolution: "bootstrap@npm:5.3.3"
@@ -8980,6 +8987,7 @@ __metadata:
     angular-eslint: "npm:18.3.1"
     biome: "npm:^0.3.3"
     bootstrap: "npm:^5.3.3"
+    bootstrap-icons: "npm:^1.11.3"
     eslint: "npm:^9.11.1"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-import-resolver-typescript: "npm:^3.6.3"

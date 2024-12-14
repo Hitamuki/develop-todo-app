@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">タスク登録or更新</h4>
+  <button type="button" class="btn-close" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="container">
+      <div class="row justify-content-center align-items-center g-2">
+        <!-- タイトル -->
+        <div class="col-12 mb-3">
+          <label for="taskTitle" class="form-label">タイトル</label>
+          <input type="text" class="form-control" id="taskTitle" aria-required="true" />
+        </div>
+        <!-- 期日 -->
+        <div class="col mb-3">
+          <label for="taskDueDate">期日</label>
+          <div class="input-group">
+            <input
+              id="taskDueDate"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              ngbDatepicker
+              container="body"
+              #dp="ngbDatepicker" />
+            <button
+              type="button"
+              class="btn btn-outline-secondary bi bi-calendar3"
+              aria-label="select due date"
+              (click)="dp.toggle()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary">保存</button>
+</div>
