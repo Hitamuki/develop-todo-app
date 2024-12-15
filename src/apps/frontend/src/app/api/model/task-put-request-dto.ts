@@ -23,7 +23,7 @@ export interface TaskPutRequestDto {
      * 締切日
      */
     dueDate?: string | null;
-    statusId?: StatusIdEnum;
+    statusId: StatusIdEnum;
 }
 export namespace TaskPutRequestDto {
 }

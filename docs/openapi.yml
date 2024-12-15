@@ -176,9 +176,16 @@ components:
     TaskGetResponseDto:
       type: object
       required:
+        - id
         - title
-        - status
+        - statusId
       properties:
+        id:
+          type: string
+          format: uuid
+          nullable: false
+          description: UUID
+          example: xxx-xxx-xxx-xxx
         title:
           type: string
           description: タイトル
@@ -210,7 +217,7 @@ components:
       type: object
       required:
         - title
-        - status
+        - statusId
       properties:
         title:
           type: string
@@ -233,7 +240,7 @@ components:
       type: object
       required:
         - title
-        - status
+        - statusId
       properties:
         title:
           type: string

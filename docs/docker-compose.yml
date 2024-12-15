@@ -10,6 +10,9 @@ services:
       - ./openapi.yml:/local/OpenApiGenerator/openapi.yml
     # https://openapi-generator.tech/docs/usage#generate
     command: generate -g aspnetcore -i local/OpenApiGenerator/openapi.yml -o local/OpenApiGenerator --additional-properties=aspnetCoreVersion=8.0,swashbuckleVersion=6.4.0,buildTarget=library,isLibrary=true,operationModifier=abstract,operationResultTask=true --skip-overwrite
+    # command: >
+    #   sh -c "
+    #   rm -rf /local/OpenApiGenerator/src/Org.OpenAPITools/Controllers/* /local/OpenApiGenerator/src/Org.OpenAPITools/Models/* && generate -g aspnetcore -i local/OpenApiGenerator/openapi.yml -o local/OpenApiGenerator --additional-properties=aspnetCoreVersion=8.0,swashbuckleVersion=6.4.0,buildTarget=library,isLibrary=true,operationModifier=abstract,operationResultTask=true --skip-overwrite"
 
   # swagger-ui:
   #   image: swaggerapi/swagger-ui

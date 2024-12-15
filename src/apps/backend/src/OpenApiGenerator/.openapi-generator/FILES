@@ -13,6 +13,7 @@ src/Org.OpenAPITools/Models/ErrorResponseDto.cs
 src/Org.OpenAPITools/Models/StatusIdEnum.cs
 src/Org.OpenAPITools/Models/TaskGetResponseDto.cs
 src/Org.OpenAPITools/Models/TaskPostRequestDto.cs
+src/Org.OpenAPITools/Models/TaskPutRequestDto.cs
 src/Org.OpenAPITools/OpenApi/TypeExtensions.cs
 src/Org.OpenAPITools/Org.OpenAPITools.csproj
 src/Org.OpenAPITools/Org.OpenAPITools.nuspec

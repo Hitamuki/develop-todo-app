@@ -12,6 +12,10 @@ import { StatusIdEnum } from './status-id-enum';
 
 export interface TaskGetResponseDto { 
     /**
+     * UUID
+     */
+    id: string;
+    /**
      * タイトル
      */
     title: string;
@@ -23,7 +27,7 @@ export interface TaskGetResponseDto {
      * 締切日
      */
     dueDate?: string | null;
-    statusId?: StatusIdEnum;
+    statusId: StatusIdEnum;
     /**
      * 作成日時
      */

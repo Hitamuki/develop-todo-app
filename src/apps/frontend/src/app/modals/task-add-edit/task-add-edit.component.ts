@@ -76,6 +76,7 @@ export class TaskAddEditComponent implements OnInit {
 
   private resetTask(): TaskGetResponseDto {
     return {
+      id:'',
       title: '',
       statusId: 1,
       dueDate: undefined,

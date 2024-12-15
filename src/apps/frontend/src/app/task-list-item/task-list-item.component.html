@@ -6,11 +6,11 @@
     <span>（期日：{{ task.dueDate | date: 'yyyy/MM/dd' }}）</span>
   }
   <!-- 編集ボタン -->
-  <button mat-icon-button aria-label="編集" (click)="onEdit(task)">
+  <button mat-icon-button aria-label="編集" (click)="onEdit(task.id)">
     <mat-icon>edit</mat-icon>
   </button>
   <!-- 削除ボタン -->
-  <button mat-icon-button aria-label="削除" (click)="onDelete(task)">
+  <button mat-icon-button aria-label="削除" (click)="onDelete(task.id)">
     <mat-icon>delete</mat-icon>
   </button>
   <!-- 期日超過ラベル -->

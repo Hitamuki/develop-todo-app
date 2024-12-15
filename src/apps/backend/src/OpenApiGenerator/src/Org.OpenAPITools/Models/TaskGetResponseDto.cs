@@ -27,6 +27,14 @@ namespace Org.OpenAPITools.Models
     public class TaskGetResponseDto : IEquatable<TaskGetResponseDto>
     {
         /// <summary>
+        /// UUID
+        /// </summary>
+        /// <value>UUID</value>
+        [Required]
+        [DataMember(Name="id", EmitDefaultValue=true)]
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// タイトル
         /// </summary>
         /// <value>タイトル</value>
@@ -54,6 +62,7 @@ namespace Org.OpenAPITools.Models
         /// <summary>
         /// Gets or Sets StatusId
         /// </summary>
+        [Required]
         [DataMember(Name="statusId", EmitDefaultValue=true)]
         public StatusIdEnum StatusId { get; set; }
 
@@ -79,6 +88,7 @@ namespace Org.OpenAPITools.Models
         {
             var sb = new StringBuilder();
             sb.Append("class TaskGetResponseDto {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
@@ -122,6 +132,11 @@ namespace Org.OpenAPITools.Models
 
             return 
                 (
+                    Id == other.Id ||
+                    
+                    Id.Equals(other.Id)
+                ) && 
+                (
                     Title == other.Title ||
                     Title != null &&
                     Title.Equals(other.Title)
@@ -163,6 +178,8 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
+                    
+                    hashCode = hashCode * 59 + Id.GetHashCode();
                     if (Title != null)
                     hashCode = hashCode * 59 + Title.GetHashCode();
                     if (Description != null)

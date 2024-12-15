@@ -30,6 +30,7 @@ public class TasksController : TasksApiController
     // TODO: サービスクラスのDTOとOpenAPIのDTOをマッピング
     var taskGetResponseDtos = tasks.Select(task => new TaskGetResponseDto
     {
+      Id = task.Id,
       Title = task.Title,
       Description = task.Description,
       DueDate = task.DueDate ?? DateOnly.MinValue,
@@ -73,6 +74,7 @@ public class TasksController : TasksApiController
     // TODO: サービスクラスでEntityからDTOに変換
     var taskGetResponseDto = new TaskGetResponseDto
     {
+      Id = task.Id,
       Title = task.Title,
       Description = task.Description,
       DueDate = task.DueDate,

@@ -22,19 +22,18 @@ export class TaskListItemComponent {
 
   /**
    *
-   * @param task
+   * @param taskId 編集するタスクUUID
    */
-  onEdit(task: TaskGetResponseDto) {
-    task.description = 'test';
-    this.edit.emit('627bfc78-b00d-4b93-90af-e9a5b5b3cc49'); // TODO: id
+  onEdit(taskId: string) {
+    this.edit.emit(taskId);
   }
 
   /**
    *
-   * @param task 削除するタスク
+   * @param taskId 削除するタスクUUID
    */
-  onDelete(task: TaskGetResponseDto) {
-    this.deleteTask('ca656f51-b039-11ef-88cc-0242ac1a0002');
+  onDelete(taskId: string) {
+    this.deleteTask(taskId);
   }
 
   /**
@@ -51,7 +50,7 @@ export class TaskListItemComponent {
 
   private deleteTask(id: string) {
     // TODO: 「_」がついている
-    this.tasksService._delete(id as string).subscribe({
+    this.tasksService._delete(id).subscribe({
       error: (err) => console.error('Error fetching task:', err),
     });
   }

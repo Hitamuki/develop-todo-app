@@ -54,6 +54,7 @@ namespace Org.OpenAPITools.Models
         /// <summary>
         /// Gets or Sets StatusId
         /// </summary>
+        [Required]
         [DataMember(Name="statusId", EmitDefaultValue=true)]
         public StatusIdEnum StatusId { get; set; }
 

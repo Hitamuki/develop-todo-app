@@ -42,6 +42,7 @@ export class TaskFormComponent {
 
   private resetTask(): TaskGetResponseDto {
     return {
+      id: '',
       title: '',
       statusId: 1,
       dueDate: undefined,
