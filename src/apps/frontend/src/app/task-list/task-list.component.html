@@ -3,14 +3,14 @@
   <div class="task-list">
     @for (task of tasks; track task) {
       <div>
-        <app-task-list-item [task]="task"></app-task-list-item>
+        <app-task-list-item [task]="task" (edit)="onEditTask($event)"></app-task-list-item>
       </div>
     }
   </div>
 
   <!-- タスク追加ボタン -->
   <div class="row justify-content-center">
-    <button mat-raised-button class="btn btn-primary" (click)="openModal()">
+    <button mat-raised-button class="btn btn-primary" (click)="openModal('add')">
       <mat-icon>add</mat-icon>
     </button>
   </div>

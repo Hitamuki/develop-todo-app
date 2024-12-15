@@ -51,12 +51,22 @@ export class TaskListComponent implements OnInit {
   /**
    *
    */
-  openModal() {
-    this.modalService.open(TaskAddEditComponent, {
+  openModal(modalType: 'add' | 'edit', id: string | null = null) {
+    const modalRef = this.modalService.open(TaskAddEditComponent, {
       size: 'xl',
       centered: true,
-      scrollable: true
+      scrollable: true,
     });
+    modalRef.componentInstance.modalType = modalType;
+    modalRef.componentInstance.id = id;
+  }
+
+  /**
+   *
+   * @param taskId
+   */
+  onEditTask(taskId: string) {
+    this.openModal('edit', taskId); // 編集モードでモーダルを表示
   }
 
   // ----------------------

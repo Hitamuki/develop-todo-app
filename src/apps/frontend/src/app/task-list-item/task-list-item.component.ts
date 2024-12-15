@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { TaskGetResponseDto } from '../api';
+import { TaskGetResponseDto, TasksService } from '../api';
 
 /**
  *
@@ -11,20 +11,22 @@ import { TaskGetResponseDto } from '../api';
 @Component({
   selector: 'app-task-list-item',
   standalone: true,
-  imports: [DatePipe, FormsModule, MatCheckboxModule,MatIconModule],
+  imports: [DatePipe, FormsModule, MatCheckboxModule, MatIconModule],
   templateUrl: './task-list-item.component.html',
   styleUrl: './task-list-item.component.scss',
 })
 export class TaskListItemComponent {
+  private tasksService = inject(TasksService);
   @Input() task!: TaskGetResponseDto;
+  @Output() edit = new EventEmitter<string>();
 
   /**
    *
-   * @param task 編集するタスク
+   * @param task
    */
   onEdit(task: TaskGetResponseDto) {
-    console.log('Edit task:', task);
-    // 編集処理のロジックをここに記述
+    task.description = 'test';
+    this.edit.emit('627bfc78-b00d-4b93-90af-e9a5b5b3cc49'); // TODO: id
   }
 
   /**
@@ -32,7 +34,7 @@ export class TaskListItemComponent {
    * @param task 削除するタスク
    */
   onDelete(task: TaskGetResponseDto) {
-    console.log('Delete task:', task);
+    this.deleteTask('ca656f51-b039-11ef-88cc-0242ac1a0002');
   }
 
   /**
@@ -45,5 +47,12 @@ export class TaskListItemComponent {
     const dueDate = new Date(task.dueDate as string);
     if (isNaN(dueDate.getTime())) return null;
     return task.statusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
+  }
+
+  private deleteTask(id: string) {
+    // TODO: 「_」がついている
+    this.tasksService._delete(id as string).subscribe({
+      error: (err) => console.error('Error fetching task:', err),
+    });
   }
 }
