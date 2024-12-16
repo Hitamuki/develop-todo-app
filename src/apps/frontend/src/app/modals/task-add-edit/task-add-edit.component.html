@@ -1,5 +1,12 @@
 <div class="modal-header">
-  <h4 class="modal-title">タスク登録or更新</h4>
+  <h4 class="modal-title">
+    @if(modalType==='add'){
+      タスク新規登録
+    }
+    @if(modalType==='edit'){
+      タスク編集
+    }
+  </h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 <div class="modal-body">
@@ -16,10 +23,15 @@
             aria-required="true"
             name="taskTitle"
             [(ngModel)]="task.title" />
+          <!-- Angular Material -->
+          <mat-form-field appearance="fill" class="w-100 mt-3">
+            <mat-label>新しいタスク</mat-label>
+            <input matInput type="text" name="taskTitle2" [(ngModel)]="task.title" placeholder="タスク名" />
+          </mat-form-field>
         </div>
         <!-- 期日 --><!-- TODO: 形式変換 -->
         <div class="col mb-3">
-          <label for="taskDueDate">期日</label>
+          <label for="taskDueDate" class="form-label">期日</label>
           <div class="input-group">
             <input
               id="taskDueDate"
@@ -36,6 +48,14 @@
               aria-label="select due date"
               (click)="dp.toggle()"></button>
           </div>
+          <!-- Angular Material --><!-- TODO: カレンダー表示 -->
+          <mat-form-field appearance="fill" class="w-100 mt-3">
+            <mat-label>期日を選択</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <!-- <mat-h​​int>YYYY/MM/DD</mat-h​​int> -->
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
     </div>

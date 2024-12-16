@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { TaskGetResponseDto, TasksService } from '../api';
+import { Observable } from 'rxjs';
 
 /**
  *
@@ -19,6 +20,7 @@ export class TaskListItemComponent {
   private tasksService = inject(TasksService);
   @Input() task!: TaskGetResponseDto;
   @Output() edit = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<void>();
 
   /**
    *
@@ -33,7 +35,11 @@ export class TaskListItemComponent {
    * @param taskId 削除するタスクUUID
    */
   onDelete(taskId: string) {
-    this.deleteTask(taskId);
+    this.deleteTask(taskId).subscribe({
+      next: () => {
+        this.delete.emit();
+      },
+    });
   }
 
   /**
@@ -48,10 +54,8 @@ export class TaskListItemComponent {
     return task.statusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
   }
 
-  private deleteTask(id: string) {
+  private deleteTask(id: string): Observable<unknown> {
     // TODO: 「_」がついている
-    this.tasksService._delete(id).subscribe({
-      error: (err) => console.error('Error fetching task:', err),
-    });
+    return this.tasksService._delete(id);
   }
 }

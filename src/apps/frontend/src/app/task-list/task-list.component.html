@@ -3,7 +3,7 @@
   <div class="task-list">
     @for (task of tasks; track task) {
       <div>
-        <app-task-list-item [task]="task" (edit)="onEditTask($event)"></app-task-list-item>
+        <app-task-list-item [task]="task" (edit)="onEditTask($event)" (delete)="onDeleteTask()"></app-task-list-item>
       </div>
     }
   </div>
@@ -13,9 +13,5 @@
     <button mat-raised-button class="btn btn-primary" (click)="openModal('add')">
       <mat-icon>add</mat-icon>
     </button>
-  </div>
-  <!-- 新しいタスク追加フォーム -->
-  <div class="row">
-    <app-task-form (addTask)="addTask($event)"></app-task-form>
   </div>
 </div>
