@@ -60,7 +60,7 @@ export class TaskListComponent implements OnInit {
 
   /**
    *
-   * @param taskId
+   * @param taskId UUID
    */
   onEditTask(taskId: string) {
     this.openModal('edit', taskId); // 編集モードでモーダルを表示

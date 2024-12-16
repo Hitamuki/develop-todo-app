@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { TaskGetResponseDto, TasksService } from '../api';
 import { Observable } from 'rxjs';
+import { TaskGetResponseDto, TasksService } from '../api';
 
 /**
  *
