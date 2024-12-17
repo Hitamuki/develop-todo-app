@@ -2,11 +2,12 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { NgbActiveModal, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import dayjs from 'dayjs';
 import { TasksService } from '../../api/api/tasks.service';
 import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
 
@@ -27,7 +28,7 @@ import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
   ],
   templateUrl: './task-add-edit.component.html',
   styleUrl: './task-add-edit.component.scss',
-  providers: [MatNativeDateModule, { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' }],
+  providers: [MatNativeDateModule],
 })
 export class TaskAddEditComponent implements OnInit {
   private activeModal = inject(NgbActiveModal);
@@ -38,6 +39,8 @@ export class TaskAddEditComponent implements OnInit {
   @Output() modalClosed = new EventEmitter<void>();
 
   task: TaskGetResponseDto = this.resetTask();
+  formattedDueDate?: { year: number; month: number; day: number };
+  materialDate?: Date;
 
   /**
    *
@@ -45,10 +48,34 @@ export class TaskAddEditComponent implements OnInit {
   ngOnInit(): void {
     // 初期化処理でpageTypeがeditの場合は、idを基に取得処理を実行
     if (this.modalType === 'edit') {
-      this.getTask();
+      this.getTask().subscribe({
+        next: () => {
+          // 期日の初期化処理
+          if (this.task.dueDate) {
+            // `task.dueDate` は "YYYY-MM-DD" 形式の文字列 → { year, month, day } 型に変換
+            const parsedDate = dayjs(this.task.dueDate);
+            this.formattedDueDate = {
+              year: parsedDate.year(),
+              month: parsedDate.month() + 1, // dayjsのmonthは0から始まるので+1
+              day: parsedDate.date(),
+            };
+            this.materialDate = new Date(this.task.dueDate);
+          }
+        },
+      });
     }
   }
 
+  // NgbDatepicker 日付変更イベント
+  onDateChange(newDate: { year: number; month: number; day: number }): void {
+    this.task.dueDate = `${newDate.year}-${String(newDate.month).padStart(2, '0')}-${String(newDate.day).padStart(2, '0')}`;
+  }
+
+  // Angular Material Datepicker 日付変更イベント
+  onMaterialDateChange(event: { value: Date }): void {
+    this.materialDate = event.value;
+    this.task.dueDate = dayjs(this.materialDate).format('YYYY-MM-DD');
+  }
   /**
    *
    */
@@ -80,12 +107,7 @@ export class TaskAddEditComponent implements OnInit {
   }
 
   private getTask() {
-    this.tasksService.get(this.id as string).subscribe({
-      next: (result) => {
-        this.task = result;
-      },
-      error: (err) => console.error('Error fetching task:', err),
-    });
+    return this.tasksService.get(this.id as string).pipe(tap((result) => (this.task = result)));
   }
 
   private putTask(): Observable<unknown> {

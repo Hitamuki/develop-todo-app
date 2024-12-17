@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { TaskGetResponseDto, TasksService } from '../api';
@@ -12,7 +12,7 @@ import { TaskGetResponseDto, TasksService } from '../api';
 @Component({
   selector: 'app-task-list-item',
   standalone: true,
-  imports: [DatePipe, FormsModule, MatCheckboxModule, MatIconModule],
+  imports: [DatePipe, FormsModule, MatCheckboxModule, MatIconModule, NgClass],
   templateUrl: './task-list-item.component.html',
   styleUrl: './task-list-item.component.scss',
 })
@@ -42,6 +42,15 @@ export class TaskListItemComponent {
     });
   }
 
+  onStatusChange(isChecked: boolean): void {
+    if (isChecked) {
+      this.task.statusId = 3;
+    } else {
+      this.task.statusId = 1;
+    }
+    this.putTask(this.task.id, this.task);
+  }
+
   /**
    * 期日判定
    * @param task 対象のタスク
@@ -57,5 +66,9 @@ export class TaskListItemComponent {
   private deleteTask(id: string): Observable<unknown> {
     // TODO: 「_」がついている
     return this.tasksService._delete(id);
+  }
+
+  private putTask(id: string, task: TaskGetResponseDto): void {
+    this.tasksService.put(id, task).subscribe();
   }
 }

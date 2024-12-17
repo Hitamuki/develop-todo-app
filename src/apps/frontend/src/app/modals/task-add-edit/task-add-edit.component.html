@@ -1,9 +1,9 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    @if(modalType==='add'){
+    @if (modalType === 'add') {
       タスク新規登録
     }
-    @if(modalType==='edit'){
+    @if (modalType === 'edit') {
       タスク編集
     }
   </h4>
@@ -16,6 +16,7 @@
         <!-- タイトル -->
         <div class="col-12 mb-3">
           <label for="taskTitle" class="form-label">タイトル</label>
+          <span class="badge text-bg-danger ms-2">必須</span>
           <input
             type="text"
             class="form-control"
@@ -37,7 +38,8 @@
               id="taskDueDate"
               class="form-control"
               placeholder="yyyy-mm-dd"
-              [(ngModel)]="task.dueDate"
+              [(ngModel)]="formattedDueDate"
+              (ngModelChange)="onDateChange($event)"
               name="dp"
               ngbDatepicker
               container="body"
@@ -51,7 +53,12 @@
           <!-- Angular Material --><!-- TODO: カレンダー表示 -->
           <mat-form-field appearance="fill" class="w-100 mt-3">
             <mat-label>期日を選択</mat-label>
-            <input matInput [matDatepicker]="picker" />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              name="materialDate"
+              [(ngModel)]="materialDate"
+              (dateChange)="onMaterialDateChange($event)" />
             <!-- <mat-h​​int>YYYY/MM/DD</mat-h​​int> -->
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
