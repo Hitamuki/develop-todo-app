@@ -11,4 +11,9 @@
       "source.fixAll.eslint": "always"
     }
   },
+  "jest.runMode": {
+    "runAllTestsOnStartup": true,
+    "type": "on-demand",
+    "coverage": true
+  }
 }

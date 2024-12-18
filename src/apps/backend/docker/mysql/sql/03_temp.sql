@@ -11,16 +11,24 @@ INSERT INTO
 VALUES
   (
     UUID (),
-    'John Doe',
-    'john.doe@example.com',
+    'くま',
+    'kuma1@example.com',
     FALSE,
     NULL,
     NULL
   ),
   (
     UUID (),
-    'Jane Smith',
-    'jane.smith@example.com',
+    'くま2',
+    'kuma2@example.com',
+    FALSE,
+    NULL,
+    NULL
+  ),
+  (
+    'ca62e350-b039-11ef-88cc-0242ac1a0002',
+    'くま様',
+    'kuma-adimin@example.com',
     FALSE,
     NULL,
     NULL
@@ -48,11 +56,11 @@ VALUES
       FROM
         users
       WHERE
-        email = 'john.doe@example.com'
+        email = 'kuma1@example.com'
     ),
-    'Buy groceries',
-    'Buy milk, eggs, and bread',
-    '2023-11-20',
+    '検証環境としてデプロイ',
+    'Vercel、Fly.io',
+    NULL,
     1,
     FALSE,
     (
@@ -61,7 +69,7 @@ VALUES
       FROM
         users
       WHERE
-        email = 'john.doe@example.com'
+        email = 'kuma1@example.com'
     ),
     (
       SELECT
@@ -69,7 +77,7 @@ VALUES
       FROM
         users
       WHERE
-        email = 'john.doe@example.com'
+        email = 'kuma1@example.com'
     )
   ),
   (
@@ -80,11 +88,11 @@ VALUES
       FROM
         users
       WHERE
-        email = 'jane.smith@example.com'
+        email = 'kuma2@example.com'
     ),
-    'Complete project report',
-    'Finish the report for project X',
-    '2023-11-30',
+    'クリーンアーキテクチャの構成見直し',
+    'DTO、Entity、Value Object',
+    '2025-1-1',
     2,
     FALSE,
     (
@@ -93,7 +101,7 @@ VALUES
       FROM
         users
       WHERE
-        email = 'jane.smith@example.com'
+        email = 'kuma2@example.com'
     ),
     (
       SELECT
@@ -101,7 +109,7 @@ VALUES
       FROM
         users
       WHERE
-        email = 'jane.smith@example.com'
+        email = 'kuma2@example.com'
     )
   ),
   (
@@ -112,11 +120,11 @@ VALUES
       FROM
         users
       WHERE
-        email = 'john.doe@example.com'
+        email = 'kuma1@example.com'
     ),
-    'Plan holiday',
-    'Research destinations for holiday vacation',
-    '2023-12-10',
+    'テスト導入',
+    'xUnit、Jest、Testing Library、Cypress',
+    '2024-12-17',
     1,
     FALSE,
     (
@@ -125,7 +133,7 @@ VALUES
       FROM
         users
       WHERE
-        email = 'john.doe@example.com'
+        email = 'kuma1@example.com'
     ),
     (
       SELECT
@@ -133,6 +141,6 @@ VALUES
       FROM
         users
       WHERE
-        email = 'jane.smith@example.com'
+        email = 'kuma2@example.com'
     )
   );

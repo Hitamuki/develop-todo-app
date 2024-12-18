@@ -1,7 +1,30 @@
 # ToDo
 
+- READMEのタスク整理
+- リファクタリング
+  - Controllerクラスのマッパー、ValueObject
+- マスタテーブルのカテゴリをレスポンスするか検討
+- EFCoreのdeleteはattachするか
+- settings.json
+  - C#のフォーマット指定
+  - 静的解析
+- dotnet tools
+  - dotnet-aspnet-codegenerator
 - OpenAPIGenerator
-  - 生成したファイルのビルド
-  - スクリプトで実行可能にする
-  - ドキュメントコメントを参照可能にする
-- EntityFrameworkCoreのスキャフォールディング
+  - ControllerやModelなどのフォルダをDocker実行前に削除する
+- EntityFrameworkCoreのスキャフォールディングをコマンドにする
+- Fly.ioにデプロイ
+  - 環境変数
+- ホットリロード
+- WebAPIの汎用ホスト設定
+- Swagger自動起動
+- SwaggerのDateOnly型のjson形式を修正
+- xUnit導入
+- NLog導入
+- トランザクション管理
+  - begin
+  - コミット
+  - ロールバック
+  - セーブポイント
+- Unit Of Workパターン
+- CQRS

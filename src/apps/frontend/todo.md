@@ -5,28 +5,54 @@
 - ngコマンド活用
 - Emmet活用
 
+## 問題
+
+- モーダル画面のAngular Materialの日付ピッカーが表示されない
+- リロードによる描画の遅延によりちらつきが気になる
+  - おそらくウィンドウのリロードをしているから
+- デバッグ時にブレークポイントを置くと画面の読み込みが進まない
+- environment.tsでVSCodeのデバッグとdotnet runのポートが変わるので切り替えできるようにする
+
 ## 実装
 
-- openapi-generatorで不要になったファイルを削除したい（1回全削除？）
-- package.json詳細化(description、private、author、license)
+- 必須項目未入力時にエラーメッセージ表示、ボタン非活性
+- 登録・更新・削除時にトースターメッセージ表示
+- カテゴリをドロップダウンで切り替え(ng-select)
+- WebAPIのレスポンスに対してのコントローラー作成
+- UI修正
+  - 一覧のデザイン
+- ルーティング
+- tsconfig.jsonのstrictをtrueにして@deprecatedをマークしたい
+- package.json詳細化(description、private、author、license、resolutions、overrides)
 - gitignore見直し
 - cspell整理
-- 単体テストコード
-- jsDoc設定
-- Angular Material（tree、list）
-- ng-bootstrapのカスタマイズ
+- 単体テストコード(Jest、TestingLibraryでファンクションとコンポーネントのユニットテスト)
+- jsDoc設定（ESLintのコメントを外す、privateメソッドにも）
+- Sassのパーシャルファイル
+  - bootstrap、ng-bootstrap、Angular Material
+  - 組み込みモジュール
+  - index、component、page
+- Angular Material（tree、list）使う
+  - <https://qiita.com/shida_h/items/e58872bd4501260c07e2>
 - DDDのフォルダ構成に変更
   - <https://kasaharu.hatenablog.com/entry/20230301/1677622695>
-- schematicsの活用とカスタマイズ
+  - その他共通処理など区分け
 
 ## Angular
 
+- テンプレート駆動フォームからリアクティブフォーム
+- NgRXやSignalsを活用して状態管理
 - DIコンテナ
 - ルーティング
-- guard
-- resolver
-- interceptor
+- provider
+  - guard
+  - resolver
+  - interceptor
 - assets
+- カスタムフォームコントロール
+- コンテンツ投影
+- ダイナミックコンポーネント
+- schematicsの活用とカスタマイズ
 
 ## パッケージ
 
@@ -37,14 +63,14 @@
 - es-toolkit
 - fakerjsでモックの値作成
 - ag-grid
-- fontawesome
 - ng-select
 - ngx-translate
-- dayjs
 - ngx-toastr
 
 ## ツール系
 
+- Vercelにデプロイ
+- husky、lint-stage
 - biomeの設定<https://tech.bitbank.cc/biome-js/>
 - OpenAPI Generatorとchokidar<https://tech.smarthr.jp/entry/2020/08/25/135631>
 - OpenAPIとPrismでモックサーバー<https://zenn.dev/horitaka/articles/openapi-prism-mock-server>
@@ -59,12 +85,13 @@
 - Testing Library
 - Cypress(※ いつかPlaywright試したい)
 - Storybook
-- husky、lint-stage
 
 ## 機能
 
 - モーダル画面（新規登録、編集）
 - トースターメッセージ
+- 検索
+- 並び替え
 - アプリのアイコン作成
 - ドラッグアンドドロップ
 - ヘッダー、フッター、サイドバー
@@ -84,3 +111,13 @@
 - 広告
 - サブスクリプション
   - 解約
+
+## 知識
+
+- アトミックデザイン
+- HTML セマンティック
+- Modular Architecture
+- feature driven architecture
+- CSS設計ルール
+  - BEM
+  - SMACSS
