@@ -2,6 +2,7 @@
 
 - openapi-generatorで実行前にクラスを削除したい
 - トレーサビリティのため、openapi.ymlのdescriptionにIDを振り分ける(api_00x)
+- GitHub Pagesへデプロイ
 
 - 設計
   - <https://qiita.com/EasyCoder/items/04d9a9776557c8d8f840>
@@ -44,6 +45,7 @@
     - 結合テスト仕様書
     - 総合テスト仕様書
   - その他
+    - ブログ
     - ナレッジベース
     - Wiki
     - 議事録（tl;div）

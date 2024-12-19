@@ -1,12 +1,49 @@
 # Project information
-site_name: 'サイトの名前'
+site_name: 'ToDoアプリケーション'
 
 # Documentation and theme
 docs_dir: 'docs'
-theme: 'material'
+theme: 
+  name: material
+  color_mode: auto
+  user_color_mode_toggle: true
 
 # Extensions
 markdown_extensions:
   - admonition
   - toc:
       permalink: '#'
+
+nav:
+  - HOME:
+    - index.md
+    - 01-Home/変更履歴/CHANGELOG.md
+  - 開発者ガイド:
+    - 02-開発者ガイド/01-開発環境/開発環境.md
+    - 開発ルール:
+      - 02-開発者ガイド/02-開発ルール/コーディング規約.md
+      - 02-開発者ガイド/02-開発ルール/開発標準.md
+  - 要件定義:
+    - 03-要件定義/00-タスク管理アプリの開発.md
+  - 外部設計:
+    - システム構成:
+      - 04-外部設計/01.システム構成/システム構成.md
+    - DB設計:
+      - 04-外部設計/02-DB設計/ER図.md
+      - 04-外部設計/02-DB設計/テーブル定義書.md
+    - 機能設計:
+      - 04-外部設計/03-機能設計/機能一覧.md
+    - 画面設計:
+      - 04-外部設計/04-画面設計/画面一覧.md
+    - API設計:
+      - 04-外部設計/05-API設計/API一覧.md
+  # - 内部設計:
+  # - テスト設計:
+  #   - 単体テスト:
+  #   - 結合テスト:
+  #   - 総合テスト:
+  # - その他:
+  #   - Wiki:
+  #   - ナレッジベース:
+  #   - ブログ:
+  #   - 議事録:
