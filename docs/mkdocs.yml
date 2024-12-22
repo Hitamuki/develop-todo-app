@@ -1,42 +1,34 @@
 # Project information
-site_name: 'ToDoアプリケーション'
+site_name: "ToDoアプリケーション"
 
-# Documentation and theme
-docs_dir: 'docs'
-theme: 
-  name: material
-  color_mode: auto
-  user_color_mode_toggle: true
+repo_url: https://github.com/Hitamuki/develop-todo-app
+repo_name: develop-todo-app
 
-# Extensions
-markdown_extensions:
-  - admonition
-  - toc:
-      permalink: '#'
-
+# Contents Navigation
 nav:
   - HOME:
-    - index.md
-    - 01-Home/変更履歴/CHANGELOG.md
+      - はじめに: index.md
+      - 概要: 01-Home/overview.md
+      - 01-Home/変更履歴/CHANGELOG.md
   - 開発者ガイド:
-    - 02-開発者ガイド/01-開発環境/開発環境.md
-    - 開発ルール:
-      - 02-開発者ガイド/02-開発ルール/コーディング規約.md
-      - 02-開発者ガイド/02-開発ルール/開発標準.md
+      - 02-開発者ガイド/01-開発環境/開発環境.md
+      - 開発ルール:
+          - 02-開発者ガイド/02-開発ルール/コーディング規約.md
+          - 02-開発者ガイド/02-開発ルール/開発標準.md
   - 要件定義:
-    - 03-要件定義/00-タスク管理アプリの開発.md
+      - 03-要件定義/00-タスク管理アプリの開発.md
   - 外部設計:
-    - システム構成:
-      - 04-外部設計/01.システム構成/システム構成.md
-    - DB設計:
-      - 04-外部設計/02-DB設計/ER図.md
-      - 04-外部設計/02-DB設計/テーブル定義書.md
-    - 機能設計:
-      - 04-外部設計/03-機能設計/機能一覧.md
-    - 画面設計:
-      - 04-外部設計/04-画面設計/画面一覧.md
-    - API設計:
-      - 04-外部設計/05-API設計/API一覧.md
+      - システム構成:
+          - 04-外部設計/01.システム構成/システム構成.md
+      - DB設計:
+          - 04-外部設計/02-DB設計/ER図.md
+          - 04-外部設計/02-DB設計/テーブル定義書.md
+      - 機能設計:
+          - 04-外部設計/03-機能設計/機能一覧.md
+      - 画面設計:
+          - 04-外部設計/04-画面設計/画面一覧.md
+      - API設計:
+          - 04-外部設計/05-API設計/API一覧.md
   # - 内部設計:
   # - テスト設計:
   #   - 単体テスト:
@@ -47,3 +39,90 @@ nav:
   #   - ナレッジベース:
   #   - ブログ:
   #   - 議事録:
+
+# Documentation and theme
+docs_dir: "docs"
+theme:
+  name: material
+  # custom_dir: overrides
+  language: ja # サイトの言語設定
+  # icon:
+  #   logo:  #サイト左上のアイコン
+  color_mode: auto
+  user_color_mode_toggle: true
+  palette: # カラー
+    - scheme: default
+      primary: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: yellow
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font: # フォント GoogleFont
+    text: Noto Sans JP
+    code: Monospace
+    # code: Inconsolata
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+    - navigation.instant # インスタントローディングでSPA対応
+    - navigation.tabs # ヘッダーにナビゲーション
+    # - navigation.sections # ナビゲーションのセクション表示
+    - navigation.expand # 左サイドバーの初期表示を展開済み
+    - navigation.top # TOPへ戻る
+    - toc.integrate # ナビゲーションを左右統合
+    - header.autohide # スクロールしたときヘッダーを自動的に非表示にする
+    - search.suggest # 検索の候補リスト表示を表示する
+    - search.highlight # 検索で一致した結果をハイライトする
+    - content.code.copy # コードコピー機能
+
+extra:
+  generator: false # ジェネレータの表記を非表示
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Hitamuki/develop-todo-app
+      name: develop-todo-app
+
+# Extensions
+markdown_extensions:
+  - admonition # アラート修飾
+  - def_list # 定義リスト
+  - footnotes # 注釈
+  - attr_list # アイコン、絵文字、ボタン
+  # - pymdownx.emoji:
+  #     emoji_index: 
+  #     emoji_generator: 
+  - pymdownx.smartsymbols # シンボルを変換
+  - pymdownx.keys # PCでのキーボード操作を装飾
+  - pymdownx.highlight: # コードハイライト
+      use_pygments: true
+      noclasses: true
+      pygments_style: monokai
+      linenums: true
+  - pymdownx.highlight: # Mermaid
+      use_pygments: true
+      noclasses: true
+      pygments_style: monokai
+      linenums: true
+  - pymdownx.tasklist: # タスクリスト
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.tabbed: # タブブロック
+      alternate_style: true
+  - toc:
+      permalink: "#"
+
+# extra_css:
+#   - ./css/custom.css
+
+# extra_javascript:
+#   - ./javascript/custom.js
+
+# plugins:
+  # - git-revision-date # ファイル更新日を表示
+  # - search:
+  #   lang: "ja"

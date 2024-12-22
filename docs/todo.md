@@ -1,13 +1,13 @@
 # ToDo
 
-- openapi-generatorで実行前にクラスを削除したい
-- トレーサビリティのため、openapi.ymlのdescriptionにIDを振り分ける(api_00x)
-- GitHub Pagesへデプロイ
+## Emergency
 
-- 設計
-  - <https://qiita.com/EasyCoder/items/04d9a9776557c8d8f840>
-  - <https://zenn.dev/eguchi244_dev/books/laravel-tutorial-books/viewer/laravel-todo-app-design>
-  - <https://qiita.com/aki_number16/items/9507e7f9477725e722cd>
+- GitHub Pagesへデプロイ
+- GitHub ActionsでCI/CDを設定する
+- openapi-generatorで実行前にスクリプトを実行して上書きされるクラスを削除したい
+- トレーサビリティのため、openapi.ymlのdescriptionにIDを振り分ける(api_00x)
+
+## 考察、調査
 
 - 疑問
   - ER図は自動生成したいのでbackendのMySQL→docsの流れでいいか
@@ -17,6 +17,17 @@
   - Fly.ioの検証環境のデプロイとAWSの本番環境のデプロイで使い分けをできるか
   - システム全体でUTCを使用
   - アプリケーションでの表示時にローカルタイムへ変換
+
+## MkDocs
+
+- ログ、ファビコン作成
+
+## 設計
+
+- 設計
+  - <https://qiita.com/EasyCoder/items/04d9a9776557c8d8f840>
+  - <https://zenn.dev/eguchi244_dev/books/laravel-tutorial-books/viewer/laravel-todo-app-design>
+  - <https://qiita.com/aki_number16/items/9507e7f9477725e722cd>
 
 - 構成検討
   - 静的サイトジェネレーターを活用しているプロダクトを参考にしたい
