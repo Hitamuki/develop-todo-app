@@ -10,11 +10,10 @@ import { TaskGetResponseDto, TasksService } from '../api';
  *
  */
 @Component({
-  selector: 'app-task-list-item',
-  standalone: true,
-  imports: [DatePipe, FormsModule, MatCheckboxModule, MatIconModule, NgClass],
-  templateUrl: './task-list-item.component.html',
-  styleUrl: './task-list-item.component.scss',
+    selector: 'app-task-list-item',
+    imports: [DatePipe, FormsModule, MatCheckboxModule, MatIconModule, NgClass],
+    templateUrl: './task-list-item.component.html',
+    styleUrl: './task-list-item.component.scss'
 })
 export class TaskListItemComponent {
   private tasksService = inject(TasksService);

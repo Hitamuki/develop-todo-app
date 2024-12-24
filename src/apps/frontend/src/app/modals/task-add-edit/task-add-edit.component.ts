@@ -15,20 +15,19 @@ import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
  *
  */
 @Component({
-  selector: 'app-task-add-edit',
-  standalone: true,
-  imports: [
-    NgbDatepickerModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
-  templateUrl: './task-add-edit.component.html',
-  styleUrl: './task-add-edit.component.scss',
-  providers: [MatNativeDateModule],
+    selector: 'app-task-add-edit',
+    imports: [
+        NgbDatepickerModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+    ],
+    templateUrl: './task-add-edit.component.html',
+    styleUrl: './task-add-edit.component.scss',
+    providers: [MatNativeDateModule]
 })
 export class TaskAddEditComponent implements OnInit {
   private activeModal = inject(NgbActiveModal);
