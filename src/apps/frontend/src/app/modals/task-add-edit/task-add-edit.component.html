@@ -1,9 +1,9 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    @if (modalType === 'add') {
+    @if (modalType() === 'add') {
       タスク新規登録
     }
-    @if (modalType === 'edit') {
+    @if (modalType() === 'edit') {
       タスク編集
     }
   </h4>

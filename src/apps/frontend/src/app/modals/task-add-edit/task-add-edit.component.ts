@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit, input, output } from '@angular/core';
 import { NgbActiveModal, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,9 +33,9 @@ export class TaskAddEditComponent implements OnInit {
   private activeModal = inject(NgbActiveModal);
   private tasksService = inject(TasksService);
 
-  @Input() modalType!: 'add' | 'edit';
-  @Input() id?: string;
-  @Output() modalClosed = new EventEmitter<void>();
+  readonly modalType = input.required<'add' | 'edit'>();
+  readonly id = input<string>();
+  readonly modalClosed = output<void>();
 
   task: TaskGetResponseDto = this.resetTask();
   formattedDueDate?: { year: number; month: number; day: number };
@@ -46,7 +46,7 @@ export class TaskAddEditComponent implements OnInit {
    */
   ngOnInit(): void {
     // 初期化処理でpageTypeがeditの場合は、idを基に取得処理を実行
-    if (this.modalType === 'edit') {
+    if (this.modalType() === 'edit') {
       this.getTask().subscribe({
         next: () => {
           // 期日の初期化処理
@@ -80,7 +80,8 @@ export class TaskAddEditComponent implements OnInit {
    */
   save() {
     // 新規登録
-    if (this.modalType === 'add') {
+    const modalType = this.modalType();
+    if (modalType === 'add') {
       this.postTask().subscribe({
         next: () => {
           this.modalClosed.emit();
@@ -88,7 +89,7 @@ export class TaskAddEditComponent implements OnInit {
       });
     }
     // 更新
-    if (this.modalType === 'edit') {
+    if (modalType === 'edit') {
       this.putTask().subscribe({
         next: () => {
           this.modalClosed.emit();
@@ -106,11 +107,11 @@ export class TaskAddEditComponent implements OnInit {
   }
 
   private getTask() {
-    return this.tasksService.get(this.id as string).pipe(tap((result) => (this.task = result)));
+    return this.tasksService.get(this.id() as string).pipe(tap((result) => (this.task = result)));
   }
 
   private putTask(): Observable<unknown> {
-    return this.tasksService.put(this.id as string, this.task);
+    return this.tasksService.put(this.id() as string, this.task);
   }
 
   private postTask(): Observable<unknown> {
