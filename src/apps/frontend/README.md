@@ -34,6 +34,16 @@ rm .yarn/install-state.gz
 yarn install
 ```
 
+## コマンド
+
+サードパーティライブラリのバグ対応として暫定的にパッチを当てる
+
+``` bash
+# 事前にnode_modulesのファイルを編集する
+# patch-packageを実行して.patchファイルを作成
+yarn patch-package <パッケージ名>
+```
+
 ## 自動生成README
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
