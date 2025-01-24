@@ -63,6 +63,9 @@ memo.mdを作成し、参考にURLなどを記載
 dotnet format style --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
 ```
 
+MySQLコンテナのIPアドレスを確認
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo_db
+
 HTTPS 開発証明書 ※初回のみ
 
 ```bash
