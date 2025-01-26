@@ -77,7 +77,7 @@ export class TaskListComponent implements OnInit {
   // ----------------------
 
   private reloadPage() {
-    window.location.reload();
+    this.getTasks();
   }
 
   private getTasks() {
