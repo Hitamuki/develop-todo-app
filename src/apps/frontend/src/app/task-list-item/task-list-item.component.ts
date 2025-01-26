@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DatePipe, NgClass } from '@angular/common';
@@ -17,9 +17,9 @@ import { TaskGetResponseDto, TasksService } from '../api';
 })
 export class TaskListItemComponent {
   private tasksService = inject(TasksService);
-  readonly task = input.required<TaskGetResponseDto>();
-  readonly edit = output<string>();
-  readonly delete = output<void>();
+  @Input() task!: TaskGetResponseDto;
+  @Output() edit = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<void>();
 
   /**
    *
@@ -42,13 +42,12 @@ export class TaskListItemComponent {
   }
 
   onStatusChange(isChecked: boolean): void {
-    const task = this.task();
     if (isChecked) {
-      task.statusId = 3;
+      this.task.statusId = 3;
     } else {
-      task.statusId = 1;
+      this.task.statusId = 1;
     }
-    this.putTask(task.id, task);
+    this.putTask(this.task.id, this.task);
   }
 
   /**

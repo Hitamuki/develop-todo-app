@@ -1,20 +1,20 @@
-<div class="d-flex align-items-center mb-2" [ngClass]="{ 'completed-task': task().statusId === 3 }">
+<div class="d-flex align-items-center mb-2" [ngClass]="{ 'completed-task': task.statusId === 3 }">
   <!-- チェックボックスとタスクタイトル -->
-  <mat-checkbox [checked]="task().statusId === 3" (change)="onStatusChange($event.checked)"></mat-checkbox>
-  <span>{{ task().title }}</span>
-  @if (task().dueDate) {
-    <span>（期日：{{ task().dueDate | date: 'yyyy/MM/dd' }}）</span>
+  <mat-checkbox [checked]="task.statusId === 3" (change)="onStatusChange($event.checked)"></mat-checkbox>
+  <span>{{ task.title }}</span>
+  @if (task.dueDate) {
+    <span>（期日：{{ task.dueDate | date: 'yyyy/MM/dd' }}）</span>
   }
   <!-- 編集ボタン -->
-  <button mat-icon-button aria-label="編集" (click)="onEdit(task().id)">
+  <button mat-icon-button aria-label="編集" (click)="onEdit(task.id)">
     <mat-icon>edit</mat-icon>
   </button>
   <!-- 削除ボタン -->
-  <button mat-icon-button aria-label="削除" (click)="onDelete(task().id)">
+  <button mat-icon-button aria-label="削除" (click)="onDelete(task.id)">
     <mat-icon>delete</mat-icon>
   </button>
   <!-- 期日超過ラベル -->
-  @if (isOverdue(task())) {
+  @if (isOverdue(task)) {
     <span class="text-danger ms-2">期日超過</span>
   }
 </div>
