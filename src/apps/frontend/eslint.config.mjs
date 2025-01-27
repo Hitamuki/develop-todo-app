@@ -13,6 +13,14 @@ export default tsEslint.config(
     ignores: ['src/app/api/**'],
   },
   {
+    languageOptions: {
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
     files: ['**/*.{ts,js}'],
     extends: [
       eslint.configs.recommended,
@@ -111,6 +119,7 @@ export default tsEslint.config(
       //   },
       // ],
       'jsdoc/require-returns': ['off'],
+      '@typescript-eslint/no-deprecated': 'warn',
     },
   },
   {

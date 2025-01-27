@@ -10,10 +10,10 @@ import { TaskAddEditComponent } from '../modals/task-add-edit/task-add-edit.comp
  *
  */
 @Component({
-    selector: 'app-task-list',
-    imports: [TaskListItemComponent, MatIconModule],
-    templateUrl: './task-list.component.html',
-    styleUrls: ['./task-list.component.scss']
+  selector: 'app-task-list',
+  imports: [TaskListItemComponent, MatIconModule],
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
   private tasksService = inject(TasksService);

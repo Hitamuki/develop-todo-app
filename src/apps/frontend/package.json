@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,7 +17,7 @@
     "lint:ts": "ng lint",
     "lint:css": "stylelint \"./src/**/*.{scss,component.ts,css,sass}\"",
     "lint:html": "markuplint \"./src/**/*.{html}\"",
-    "lint:fix": "eslint --cache --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,component.ts,css,sass}\" --fix && markuplint \"./src/**/*.html\"",
+    "lint:fix": "eslint --fix src/ && prettier --write src && stylelint \"./src/**/*.{scss,component.ts,css,sass}\" --fix && markuplint \"./src/**/*.html\"",
     "format:biome": "biome format ./src",
     "format:biome-action": "biome format --write ./src",
     "lint:biome": "biome lint ./src",

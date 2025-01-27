@@ -15,19 +15,19 @@ import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
  *
  */
 @Component({
-    selector: 'app-task-add-edit',
-    imports: [
-        NgbDatepickerModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-    ],
-    templateUrl: './task-add-edit.component.html',
-    styleUrl: './task-add-edit.component.scss',
-    providers: [MatNativeDateModule]
+  selector: 'app-task-add-edit',
+  imports: [
+    NgbDatepickerModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  templateUrl: './task-add-edit.component.html',
+  styleUrl: './task-add-edit.component.scss',
+  providers: [MatNativeDateModule],
 })
 export class TaskAddEditComponent implements OnInit {
   private activeModal = inject(NgbActiveModal);
@@ -66,11 +66,23 @@ export class TaskAddEditComponent implements OnInit {
   }
 
   // NgbDatepicker 日付変更イベント
+  /**
+   *
+   * @param newDate
+   * @param newDate.year
+   * @param newDate.month
+   * @param newDate.day
+   */
   onDateChange(newDate: { year: number; month: number; day: number }): void {
     this.task.dueDate = `${newDate.year}-${String(newDate.month).padStart(2, '0')}-${String(newDate.day).padStart(2, '0')}`;
   }
 
   // Angular Material Datepicker 日付変更イベント
+  /**
+   *
+   * @param event
+   * @param event.value
+   */
   onMaterialDateChange(event: { value: Date }): void {
     this.materialDate = event.value;
     this.task.dueDate = dayjs(this.materialDate).format('YYYY-MM-DD');
