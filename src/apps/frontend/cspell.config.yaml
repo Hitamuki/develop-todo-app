@@ -1,0 +1,34 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: "0.2"
+language: "en"
+ignorePaths:
+  - ./*.{json,yml,yaml}
+  - .angular
+  - .vscode/**
+  - .yarn
+  - coverage/**
+  - dist/**
+  - node_modules/**
+  - public/**
+  - ./**ignore
+  - yarn.lock
+ignoreRegExpList: []
+words: []
+flagWords: []
+ignoreWords: []
+dictionaries:
+  - node
+  - typescript
+  - javaScript
+  - html
+  - css
+  - npm
+languageSettings:
+  [
+    {
+      languageId: "typescript,javascript",
+      locale: "en",
+      dictionaries: [],
+      dictionaryDefinitions: [],
+    },
+  ]
