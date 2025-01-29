@@ -1,12 +1,27 @@
 {
   "markuplint.enable": true,
+  "biome.enabled": false,
   "css.validate": false,
   "scss.validate": false,
-  "[html,css,scss,js,ts]": {
+  "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": "always",
+      "source.fixAll.stylelint": "always",
+      "source.fixAll.eslint": "always"
+    }
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "always"
+    }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "always",
       "source.fixAll.eslint": "always"
     }
