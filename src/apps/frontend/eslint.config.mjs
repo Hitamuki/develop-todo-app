@@ -14,6 +14,7 @@ export default tsEslint.config(
   },
   {
     languageOptions: {
+      parser: tsEslint.parser,
       parserOptions: {
         project: true,
         tsconfigRootDir: import.meta.dirname,
@@ -33,6 +34,7 @@ export default tsEslint.config(
     ],
     plugins: {
       'unused-imports': unusedImports,
+      '@typescript-eslint': tsEslint.plugin,
     },
     processor: angular.processInlineTemplates,
     settings: {
