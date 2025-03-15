@@ -5,17 +5,17 @@ import { isDevMode } from '@angular/core';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 
-async function prepareApp() {
+async function prepare() {
   // ローカル開発環境に限定
   if (isDevMode()) {
     const { worker } = await import('./mocks/browser');
-    return worker.start();
+    return await worker.start();
   }
 
   return Promise.resolve();
 }
 
 // Angularアプリケーションを起動する直前にService Workerを立ち上げる
-prepareApp().then(() => {
+prepare().then(() => {
   bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
 });
