@@ -1,5 +1,5 @@
 <Project>
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(MSBuildProjectName)' != 'Org.OpenAPITools'">
     <TargetFramework>net8.0</TargetFramework>
     <!-- コード分析設定 -->
     <!-- .NET Analyzers -->
@@ -9,7 +9,7 @@
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Org.OpenAPITools'">
     <PackageReference Include="Roslynator.Analyzers" Version="4.12.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
