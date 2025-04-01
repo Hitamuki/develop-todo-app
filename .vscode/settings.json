@@ -29,5 +29,7 @@
   "terminal.integrated.smoothScrolling": true,
   "workbench.editor.wrapTabs": true,
   "editor.cursorBlinking": "blink",
-  "workbench.view.alwaysShowHeaderActions": true
+  "workbench.view.alwaysShowHeaderActions": true,
+  // Cursor
+  "workbench.activityBar.orientation": "vertical"
 }

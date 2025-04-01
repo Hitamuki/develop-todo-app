@@ -4159,6 +4159,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ag-charts-types@npm:11.1.1":
+  version: 11.1.1
+  resolution: "ag-charts-types@npm:11.1.1"
+  checksum: 10c0/740cfb501db3b6a9d19333f7e92fa4fac4fbf4cba45921f9d040608a82a5382a61150d0c1231147aaf6ab0a554457fda09957719da777f1c93b3e6e4afa8229f
+  languageName: node
+  linkType: hard
+
+"ag-grid-angular@npm:^33.1.1":
+  version: 33.1.1
+  resolution: "ag-grid-angular@npm:33.1.1"
+  dependencies:
+    ag-grid-community: "npm:33.1.1"
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    "@angular/common": ">= 17.0.0"
+    "@angular/core": ">= 17.0.0"
+  checksum: 10c0/09df9154dbb67053941da015db86423debe462fed766ad9729d72916449315a854ea3afaf607544fe84e8dcda17fd9b03a3d704c5dfd66e032266e958431b0a6
+  languageName: node
+  linkType: hard
+
+"ag-grid-community@npm:33.1.1, ag-grid-community@npm:^33.1.1":
+  version: 33.1.1
+  resolution: "ag-grid-community@npm:33.1.1"
+  dependencies:
+    ag-charts-types: "npm:11.1.1"
+  checksum: 10c0/cff694ede89e6ed4d577ee86df1a3b468f345a8cdf9404122e3ef632af8084133cf88f2a5b66f039183e955861070ba010b9b9ba1b64dd80faeb6c55b447b839
+  languageName: node
+  linkType: hard
+
 "agent-base@npm:6":
   version: 6.0.2
   resolution: "agent-base@npm:6.0.2"
@@ -7234,6 +7263,8 @@ __metadata:
     "@types/jest": "npm:^29.5.13"
     "@types/lodash-es": "npm:^4"
     "@types/node": "npm:^22.6.1"
+    ag-grid-angular: "npm:^33.1.1"
+    ag-grid-community: "npm:^33.1.1"
     angular-eslint: "npm:19.x.x"
     biome: "npm:^0.3.3"
     bootstrap: "npm:^5.3.3"

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TaskListComponent } from './task-list/task-list.component';
+import { TaskListComponent } from './pages/task-list/task-list.component';
 
 /**
  *

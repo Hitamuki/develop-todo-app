@@ -38,6 +38,8 @@
     "@angular/router": "^19.0.5",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
+    "ag-grid-angular": "^33.1.1",
+    "ag-grid-community": "^33.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "lodash-es": "^4.17.21",
