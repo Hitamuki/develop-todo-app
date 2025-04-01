@@ -1,170 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
-import { AgGridModule, ICellRendererAngularComp } from 'ag-grid-angular';
+import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, ClientSideRowModelModule } from 'ag-grid-community';
-import { DatePipe, NgClass } from '@angular/common';
 import { TaskAddEditComponent } from '../../modals/task-add-edit/task-add-edit.component';
 import { TaskGetResponseDto, TasksService } from '../../api';
-
-/**
- * タスクアクションセルレンダラーコンポーネント
- */
-@Component({
-  selector: 'app-task-action-cell',
-  template: `
-    <div class="d-flex justify-content-around align-items-center h-100">
-      <button class="btn btn-sm btn-outline-primary" (click)="onEdit()">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button class="btn btn-sm btn-outline-danger" (click)="onDelete()">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-  `,
-  standalone: true,
-  imports: [MatIconModule],
-})
-export class TaskActionCellComponent implements ICellRendererAngularComp {
-  private params: any;
-
-  /**
-   *
-   * @param params
-   */
-  agInit(params: any): void {
-    this.params = params;
-  }
-
-  /**
-   *
-   * @param params
-   */
-  refresh(params: any): boolean {
-    this.params = params;
-    return true;
-  }
-
-  /**
-   *
-   */
-  onEdit(): void {
-    if (this.params.onEdit) {
-      this.params.onEdit(this.params.data.id);
-    }
-  }
-
-  /**
-   *
-   */
-  onDelete(): void {
-    if (this.params.onDelete) {
-      this.params.onDelete(this.params.data.id);
-    }
-  }
-}
-
-/**
- * ステータスセルレンダラーコンポーネント
- */
-@Component({
-  selector: 'app-task-status-cell',
-  template: `
-    <div>
-      {{ getStatusText(params.value) }}
-    </div>
-  `,
-  standalone: true,
-})
-export class TaskStatusCellComponent implements ICellRendererAngularComp {
-  params: any;
-
-  /**
-   *
-   * @param params
-   */
-  agInit(params: any): void {
-    this.params = params;
-  }
-
-  /**
-   *
-   * @param params
-   */
-  refresh(params: any): boolean {
-    this.params = params;
-    return true;
-  }
-
-  /**
-   *
-   * @param statusId
-   */
-  getStatusText(statusId: number): string {
-    switch (statusId) {
-      case 1:
-        return '未着手';
-      case 2:
-        return '進行中';
-      case 3:
-        return '完了';
-      default:
-        return '不明';
-    }
-  }
-}
-
-/**
- * 日付セルレンダラーコンポーネント
- */
-@Component({
-  selector: 'app-date-cell',
-  template: `
-    <div [ngClass]="{ 'text-danger': isOverdue() }">
-      {{ params.value | date: 'yyyy/MM/dd' }}
-    </div>
-  `,
-  standalone: true,
-  imports: [DatePipe, NgClass],
-})
-export class DateCellComponent implements ICellRendererAngularComp {
-  params: any;
-
-  /**
-   *
-   * @param params
-   */
-  agInit(params: any): void {
-    this.params = params;
-  }
-
-  /**
-   *
-   * @param params
-   */
-  refresh(params: any): boolean {
-    this.params = params;
-    return true;
-  }
-
-  /**
-   *
-   */
-  isOverdue(): boolean {
-    if (!this.params.value) return false;
-    const dueDate = new Date(this.params.value);
-    const statusId = this.params.data.statusId;
-    return statusId !== 3 && dueDate.getTime() < new Date().setHours(0, 0, 0, 0);
-  }
-}
+import { TaskActionCellComponent } from './../components/task-action-cell.component';
+import { TaskStatusCellComponent } from './../components/task-status-cell.component';
+import { DateCellComponent } from './../components/date-cell.component';
 
 /**
  * タスク一覧コンポーネント
  */
 @Component({
   selector: 'app-task-list',
-  imports: [MatIconModule, AgGridModule, TaskActionCellComponent, TaskStatusCellComponent, DateCellComponent],
+  imports: [MatIconModule, AgGridModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
