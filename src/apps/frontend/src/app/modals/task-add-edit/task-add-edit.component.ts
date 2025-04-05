@@ -10,6 +10,8 @@ import { Observable, tap } from 'rxjs';
 import dayjs from 'dayjs';
 import { TasksService } from '../../api/api/tasks.service';
 import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { StatusIdEnum } from '../../api/model/status-id-enum';
 
 /**
  *
@@ -24,6 +26,7 @@ import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgSelectModule,
   ],
   templateUrl: './task-add-edit.component.html',
   styleUrl: './task-add-edit.component.scss',
@@ -40,6 +43,12 @@ export class TaskAddEditComponent implements OnInit {
   task: TaskGetResponseDto = this.resetTask();
   formattedDueDate?: { year: number; month: number; day: number };
   materialDate?: Date;
+
+  statusItems = [
+    { id: 1, name: '未着手' },
+    { id: 2, name: '進行中' },
+    { id: 3, name: '完了' }
+  ];
 
   /**
    *

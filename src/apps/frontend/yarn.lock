@@ -2712,6 +2712,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ng-select/ng-select@npm:^14.2.6":
+  version: 14.2.6
+  resolution: "@ng-select/ng-select@npm:14.2.6"
+  dependencies:
+    tslib: "npm:^2.3.1"
+  peerDependencies:
+    "@angular/common": ^19.0.0
+    "@angular/core": ^19.0.0
+    "@angular/forms": ^19.0.0
+  checksum: 10c0/78cf97fbda70ca106d4547590ff615614b3f60a73317c52e3bbeb60da0184970294fc96d7b4fe7b8488aeaccf1ba4d455edc512d7f2fe61fc677018ae6cf2024
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -7252,6 +7265,7 @@ __metadata:
     "@biomejs/biome": "npm:1.9.2"
     "@faker-js/faker": "npm:^9.5.0"
     "@ng-bootstrap/ng-bootstrap": "npm:^18.0.0"
+    "@ng-select/ng-select": "npm:^14.2.6"
     "@openapitools/openapi-generator-cli": "npm:^2.15.3"
     "@playwright/test": "npm:^1.47.2"
     "@popperjs/core": "npm:^2.11.8"

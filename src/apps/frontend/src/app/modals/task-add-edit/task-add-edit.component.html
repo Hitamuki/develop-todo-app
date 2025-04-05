@@ -13,6 +13,19 @@
   <form>
     <div class="container">
       <div class="row justify-content-center align-items-center g-2">
+        <!-- ステータス -->
+        <div class="col-12 mb-3">
+          <label for="taskStatus" class="form-label">ステータス</label>
+          <ng-select 
+            [items]="statusItems"
+            bindLabel="name"
+            bindValue="id"
+            [clearable]="false"
+            id="taskStatus"
+            name="taskStatus"
+            [(ngModel)]="task.statusId">
+          </ng-select>
+        </div>
         <!-- タイトル -->
         <div class="col-12 mb-3">
           <label for="taskTitle" class="form-label">タイトル</label>

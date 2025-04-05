@@ -37,6 +37,7 @@
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "@ng-select/ng-select": "^14.2.6",
     "@popperjs/core": "^2.11.8",
     "ag-grid-angular": "^33.1.1",
     "ag-grid-community": "^33.1.1",
