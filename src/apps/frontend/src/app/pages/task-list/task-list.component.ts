@@ -8,6 +8,7 @@ import { TaskGetResponseDto, TasksService } from '../../api';
 import { TaskActionCellComponent } from './../components/task-action-cell.component';
 import { TaskStatusCellComponent } from './../components/task-status-cell.component';
 import { DateCellComponent } from './../components/date-cell.component';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * タスク一覧コンポーネント
@@ -21,6 +22,7 @@ import { DateCellComponent } from './../components/date-cell.component';
 export class TaskListComponent implements OnInit {
   private tasksService = inject(TasksService);
   private modalService = inject(NgbModal);
+  private toastr = inject(ToastrService);
 
   // ----------------------
   // パブリック変数
@@ -106,9 +108,13 @@ export class TaskListComponent implements OnInit {
   onDeleteTask(taskId: string) {
     this.tasksService._delete(taskId).subscribe({
       next: () => {
+        this.toastr.success('タスクが削除されました', '削除完了');
         this.reloadPage();
       },
-      error: (err) => console.error('Error deleting task:', err),
+      error: (err) => {
+        console.error('Error deleting task:', err);
+        this.toastr.error('タスクの削除に失敗しました', 'エラー');
+      },
     });
   }
 

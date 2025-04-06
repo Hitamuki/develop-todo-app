@@ -7,7 +7,43 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 // ng-select
 @import '@ng-select/ng-select/themes/default.theme.css';
+// ngx-toastr
+@import 'ngx-toastr/toastr';
 
+// Bootstrap toastr styling
+.toast-bootstrap {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  color: #000;
+
+  .toast-title {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .toast-message {
+    color: #000;
+  }
+
+  &.toast-success {
+    border-left: 4px solid #198754;
+  }
+
+  &.toast-error {
+    border-left: 4px solid #dc3545;
+  }
+
+  &.toast-info {
+    border-left: 4px solid #0dcaf0;
+  }
+
+  &.toast-warning {
+    border-left: 4px solid #ffc107;
+  }
+}
+
+// All
 html,
 body {
   height: 100%;

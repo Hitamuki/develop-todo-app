@@ -7297,6 +7297,7 @@ __metadata:
     markuplint: "npm:^3.15.0"
     markuplint-angular-parser: "npm:^2.0.0"
     msw: "npm:^2.7.0"
+    ngx-toastr: "npm:^19.0.0"
     patch-package: "npm:^8.0.0"
     playwright: "npm:^1.47.2"
     postcss: "npm:^8.4.47"
@@ -10585,6 +10586,19 @@ __metadata:
   version: 1.1.0
   resolution: "next-tick@npm:1.1.0"
   checksum: 10c0/3ba80dd805fcb336b4f52e010992f3e6175869c8d88bf4ff0a81d5d66e6049f89993463b28211613e58a6b7fe93ff5ccbba0da18d4fa574b96289e8f0b577f28
+  languageName: node
+  linkType: hard
+
+"ngx-toastr@npm:^19.0.0":
+  version: 19.0.0
+  resolution: "ngx-toastr@npm:19.0.0"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    "@angular/common": ">=16.0.0-0"
+    "@angular/core": ">=16.0.0-0"
+    "@angular/platform-browser": ">=16.0.0-0"
+  checksum: 10c0/af2cd5b41d2b2ab9d9f0e9369fc9a232016b49850c159c84291d822d7871c042772ee8f5cda2824cdd62ada1074c6cdfc0660c0f1f610707924ab3b6a7b170b8
   languageName: node
   linkType: hard
 

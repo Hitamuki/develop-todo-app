@@ -12,6 +12,7 @@ import { TasksService } from '../../api/api/tasks.service';
 import { TaskGetResponseDto } from '../../api/model/task-get-response-dto';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { StatusIdEnum } from '../../api/model/status-id-enum';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  *
@@ -35,6 +36,7 @@ import { StatusIdEnum } from '../../api/model/status-id-enum';
 export class TaskAddEditComponent implements OnInit {
   private activeModal = inject(NgbActiveModal);
   private tasksService = inject(TasksService);
+  private toastr = inject(ToastrService);
 
   @Input() modalType!: 'add' | 'edit';
   @Input() id?: string;
@@ -104,16 +106,26 @@ export class TaskAddEditComponent implements OnInit {
     if (this.modalType === 'add') {
       this.postTask().subscribe({
         next: () => {
+          this.toastr.success('タスクが登録されました', '登録完了');
           this.modalClosed.emit();
         },
+        error: (err) => {
+          console.error('Error adding task:', err);
+          this.toastr.error('タスクの登録に失敗しました', 'エラー');
+        }
       });
     }
     // 更新
     if (this.modalType === 'edit') {
       this.putTask().subscribe({
         next: () => {
+          this.toastr.success('タスクが更新されました', '更新完了');
           this.modalClosed.emit();
         },
+        error: (err) => {
+          console.error('Error updating task:', err);
+          this.toastr.error('タスクの更新に失敗しました', 'エラー');
+        }
       });
     }
     this.activeModal.close();
