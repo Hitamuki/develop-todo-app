@@ -1,0 +1,30 @@
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.sidenav {
+  background-color: #fff9c4; /* Material Yellow 100 */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.active-link {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+mat-sidenav-content {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-container {
+  flex: 1;
+  overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
+}

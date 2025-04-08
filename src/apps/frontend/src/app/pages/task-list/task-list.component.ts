@@ -3,12 +3,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, ClientSideRowModelModule } from 'ag-grid-community';
+import { ToastrService } from 'ngx-toastr';
 import { TaskAddEditComponent } from '../../modals/task-add-edit/task-add-edit.component';
 import { TaskGetResponseDto, TasksService } from '../../api';
 import { TaskActionCellComponent } from './../components/task-action-cell.component';
 import { TaskStatusCellComponent } from './../components/task-status-cell.component';
 import { DateCellComponent } from './../components/date-cell.component';
-import { ToastrService } from 'ngx-toastr';
 
 /**
  * タスク一覧コンポーネント
@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-task-list',
   imports: [MatIconModule, AgGridModule],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss'],
+  styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
   private tasksService = inject(TasksService);

@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
  */
 @Component({
   selector: 'app-task-add-edit',
+  standalone: true,
   imports: [
     NgbDatepickerModule,
     FormsModule,

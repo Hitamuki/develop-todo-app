@@ -9,12 +9,13 @@
 @include mat.elevation-classes();
 @include mat.app-background();
 
+// Use the standard yellow palette from Angular Material
 // Define the theme object.
 $frontend-theme: mat.define-theme(
   (
     color: (
       theme-type: light,
-      primary: mat.$azure-palette,
+      primary: mat.$yellow-palette,
       tertiary: mat.$blue-palette,
     ),
     density: (

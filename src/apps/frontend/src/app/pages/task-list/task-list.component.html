@@ -1,24 +1,24 @@
-<div class="container mt-4">
-  <!-- タスク一覧 -->
-  <div class="task-list">
-    <ag-grid-angular
-      class="ag-theme-alpine"
-      [rowData]="tasks"
-      [columnDefs]="columnDefs"
-      [domLayout]="'autoHeight'"
-      [animateRows]="true"
-      [rowHeight]="60"
-      [suppressCellFocus]="true"
-      [suppressRowClickSelection]="true"
-      [modules]="modules"
-    >
-    </ag-grid-angular>
-  </div>
-
-  <!-- タスク追加ボタン -->
-  <div class="row justify-content-center mt-3">
-    <button mat-raised-button class="btn btn-primary" (click)="openModal('add')">
-      <mat-icon>add</mat-icon>
-    </button>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- タスク一覧 -->
+      <ag-grid-angular
+        class="ag-theme-alpine"
+        [rowData]="tasks"
+        [columnDefs]="columnDefs"
+        [domLayout]="'autoHeight'"
+        [animateRows]="true"
+        [rowHeight]="60"
+        [suppressCellFocus]="true"
+        [suppressRowClickSelection]="true"
+        [modules]="modules">
+      </ag-grid-angular>
+    </div>
+    <!-- タスク追加ボタン -->
+    <div class="row justify-content-center mt-3">
+      <button mat-raised-button class="btn btn-primary" (click)="openModal('add')">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

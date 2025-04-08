@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { TaskListComponent } from './pages/task-list/task-list.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { SideNavigationComponent } from './layout/side-navigation/side-navigation.component';
 
 /**
  *
  */
 @Component({
   selector: 'app-root',
-  imports: [TaskListComponent],
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SideNavigationComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
-
-/**
- *
- */
 export class AppComponent {
-  title = 'frontend';
+  title = 'ToDoアプリ';
 }

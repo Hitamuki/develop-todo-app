@@ -10,7 +10,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/task-list/task-list.component').then((m) => m.TaskListComponent),
+    path: '',
+    children: [
+      {
+        path: 'home',
+        loadComponent: () => import('./pages/task-list/task-list.component').then((m) => m.TaskListComponent),
+      },
+    ],
   },
 ];
