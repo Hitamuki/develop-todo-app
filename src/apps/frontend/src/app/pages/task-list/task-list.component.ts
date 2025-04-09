@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { AgGridModule } from 'ag-grid-angular';
-import { ColDef, ClientSideRowModelModule } from 'ag-grid-community';
+import { ColDef, ClientSideRowModelModule, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
 import { TaskAddEditComponent } from '../../modals/task-add-edit/task-add-edit.component';
 import { TaskGetResponseDto, TasksService } from '../../api';
@@ -31,12 +31,13 @@ export class TaskListComponent implements OnInit {
 
   // AG Grid Modules
   modules = [ClientSideRowModelModule];
+  gridApi!: GridApi;
 
   // AG Grid Column Definitions
   columnDefs: ColDef[] = [
     { field: 'id', headerName: 'ID', hide: true },
-    { field: 'title', headerName: 'タイトル', flex: 2 },
-    { field: 'description', headerName: '説明', flex: 3 },
+    { field: 'title', headerName: 'タイトル', flex: 1 },
+    { field: 'description', headerName: '説明', flex: 1 },
     {
       field: 'dueDate',
       headerName: '期日',
@@ -116,6 +117,14 @@ export class TaskListComponent implements OnInit {
         this.toastr.error('タスクの削除に失敗しました', 'エラー');
       },
     });
+  }
+
+  /**
+   *
+   * @param params
+   */
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
   }
 
   // ----------------------

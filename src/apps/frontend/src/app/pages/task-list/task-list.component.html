@@ -1,21 +1,21 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <!-- タスク一覧 -->
-      <ag-grid-angular
-        class="ag-theme-alpine"
-        [rowData]="tasks"
-        [columnDefs]="columnDefs"
-        [domLayout]="'autoHeight'"
-        [animateRows]="true"
-        [rowHeight]="60"
-        [suppressCellFocus]="true"
-        [suppressRowClickSelection]="true"
-        [modules]="modules">
-      </ag-grid-angular>
-    </div>
+  <div class="d-flex flex-column" style="height: 100vh">
+    <!-- タスク一覧 -->
+    <ag-grid-angular
+      class="ag-theme-alpine flex-grow-1"
+      [rowData]="tasks"
+      [columnDefs]="columnDefs"
+      [domLayout]="'normal'"
+      [animateRows]="true"
+      [rowHeight]="60"
+      [suppressCellFocus]="true"
+      [suppressRowClickSelection]="true"
+      [modules]="modules"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+
     <!-- タスク追加ボタン -->
-    <div class="row justify-content-center mt-3">
+    <div class="row justify-content-center mt-3 mb-3">
       <button mat-raised-button class="btn btn-primary" (click)="openModal('add')">
         <mat-icon>add</mat-icon>
       </button>

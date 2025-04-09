@@ -1,19 +1,21 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav [opened]="opened" mode="side" class="sidenav" [class.collapsed]="!opened">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home" routerLinkActive="active-link">
-        <mat-icon>check_box</mat-icon>
-        <span *ngIf="opened">To-Do</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+<div class="d-flex flex-column">
+  <mat-sidenav-container>
+    <mat-sidenav [opened]="opened" mode="side" class="sidenav" [class.collapsed]="!opened">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home" routerLinkActive="active-link">
+          <mat-icon>check_box</mat-icon>
+          <span *ngIf="opened">To-Do</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <button mat-icon-button (click)="toggleSidenav()">
-      <mat-icon>{{ opened ? 'menu_open' : 'menu' }}</mat-icon>
-    </button>
-    <div class="main-container">
-      <ng-content></ng-content>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-content>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>{{ opened ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+      <div class="main-container">
+        <ng-content></ng-content>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
