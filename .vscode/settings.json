@@ -31,5 +31,6 @@
   "editor.cursorBlinking": "blink",
   "workbench.view.alwaysShowHeaderActions": true,
   // Cursor
-  "workbench.activityBar.orientation": "vertical"
+  "workbench.activityBar.orientation": "vertical",
+  "chat.agent.enabled": true
 }
