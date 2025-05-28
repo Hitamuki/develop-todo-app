@@ -1,17 +1,5 @@
 # 設計書
 
-## MkDocs
-
-- MkDocsをローカル環境で確認する
-
-```bash
-# ToDo: mkdocs.ymlがあるディレクトリに移動
-# ビルド
-mkdocs build
-# サーバ起動
-mkdocs serve
-```
-
 ## ToDo
 
 - 設計書

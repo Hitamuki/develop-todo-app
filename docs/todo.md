@@ -2,8 +2,6 @@
 
 ## Emergency
 
-- GitHub Pagesへデプロイ
-- GitHub ActionsでCI/CDを設定する
 - openapi-generatorで実行前にスクリプトを実行して上書きされるクラスを削除したい
 - トレーサビリティのため、openapi.ymlのdescriptionにIDを振り分ける(api_00x)
 
