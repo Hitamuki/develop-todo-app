@@ -22,8 +22,9 @@ languageSettings:
       - csharp
 # 辞書パッケージ
 dictionaryDefinitions:
-    # 辞書ファイル名
-  - name: domain
+  # 辞書ファイル名
+  - name:
+      domain
       # カスタム単語ファイルへのパス
     path: ./.cspell/domain.txt
     addWords: false

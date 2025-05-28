@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "isRoot": true,
+  "isRoot": false,
   "tools": {
     "dotnet-format": {
       "version": "5.1.250801",
