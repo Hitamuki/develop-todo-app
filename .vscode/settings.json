@@ -32,5 +32,10 @@
   "workbench.view.alwaysShowHeaderActions": true,
   // Cursor
   "workbench.activityBar.orientation": "vertical",
-  "chat.agent.enabled": true
+  "chat.agent.enabled": true,
+  
+  // .NET Core Test Explorer settings
+  "dotnet-test-explorer.testProjectPath": "src/apps/backend/tests/ToDoApp.Tests/ToDoApp.Tests.csproj",
+  "dotnet-test-explorer.autoWatch": true,
+  "dotnet-test-explorer.autoRun": true,
 }
