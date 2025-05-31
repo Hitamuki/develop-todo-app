@@ -128,5 +128,21 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
             // Assert
             _mockTaskRepository.Verify(repo => repo.DeleteAsync(taskId), Times.Once);
         }
+
+        [Fact]
+        public async Task FindByIdAsync_ShouldReturnNull_WhenTaskDoesNotExist()
+        {
+            // Arrange
+            var taskId = Guid.NewGuid();
+            _mockTaskRepository.Setup(repo => repo.FindByIdAsync(taskId))
+                .ReturnsAsync((TaskEntity)null); // Ensure the return type is correctly cast for Moq
+
+            // Act
+            var actual = await _taskService.FindByIdAsync(taskId);
+
+            // Assert
+            Assert.Null(actual);
+            _mockTaskRepository.Verify(repo => repo.FindByIdAsync(taskId), Times.Once);
+        }
     }
 }
