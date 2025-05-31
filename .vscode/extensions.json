@@ -37,6 +37,9 @@
         "theholycoder.swagger-tools",
         "arjun.swagger-viewer",
         "mosapride.zenkaku",
-        "biomejs.biome"
+        "biomejs.biome",
+        "editorconfig.editorconfig",
+        "rooveterinaryinc.roo-cline",
+        "google.geminicodeassist"
     ]
 }
