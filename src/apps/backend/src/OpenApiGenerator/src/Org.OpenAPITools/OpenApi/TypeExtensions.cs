@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ToDo Application API
  *
  * ToDoアプリのAPI設計

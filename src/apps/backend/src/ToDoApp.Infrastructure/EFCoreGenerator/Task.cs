@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace TodoApp.Infrastructure.EFCoreGenerator;
@@ -9,57 +9,57 @@ namespace TodoApp.Infrastructure.EFCoreGenerator;
 public partial class Task
 {
     /// <summary>
-    /// UUID
+    /// Gets or sets uUID
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// ユーザーID(users.id)
+    /// Gets or sets ユーザーID(users.id)
     /// </summary>
     public Guid UserId { get; set; }
 
     /// <summary>
-    /// タイトル
+    /// Gets or sets タイトル
     /// </summary>
     public string Title { get; set; }
 
     /// <summary>
-    /// 詳細
+    /// Gets or sets 詳細
     /// </summary>
     public string Description { get; set; }
 
     /// <summary>
-    /// 締切日
+    /// Gets or sets 締切日
     /// </summary>
     public DateOnly? DueDate { get; set; }
 
     /// <summary>
-    /// ステータスID（m_task_statusのIDを参照）
+    /// Gets or sets ステータスID（m_task_statusのIDを参照）
     /// </summary>
     public int StatusId { get; set; }
 
     /// <summary>
-    /// 論理削除フラグ
+    /// Gets or sets 論理削除フラグ
     /// </summary>
     public bool? IsDeleted { get; set; }
 
     /// <summary>
-    /// 登録日時
+    /// Gets or sets 登録日時
     /// </summary>
     public DateTime? CreatedAt { get; set; }
 
     /// <summary>
-    /// 登録ユーザー
+    /// Gets or sets 登録ユーザー
     /// </summary>
     public Guid? CreatedBy { get; set; }
 
     /// <summary>
-    /// 更新日時
+    /// Gets or sets 更新日時
     /// </summary>
     public DateTime? UpdatedAt { get; set; }
 
     /// <summary>
-    /// 更新ユーザー
+    /// Gets or sets 更新ユーザー
     /// </summary>
     public Guid? UpdatedBy { get; set; }
 

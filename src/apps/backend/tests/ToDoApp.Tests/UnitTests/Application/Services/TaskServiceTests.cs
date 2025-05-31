@@ -49,6 +49,7 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
         {
             // Arrange
             var taskId = Guid.NewGuid();
+
             // Bogusを使用して特定のIDを持つテストデータを生成
             var expectedTask = TaskEntityFaker.Generate(taskId);
 
@@ -71,6 +72,7 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
             // Arrange
             // Bogusを使用してIDなしのテストデータを生成
             var taskEntity = TaskEntityFaker.Generate();
+
             // テスト用にIDとUserIDをリセット
             taskEntity.Id = Guid.Empty;
             taskEntity.UserId = Guid.Empty;
@@ -84,7 +86,8 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
             // Assert
             Assert.NotEqual(Guid.Empty, taskEntity.Id);
             Assert.NotEqual(Guid.Empty, taskEntity.UserId);
-            _mockTaskRepository.Verify(repo => repo.CreateAsync(It.Is<TaskEntity>(t =>
+            _mockTaskRepository.Verify(
+                repo => repo.CreateAsync(It.Is<TaskEntity>(t =>
                 t.Id != Guid.Empty &&
                 t.Title == taskEntity.Title &&
                 t.Description == taskEntity.Description)), Times.Once);
@@ -100,7 +103,7 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
                 Id = taskId,
                 Title = "Updated Task",
                 Description = "Updated Description",
-                StatusId = 2
+                StatusId = 2,
             };
 
             _mockTaskRepository.Setup(repo => repo.UpdateAsync(taskId, taskEntity))

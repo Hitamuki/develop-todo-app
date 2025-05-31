@@ -9,17 +9,17 @@
  */
 
 using System;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Converters;
 
 namespace Org.OpenAPITools.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
@@ -30,14 +30,14 @@ namespace Org.OpenAPITools.Models
         /// Gets or Sets Code
         /// </summary>
         [Required]
-        [DataMember(Name="code", EmitDefaultValue=false)]
+        [DataMember(Name = "code", EmitDefaultValue = false)]
         public string Code { get; set; }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
         [Required]
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
@@ -85,12 +85,12 @@ namespace Org.OpenAPITools.Models
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Code == other.Code ||
                     Code != null &&
                     Code.Equals(other.Code)
-                ) && 
+                ) &&
                 (
                     Message == other.Message ||
                     Message != null &&
@@ -108,16 +108,16 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Code != null)
+                if (Code != null)
                     hashCode = hashCode * 59 + Code.GetHashCode();
-                    if (Message != null)
+                if (Message != null)
                     hashCode = hashCode * 59 + Message.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(ErrorResponseDto left, ErrorResponseDto right)
         {
@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

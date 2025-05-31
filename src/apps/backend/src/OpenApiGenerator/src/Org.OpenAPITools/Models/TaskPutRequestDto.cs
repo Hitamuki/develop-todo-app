@@ -9,17 +9,17 @@
  */
 
 using System;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Converters;
 
 namespace Org.OpenAPITools.Models
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
@@ -32,7 +32,7 @@ namespace Org.OpenAPITools.Models
         /// <value>タイトル</value>
         /* <example>本日のタスク</example> */
         [Required]
-        [DataMember(Name="title", EmitDefaultValue=false)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         public string Title { get; set; }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Org.OpenAPITools.Models
         /// </summary>
         /// <value>詳細</value>
         /* <example>タスクの詳細</example> */
-        [DataMember(Name="description", EmitDefaultValue=true)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -48,14 +48,14 @@ namespace Org.OpenAPITools.Models
         /// </summary>
         /// <value>締切日</value>
         /* <example>Mon Nov 18 00:00:00 UTC 2024</example> */
-        [DataMember(Name="dueDate", EmitDefaultValue=true)]
+        [DataMember(Name = "dueDate", EmitDefaultValue = true)]
         public DateOnly? DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets StatusId
         /// </summary>
         [Required]
-        [DataMember(Name="statusId", EmitDefaultValue=true)]
+        [DataMember(Name = "statusId", EmitDefaultValue = true)]
         public StatusIdEnum StatusId { get; set; }
 
         /// <summary>
@@ -105,25 +105,25 @@ namespace Org.OpenAPITools.Models
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Title == other.Title ||
                     Title != null &&
                     Title.Equals(other.Title)
-                ) && 
+                ) &&
                 (
                     Description == other.Description ||
                     Description != null &&
                     Description.Equals(other.Description)
-                ) && 
+                ) &&
                 (
                     DueDate == other.DueDate ||
                     DueDate != null &&
                     DueDate.Equals(other.DueDate)
-                ) && 
+                ) &&
                 (
                     StatusId == other.StatusId ||
-                    
+
                     StatusId.Equals(other.StatusId)
                 );
         }
@@ -138,20 +138,20 @@ namespace Org.OpenAPITools.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Title != null)
+                if (Title != null)
                     hashCode = hashCode * 59 + Title.GetHashCode();
-                    if (Description != null)
+                if (Description != null)
                     hashCode = hashCode * 59 + Description.GetHashCode();
-                    if (DueDate != null)
+                if (DueDate != null)
                     hashCode = hashCode * 59 + DueDate.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + StatusId.GetHashCode();
+
+                hashCode = hashCode * 59 + StatusId.GetHashCode();
                 return hashCode;
             }
         }
 
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(TaskPutRequestDto left, TaskPutRequestDto right)
         {
@@ -163,7 +163,7 @@ namespace Org.OpenAPITools.Models
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

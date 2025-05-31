@@ -14,19 +14,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Org.OpenAPITools.Attributes;
 using Org.OpenAPITools.Models;
 
 namespace Org.OpenAPITools.Controllers
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
     [ApiController]
     public abstract class TasksApiController : ControllerBase
-    { 
+    {
         /// <summary>
         /// タスク削除
         /// </summary>
@@ -39,7 +39,7 @@ namespace Org.OpenAPITools.Controllers
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
         [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
-        public abstract Task<IActionResult> Delete([FromRoute (Name = "taskId")][Required]Guid taskId);
+        public abstract Task<IActionResult> Delete([FromRoute(Name = "taskId")][Required] Guid taskId);
 
         /// <summary>
         /// タスク1件取得
@@ -54,7 +54,7 @@ namespace Org.OpenAPITools.Controllers
         [ProducesResponseType(statusCode: 200, type: typeof(TaskGetResponseDto))]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
         [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
-        public abstract Task<IActionResult> Get([FromRoute (Name = "taskId")][Required]Guid taskId);
+        public abstract Task<IActionResult> Get([FromRoute(Name = "taskId")][Required] Guid taskId);
 
         /// <summary>
         /// タスク一覧取得
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools.Controllers
         [Route("/api/v1/tasks")]
         [Consumes("application/json")]
         [ValidateModelState]
-        public abstract Task<IActionResult> Post([FromBody]TaskPostRequestDto taskPostRequestDto);
+        public abstract Task<IActionResult> Post([FromBody] TaskPostRequestDto taskPostRequestDto);
 
         /// <summary>
         /// タスク更新
@@ -92,6 +92,6 @@ namespace Org.OpenAPITools.Controllers
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
         [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
-        public abstract Task<IActionResult> Put([FromRoute (Name = "taskId")][Required]Guid taskId, [FromBody]TaskPutRequestDto taskPutRequestDto);
+        public abstract Task<IActionResult> Put([FromRoute(Name = "taskId")][Required] Guid taskId, [FromBody] TaskPutRequestDto taskPutRequestDto);
     }
 }

@@ -15,18 +15,18 @@ var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy(name: corsPolicy,
-    policy =>
-    {
-      policy
-      .WithOrigins("http://localhost:4200")
-      .WithOrigins("https://localhost:4200")
-      .AllowAnyHeader()
-      .AllowAnyMethod();
-    });
+    options.AddPolicy(
+        name: corsPolicy,
+      policy =>
+      {
+          policy
+        .WithOrigins("http://localhost:4200")
+        .WithOrigins("https://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+      });
 });
 
 builder.Services.AddControllers();
@@ -37,11 +37,12 @@ builder.Services.AddEndpointsApiExplorer();
 // OpenAPIの設定
 builder.Services.AddSwaggerGen(c =>
 {
-  c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoApp API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoApp API", Version = "v1" });
 });
 
 // データベースコンテキストの登録
 builder.Services.AddDbContext<TodoContext>();
+
 // builder.Services.AddDbContext<TodoContext>(options =>
 //   options.UseMySql(builder.Configuration.GetConnectionString("TodoContext"),
 //     ServerVersion.Parse("8.0.40-mysql")));
@@ -56,12 +57,12 @@ var app = builder.Build();
 // 開発環境での設定
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI(options =>
-  {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty;
-  });
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
 // HTTPS リダイレクトを追加
