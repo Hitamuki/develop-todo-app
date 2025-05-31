@@ -41,11 +41,11 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // データベースコンテキストの登録
-builder.Services.AddDbContext<TodoContext>();
+// builder.Services.AddDbContext<TodoContext>(); // This line is now commented out
 
-// builder.Services.AddDbContext<TodoContext>(options =>
-//   options.UseMySql(builder.Configuration.GetConnectionString("TodoContext"),
-//     ServerVersion.Parse("8.0.40-mysql")));
+builder.Services.AddDbContext<TodoContext>(options =>
+  options.UseMySql(builder.Configuration.GetConnectionString("TodoContext"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("TodoContext")))); // Using AutoDetect for server version
 
 // サービスの登録
 builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
