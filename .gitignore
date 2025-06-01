@@ -507,3 +507,5 @@ site*/
 # End of mkdocs.gitignore
 
 .env
+# envファイルから指定できなかったため
+.roo/mcp.json
