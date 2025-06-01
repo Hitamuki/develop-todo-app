@@ -505,3 +505,5 @@ ENV/
 site*/
 
 # End of mkdocs.gitignore
+
+.env
