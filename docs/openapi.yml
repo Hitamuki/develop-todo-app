@@ -309,7 +309,6 @@ components:
     UserPostRequestDto:
       type: object
       required:
-        - name
         - email
         - password
       properties:
@@ -320,28 +319,22 @@ components:
         email:
           type: string
           format: email
-          nullable: true
           description: ユーザーのメールアドレス
           example: john.doe@example.com
         password:
           type: string
           format: password
-          nullable: true
           description: ユーザーのパスワード
           example: strongpassword123
     UserGetResponseDto:
       type: object
       required:
         - id
-        - name
         - email
-        - createdAt
-        - updatedAt
       properties:
         id:
           type: string
           format: uuid
-          nullable: true
           description: ユーザーのUUID
           example: abc-123-def-456
         name:
@@ -351,7 +344,6 @@ components:
         email:
           type: string
           format: email
-          nullable: true
           description: ユーザーのメールアドレス
           example: john.doe@example.com
         createdAt:
