@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace TodoApp.Infrastructure.EFCoreGenerator;
+namespace ToDoApp.Infrastructure.EFCoreGenerator;
 
 /// <summary>
 /// ユーザー
@@ -9,42 +9,47 @@ namespace TodoApp.Infrastructure.EFCoreGenerator;
 public partial class User
 {
     /// <summary>
-    /// Gets or sets uUID
+    /// UUID
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Gets or sets ユーザー名
+    /// ユーザー名
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    /// Gets or sets メールアドレス
+    /// メールアドレス
     /// </summary>
     public string Email { get; set; }
 
     /// <summary>
-    /// Gets or sets 論理削除フラグ
+    /// ハッシュ化済パスワード
+    /// </summary>
+    public string PasswordHash { get; set; }
+
+    /// <summary>
+    /// 論理削除フラグ
     /// </summary>
     public bool? IsDeleted { get; set; }
 
     /// <summary>
-    /// Gets or sets 登録日時
+    /// 登録日時
     /// </summary>
     public DateTime? CreatedAt { get; set; }
 
     /// <summary>
-    /// Gets or sets 登録ユーザー
+    /// 登録ユーザー
     /// </summary>
     public Guid? CreatedBy { get; set; }
 
     /// <summary>
-    /// Gets or sets 更新日時
+    /// 更新日時
     /// </summary>
     public DateTime? UpdatedAt { get; set; }
 
     /// <summary>
-    /// Gets or sets 更新ユーザー
+    /// 更新ユーザー
     /// </summary>
     public Guid? UpdatedBy { get; set; }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
+using EFCoreGenerator = ToDoApp.Infrastructure.EFCoreGenerator;
 
 namespace TodoApp.Infrastructure.Mappers
 {

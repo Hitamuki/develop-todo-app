@@ -1,7 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Domain.Interfaces.IRepository;
-using TodoApp.Infrastructure.EFCoreGenerator;
+using ToDoApp.Infrastructure.EFCoreGenerator;
 using TodoApp.Infrastructure.Mappers;
 
 namespace TodoApp.Infrastructure.DataSource.Repositories;

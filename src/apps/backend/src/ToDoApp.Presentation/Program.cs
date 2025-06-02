@@ -9,7 +9,7 @@ using TodoApp.Application.Services;
 using TodoApp.Domain.Interfaces.IRepository;
 using TodoApp.Infrastructure.DataSource;
 using TodoApp.Infrastructure.DataSource.Repositories;
-using TodoApp.Infrastructure.EFCoreGenerator;
+using ToDoApp.Infrastructure.EFCoreGenerator;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);

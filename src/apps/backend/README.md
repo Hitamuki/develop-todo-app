@@ -71,3 +71,18 @@ HTTPS 開発証明書 ※初回のみ
 ```bash
 dotnet dev-certs https --trust
 ```
+
+## DB設定
+
+- 「…develop-todo-app/src/apps/backend」で「docker compose up -d」
+- DBeaver接続
+  - 「Public Key Retrieval is not allowed」が出たら「allowPublicKeyRetrieval=true」
+- DBeaverでER図表示
+  - テーブル右クリック
+  - View Diagram
+- DBeaverからDDLを生成
+  - 全テーブルを選択
+  - SQLの生成
+  - DDL
+- DB定義更新
+  - docker-compose down --volumes --rmi all --remove-orphans

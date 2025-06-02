@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace TodoApp.Infrastructure.EFCoreGenerator;
+namespace ToDoApp.Infrastructure.EFCoreGenerator;
 
 public partial class TodoContext : DbContext
 {
@@ -24,7 +24,7 @@ public partial class TodoContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=127.0.0.1;port=3306;database=todo;user=user;password=password", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.40-mysql"));
+        => optionsBuilder.UseMySql("server=127.0.0.1;port=3306;database=todo;user=user;password=password", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.42-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -178,6 +178,11 @@ public partial class TodoContext : DbContext
                 .HasMaxLength(50)
                 .HasComment("ユーザー名")
                 .HasColumnName("name");
+            entity.Property(e => e.PasswordHash)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasComment("ハッシュ化済パスワード")
+                .HasColumnName("password_hash");
             entity.Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")

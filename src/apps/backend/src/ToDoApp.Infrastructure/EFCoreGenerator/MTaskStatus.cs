@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace TodoApp.Infrastructure.EFCoreGenerator;
+namespace ToDoApp.Infrastructure.EFCoreGenerator;
 
 /// <summary>
 /// タスクステータスマスタ
@@ -9,22 +9,22 @@ namespace TodoApp.Infrastructure.EFCoreGenerator;
 public partial class MTaskStatus
 {
     /// <summary>
-    /// Gets or sets iD
+    /// ID
     /// </summary>
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets ステータス名（未着手, 進行中, 完了）
+    /// ステータス名（未着手, 進行中, 完了）
     /// </summary>
     public string StatusName { get; set; }
 
     /// <summary>
-    /// Gets or sets 作成日時
+    /// 作成日時
     /// </summary>
     public DateTime? CreatedAt { get; set; }
 
     /// <summary>
-    /// Gets or sets 更新日時
+    /// 更新日時
     /// </summary>
     public DateTime? UpdatedAt { get; set; }
 
