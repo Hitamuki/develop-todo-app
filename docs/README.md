@@ -39,3 +39,9 @@
     - 別のアプリにインポート
   - PWA、スマホ対応
   - テーマのカスタマイズ
+
+## コマンド
+
+- backendのOpenApiGeneratorを生成する
+
+docker compose up

@@ -20,7 +20,7 @@ tags:
   - name: tasks
     description: タスクに関連する操作。一覧取得、1件取得、新規作成、更新、削除が含まれる。
   - name: users
-    description: User related operations.
+    description: ユーザーに関連する操作。1件取得、新規作成が含まれる。
 
 paths:
   /tasks:
@@ -134,8 +134,8 @@ paths:
     post:
       tags:
         - users
-      summary: User registration
-      operationId: RegisterUser
+      summary: ユーザー新規登録
+      operationId: Post
       requestBody:
         content:
           application/json:
@@ -143,27 +143,30 @@ paths:
               $ref: "#/components/schemas/UserPostRequestDto"
       responses:
         '201':
-          description: User created successfully
+          description: ユーザーが正常に作成された
         '400':
           $ref: "#/components/responses/BadRequest"
+        '409':
+          description: リソースの競合
+          $ref: "#/components/schemas/ErrorResponseDto"
   /users/{userId}:
     get:
       tags:
         - users
-      summary: Get user information
+      summary: ユーザー情報取得
       operationId: GetUserById
       parameters:
         - name: userId
           in: path
           required: true
-          description: ID of the user to retrieve
+          description: 取得するユーザーのUUID
           schema:
             type: string
             format: uuid
-            example: user-uuid-1234
+            example: xxx-xxx-xxx-xxx
       responses:
         '200':
-          description: Successfully retrieved user information
+          description: ユーザー情報を正常に取得した
           content:
             application/json:
               schema:
@@ -303,6 +306,64 @@ components:
           example: 2024-11-18
         statusId:
           $ref: "#/components/schemas/StatusIdEnum"
+    UserPostRequestDto:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: ユーザー名
+          example: John Doe
+        email:
+          type: string
+          format: email
+          nullable: true
+          description: ユーザーのメールアドレス
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          nullable: true
+          description: ユーザーのパスワード
+          example: strongpassword123
+    UserGetResponseDto:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+          description: ユーザーのUUID
+          example: abc-123-def-456
+        name:
+          type: string
+          description: ユーザー名
+          example: John Doe
+        email:
+          type: string
+          format: email
+          nullable: true
+          description: ユーザーのメールアドレス
+          example: john.doe@example.com
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: 作成日時
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: 更新日時
     ErrorResponseDto:
       type: object
       properties:
@@ -313,39 +374,3 @@ components:
       required:
         - code
         - message
-    UserPostRequestDto:
-      type: object
-      required:
-        - name
-        - email
-        - password
-      properties:
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          format: email
-          example: john.doe@example.com
-        password:
-          type: string
-          format: password
-          example: strongpassword123
-    UserGetResponseDto:
-      type: object
-      required:
-        - id
-        - name
-        - email
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: abc-123-def-456
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          format: email
-          example: john.doe@example.com
