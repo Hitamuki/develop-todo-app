@@ -19,6 +19,8 @@ servers:
 tags:
   - name: tasks
     description: タスクに関連する操作。一覧取得、1件取得、新規作成、更新、削除が含まれる。
+  - name: users
+    description: User related operations.
 
 paths:
   /tasks:
@@ -127,6 +129,48 @@ paths:
         400:
           $ref: "#/components/responses/BadRequest"
         404:
+          $ref: "#/components/responses/NotFound"
+  /users:
+    post:
+      tags:
+        - users
+      summary: User registration
+      operationId: RegisterUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPostRequestDto"
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          $ref: "#/components/responses/BadRequest"
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: Get user information
+      operationId: GetUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user to retrieve
+          schema:
+            type: string
+            format: uuid
+            example: user-uuid-1234
+      responses:
+        '200':
+          description: Successfully retrieved user information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserGetResponseDto"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '404':
           $ref: "#/components/responses/NotFound"
 
 components:
@@ -269,3 +313,39 @@ components:
       required:
         - code
         - message
+    UserPostRequestDto:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          example: strongpassword123
+    UserGetResponseDto:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: abc-123-def-456
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
