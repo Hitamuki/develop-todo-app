@@ -22,7 +22,7 @@ public class TasksController : TasksApiController
     }
 
     /// <inheritdoc/>
-    public override async Task<IActionResult> Gets()
+    public override async Task<IActionResult> GetTasks()
     {
         // TODO: クエリパラメータから検索
         IEnumerable<TaskEntity> tasks = await _taskService.SearchAsync();
@@ -44,7 +44,7 @@ public class TasksController : TasksApiController
     }
 
     /// <inheritdoc/>
-    public override async Task<IActionResult> Post([FromBody] TaskPostRequestDto taskPostRequestDto)
+    public override async Task<IActionResult> PostTask([FromBody] TaskPostRequestDto taskPostRequestDto)
     {
         // TODO: サービスクラスでEntityからDTOに変換
         var taskEntity = new TaskEntity
@@ -61,14 +61,14 @@ public class TasksController : TasksApiController
     }
 
     /// <inheritdoc/>
-    public override async Task<IActionResult> Delete([FromRoute(Name = "taskId")][Required] Guid taskId)
+    public override async Task<IActionResult> DeleteTask([FromRoute(Name = "taskId")][Required] Guid taskId)
     {
         await _taskService.DeleteAsync(taskId);
         return NoContent();
     }
 
     /// <inheritdoc/>
-    public override async Task<IActionResult> Get([FromRoute(Name = "taskId")][Required] Guid taskId)
+    public override async Task<IActionResult> GetTask([FromRoute(Name = "taskId")][Required] Guid taskId)
     {
         var task = await _taskService.FindByIdAsync(taskId);
 
@@ -87,7 +87,7 @@ public class TasksController : TasksApiController
     }
 
     /// <inheritdoc/>
-    public override async Task<IActionResult> Put([FromRoute(Name = "taskId")][Required] Guid taskId, [FromBody] TaskPutRequestDto taskPutRequestDto)
+    public override async Task<IActionResult> PutTask([FromRoute(Name = "taskId")][Required] Guid taskId, [FromBody] TaskPutRequestDto taskPutRequestDto)
     {
         // TODO: サービスクラスでEntityからDTOに変換
         var taskEntity = new TaskEntity

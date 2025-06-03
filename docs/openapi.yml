@@ -29,7 +29,7 @@ paths:
         - tasks
       summary: タスク一覧取得
       description: 0件のときは空の配列 # 検索に対応
-      operationId: Gets
+      operationId: GetTasks
       deprecated: false
       responses:
         200:
@@ -44,7 +44,7 @@ paths:
       tags:
         - tasks
       summary: タスク新規作成
-      operationId: Post
+      operationId: PostTask
       deprecated: false
       requestBody:
         content:
@@ -59,7 +59,7 @@ paths:
       tags:
         - tasks
       summary: タスク1件取得
-      operationId: Get
+      operationId: GetTask
       deprecated: false
       parameters:
         - in: path
@@ -85,7 +85,7 @@ paths:
       tags:
         - tasks
       summary: タスク更新
-      operationId: Put
+      operationId: PutTask
       deprecated: false
       parameters:
         - in: path
@@ -112,7 +112,7 @@ paths:
       tags:
         - tasks
       summary: タスク削除
-      operationId: Delete
+      operationId: DeleteTask
       deprecated: false
       parameters:
         - in: path
@@ -135,7 +135,7 @@ paths:
       tags:
         - users
       summary: ユーザー新規登録
-      operationId: Post
+      operationId: PostUser
       requestBody:
         content:
           application/json:
@@ -148,13 +148,13 @@ paths:
           $ref: "#/components/responses/BadRequest"
         '409':
           description: リソースの競合
-          $ref: "#/components/schemas/ErrorResponseDto"
+          $ref: "#/components/responses/Conflict"
   /users/{userId}:
     get:
       tags:
         - users
       summary: ユーザー情報取得
-      operationId: GetUserById
+      operationId: GetUser
       parameters:
         - name: userId
           in: path
@@ -211,6 +211,17 @@ components:
                 example: 404
               message:
                 example: 404 Not Found
+    Conflict:
+      description: 409 Conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponseDto"
+          examples:
+            conflictError:
+              value:
+                code: 409
+                message: "Conflict: User already exists"
   schemas:
     StatusIdEnum:
       type: number

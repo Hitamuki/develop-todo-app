@@ -9,42 +9,42 @@
  */
 
 using System;
+using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Converters;
 
 namespace Org.OpenAPITools.Models
-{
-    /// <summary>
-    /// ステータスIDを変換してステータスを表示する
-    /// </summary>
-    /// <value>ステータスIDを変換してステータスを表示する</value>
-    [TypeConverter(typeof(CustomEnumConverter<StatusIdEnum>))]
-    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum StatusIdEnum
-    {
-
+{ 
         /// <summary>
-        /// Enum _1Enum for 1
+        /// ステータスIDを変換してステータスを表示する
         /// </summary>
-        [EnumMember(Value = "1")]
-        _1Enum = 1,
-
-        /// <summary>
-        /// Enum _2Enum for 2
-        /// </summary>
-        [EnumMember(Value = "2")]
-        _2Enum = 2,
-
-        /// <summary>
-        /// Enum _3Enum for 3
-        /// </summary>
-        [EnumMember(Value = "3")]
-        _3Enum = 3
-    }
+        /// <value>ステータスIDを変換してステータスを表示する</value>
+        [TypeConverter(typeof(CustomEnumConverter<StatusIdEnum>))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public enum StatusIdEnum
+        {
+            
+            /// <summary>
+            /// Enum _1Enum for 1
+            /// </summary>
+            [EnumMember(Value = "1")]
+            _1Enum = 1,
+            
+            /// <summary>
+            /// Enum _2Enum for 2
+            /// </summary>
+            [EnumMember(Value = "2")]
+            _2Enum = 2,
+            
+            /// <summary>
+            /// Enum _3Enum for 3
+            /// </summary>
+            [EnumMember(Value = "3")]
+            _3Enum = 3
+        }
 }

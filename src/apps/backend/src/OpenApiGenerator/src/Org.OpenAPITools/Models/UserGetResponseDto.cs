@@ -24,47 +24,32 @@ namespace Org.OpenAPITools.Models
     /// 
     /// </summary>
     [DataContract]
-    public class TaskGetResponseDto : IEquatable<TaskGetResponseDto>
+    public class UserGetResponseDto : IEquatable<UserGetResponseDto>
     {
         /// <summary>
-        /// UUID
+        /// ユーザーのUUID
         /// </summary>
-        /// <value>UUID</value>
+        /// <value>ユーザーのUUID</value>
         [Required]
         [DataMember(Name="id", EmitDefaultValue=true)]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// タイトル
+        /// ユーザー名
         /// </summary>
-        /// <value>タイトル</value>
-        /* <example>本日のタスク</example> */
+        /// <value>ユーザー名</value>
+        /* <example>John Doe</example> */
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// ユーザーのメールアドレス
+        /// </summary>
+        /// <value>ユーザーのメールアドレス</value>
+        /* <example>john.doe@example.com</example> */
         [Required]
-        [DataMember(Name="title", EmitDefaultValue=false)]
-        public string Title { get; set; }
-
-        /// <summary>
-        /// 詳細
-        /// </summary>
-        /// <value>詳細</value>
-        /* <example>タスクの詳細</example> */
-        [DataMember(Name="description", EmitDefaultValue=true)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// 締切日
-        /// </summary>
-        /// <value>締切日</value>
-        /* <example>Mon Nov 18 00:00:00 UTC 2024</example> */
-        [DataMember(Name="dueDate", EmitDefaultValue=true)]
-        public DateOnly? DueDate { get; set; }
-
-        /// <summary>
-        /// Gets or Sets StatusId
-        /// </summary>
-        [Required]
-        [DataMember(Name="statusId", EmitDefaultValue=true)]
-        public StatusIdEnum StatusId { get; set; }
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// 作成日時
@@ -87,12 +72,10 @@ namespace Org.OpenAPITools.Models
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TaskGetResponseDto {\n");
+            sb.Append("class UserGetResponseDto {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DueDate: ").Append(DueDate).Append("\n");
-            sb.Append("  StatusId: ").Append(StatusId).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
@@ -117,15 +100,15 @@ namespace Org.OpenAPITools.Models
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((TaskGetResponseDto)obj);
+            return obj.GetType() == GetType() && Equals((UserGetResponseDto)obj);
         }
 
         /// <summary>
-        /// Returns true if TaskGetResponseDto instances are equal
+        /// Returns true if UserGetResponseDto instances are equal
         /// </summary>
-        /// <param name="other">Instance of TaskGetResponseDto to be compared</param>
+        /// <param name="other">Instance of UserGetResponseDto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TaskGetResponseDto other)
+        public bool Equals(UserGetResponseDto other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -137,24 +120,14 @@ namespace Org.OpenAPITools.Models
                     Id.Equals(other.Id)
                 ) && 
                 (
-                    Title == other.Title ||
-                    Title != null &&
-                    Title.Equals(other.Title)
+                    Name == other.Name ||
+                    Name != null &&
+                    Name.Equals(other.Name)
                 ) && 
                 (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
-                ) && 
-                (
-                    DueDate == other.DueDate ||
-                    DueDate != null &&
-                    DueDate.Equals(other.DueDate)
-                ) && 
-                (
-                    StatusId == other.StatusId ||
-                    
-                    StatusId.Equals(other.StatusId)
+                    Email == other.Email ||
+                    Email != null &&
+                    Email.Equals(other.Email)
                 ) && 
                 (
                     CreatedAt == other.CreatedAt ||
@@ -180,14 +153,10 @@ namespace Org.OpenAPITools.Models
                 // Suitable nullity checks etc, of course :)
                     
                     hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (Title != null)
-                    hashCode = hashCode * 59 + Title.GetHashCode();
-                    if (Description != null)
-                    hashCode = hashCode * 59 + Description.GetHashCode();
-                    if (DueDate != null)
-                    hashCode = hashCode * 59 + DueDate.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + StatusId.GetHashCode();
+                    if (Name != null)
+                    hashCode = hashCode * 59 + Name.GetHashCode();
+                    if (Email != null)
+                    hashCode = hashCode * 59 + Email.GetHashCode();
                     if (CreatedAt != null)
                     hashCode = hashCode * 59 + CreatedAt.GetHashCode();
                     if (UpdatedAt != null)
@@ -199,12 +168,12 @@ namespace Org.OpenAPITools.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(TaskGetResponseDto left, TaskGetResponseDto right)
+        public static bool operator ==(UserGetResponseDto left, UserGetResponseDto right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TaskGetResponseDto left, TaskGetResponseDto right)
+        public static bool operator !=(UserGetResponseDto left, UserGetResponseDto right)
         {
             return !Equals(left, right);
         }
