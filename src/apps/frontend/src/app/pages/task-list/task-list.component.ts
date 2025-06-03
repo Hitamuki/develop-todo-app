@@ -107,7 +107,7 @@ export class TaskListComponent implements OnInit {
    * @param taskId
    */
   onDeleteTask(taskId: string) {
-    this.tasksService._delete(taskId).subscribe({
+    this.tasksService.deleteTask(taskId).subscribe({
       next: () => {
         this.toastr.success('タスクが削除されました', '削除完了');
         this.reloadPage();
@@ -136,7 +136,7 @@ export class TaskListComponent implements OnInit {
   }
 
   private getTasks() {
-    this.tasksService.gets().subscribe({
+    this.tasksService.getTasks().subscribe({
       next: (result) => {
         this.tasks = [...result];
       },

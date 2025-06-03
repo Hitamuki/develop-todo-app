@@ -140,15 +140,15 @@ export class TaskAddEditComponent implements OnInit {
   }
 
   private getTask() {
-    return this.tasksService.get(this.id as string).pipe(tap((result) => (this.task = result)));
+    return this.tasksService.getTask(this.id as string).pipe(tap((result) => (this.task = result)));
   }
 
   private putTask(): Observable<unknown> {
-    return this.tasksService.put(this.id as string, this.task);
+    return this.tasksService.putTask(this.id as string, this.task);
   }
 
   private postTask(): Observable<unknown> {
-    return this.tasksService.post(this.task);
+    return this.tasksService.postTask(this.task);
   }
 
   private resetTask(): TaskGetResponseDto {

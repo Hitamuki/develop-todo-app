@@ -4,6 +4,7 @@ README.md
 api.module.ts
 api/api.ts
 api/tasks.service.ts
+api/users.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
@@ -14,5 +15,7 @@ model/status-id-enum.ts
 model/task-get-response-dto.ts
 model/task-post-request-dto.ts
 model/task-put-request-dto.ts
+model/user-get-response-dto.ts
+model/user-post-request-dto.ts
 param.ts
 variables.ts
