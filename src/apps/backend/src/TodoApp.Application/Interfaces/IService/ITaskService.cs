@@ -1,4 +1,4 @@
-using Domain.Entities;
+using TodoApp.Domain.Entities;
 
 namespace TodoApp.Application.Interfaces.IService;
 

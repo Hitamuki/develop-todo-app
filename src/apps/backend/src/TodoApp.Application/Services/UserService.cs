@@ -1,9 +1,8 @@
-using Domain.Entities;
 using Microsoft.AspNetCore.Identity; // Required for IPasswordHasher
 using TodoApp.Application.DTOs;
 using TodoApp.Application.Interfaces.IService;
+using TodoApp.Domain.Entities;
 using TodoApp.Domain.Interfaces.IRepository;
-using ToDoApp.Infrastructure.Mappers;
 
 namespace TodoApp.Application.Services;
 
@@ -20,24 +19,24 @@ public class UserService : IUserService
         _passwordHasher = passwordHasher;
     }
 
-    public async Task<UserDto> GetUserByIdAsync(Guid id)
+    public async Task<UserEntity> GetUserByIdAsync(Guid id)
     {
         var userEntity = await _userRepository.GetByIdAsync(id);
         if (userEntity == null)
         {
             return null;
         }
-        return UserMapper.ToDto(userEntity);
+        return userEntity;
     }
 
-    public async Task<UserDto> GetUserByUserNameAsync(string userName)
+    public async Task<UserEntity> GetUserByUserNameAsync(string userName)
     {
         var userEntity = await _userRepository.GetByUserNameAsync(userName);
         if (userEntity == null)
         {
             return null;
         }
-        return UserMapper.ToDto(userEntity);
+        return userEntity;
     }
 
     public async Task RegisterUserAsync(UserEntity userEntity, string password)

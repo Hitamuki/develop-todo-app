@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Bogus;
-using Domain.Entities;
+using TodoApp.Domain.Entities;
 
 namespace ToDoApp.Tests.UnitTests.TestHelpers
 {

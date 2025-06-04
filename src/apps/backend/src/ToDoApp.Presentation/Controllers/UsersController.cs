@@ -1,16 +1,17 @@
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using TodoApp.Application.DTOs; // For UserDto as response
-using TodoApp.Application.DTOs.Request; // For UserRegistrationRequestDto
+using TodoApp.Application.DTOs;
 using TodoApp.Application.Interfaces.IService;
+using Org.OpenAPITools.Controllers;
+using Org.OpenAPITools.Models;
+using TodoApp.Domain.Entities;
 
 namespace ToDoApp.Presentation.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
+[Route("[controller]")]
+public class UsersController : UsersApiController
 {
     private readonly IUserService _userService;
 
@@ -19,9 +20,7 @@ public class UsersController : ControllerBase
         _userService = userService ?? throw new ArgumentNullException(nameof(userService));
     }
 
-    // GET api/users/{id}
-    [HttpGet("{id:guid}")]
-    public async Task<ActionResult<UserDto>> GetUserById(Guid id)
+    public override async Task<IActionResult> GetUser(Guid id)
     {
         var user = await _userService.GetUserByIdAsync(id);
         if (user == null)
@@ -33,7 +32,7 @@ public class UsersController : ControllerBase
 
     // GET api/users/username/{userName}
     [HttpGet("username/{userName}")]
-    public async Task<ActionResult<UserDto>> GetUserByUserName(string userName)
+    public async Task<ActionResult<UserGetResponseDto>> GetUserByUserName(string userName)
     {
         var user = await _userService.GetUserByUserNameAsync(userName);
         if (user == null)
@@ -43,9 +42,7 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    // POST api/users
-    [HttpPost]
-    public async Task<ActionResult<UserDto>> RegisterUser([FromBody] UserRegistrationRequestDto registrationRequest)
+    public override async Task<IActionResult> PostUser([FromBody] UserPostRequestDto userPostRequestDto)
     {
         if (!ModelState.IsValid)
         {
@@ -57,14 +54,14 @@ public class UsersController : ControllerBase
         // For now, direct creation for simplicity.
         var userEntity = new UserEntity
         {
-            UserName = registrationRequest.UserName,
-            Email = registrationRequest.Email
+            UserName = userPostRequestDto.Name,
+            Email = userPostRequestDto.Email
             // Id, PasswordHash, CreatedAt, UpdatedAt will be set in UserService
         };
 
         try
         {
-            await _userService.RegisterUserAsync(userEntity, registrationRequest.Password);
+            await _userService.RegisterUserAsync(userEntity, userPostRequestDto.Password);
         }
         catch (Exception ex) // Replace with more specific exception handling
         {
@@ -78,11 +75,11 @@ public class UsersController : ControllerBase
         var createdUser = await _userService.GetUserByUserNameAsync(userEntity.UserName);
         if (createdUser == null)
         {
-             // This case should ideally not happen if registration was successful and transactional
+            // This case should ideally not happen if registration was successful and transactional
             return Problem("User was registered but could not be retrieved immediately.");
         }
 
         // Return 201 Created with the location of the new resource and the resource itself
-        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+        return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
     }
 }

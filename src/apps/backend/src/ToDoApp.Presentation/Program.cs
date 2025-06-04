@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoApp.Domain.Entities;
 using Microsoft.OpenApi.Models;
 using TodoApp.Application.Interfaces.IService;
 using TodoApp.Application.Services;
 using TodoApp.Domain.Interfaces.IRepository;
-using ToDoApp.Infrastructure.DataSource.Repositories; // Corrected to ToDoApp
+using TodoApp.Infrastructure.DataSource.Repositories;
 using ToDoApp.Infrastructure.EFCoreGenerator;
-using Microsoft.AspNetCore.Identity; // Added
-using Domain.Entities; // Added
+using Microsoft.AspNetCore.Identity;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);

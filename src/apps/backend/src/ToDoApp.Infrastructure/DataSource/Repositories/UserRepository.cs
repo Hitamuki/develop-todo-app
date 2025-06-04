@@ -1,12 +1,12 @@
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using TodoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.EFCoreGenerator;
-using ToDoApp.Infrastructure.Mappers;
+using TodoApp.Infrastructure.Mappers;
+using TodoApp.Domain.Entities;
 
-namespace ToDoApp.Infrastructure.DataSource.Repositories;
+namespace TodoApp.Infrastructure.DataSource.Repositories;
 
 public class UserRepository : IUserRepository
 {
@@ -17,13 +17,13 @@ public class UserRepository : IUserRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<UserEntity> GetByIdAsync(Guid id)
+    public async System.Threading.Tasks.Task<UserEntity> GetByIdAsync(Guid id)
     {
         var user = await _context.Users.FindAsync(id);
         return user == null ? null : UserMapper.ToEntity(user);
     }
 
-    public async Task<UserEntity> GetByUserNameAsync(string userName)
+    public async System.Threading.Tasks.Task<UserEntity> GetByUserNameAsync(string userName)
     {
         // EFCoreGenerator.User uses 'Name' property for the user's name.
         var user = await _context.Users
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
         return user == null ? null : UserMapper.ToEntity(user);
     }
 
-    public async Task AddAsync(UserEntity userEntity)
+    public async System.Threading.Tasks.Task AddAsync(UserEntity userEntity)
     {
         if (userEntity == null) throw new ArgumentNullException(nameof(userEntity));
 
