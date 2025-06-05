@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoApp.Domain.Entities;
 using Microsoft.OpenApi.Models;
 using TodoApp.Application.Interfaces.IService;
 using TodoApp.Application.Services;
 using TodoApp.Domain.Interfaces.IRepository;
-using TodoApp.Infrastructure.DataSource;
 using TodoApp.Infrastructure.DataSource.Repositories;
 using ToDoApp.Infrastructure.EFCoreGenerator;
+using Microsoft.AspNetCore.Identity;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
@@ -50,6 +51,9 @@ builder.Services.AddDbContext<TodoContext>();
 // サービスの登録
 builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordHasher<UserEntity>, PasswordHasher<UserEntity>>();
 
 var app = builder.Build();
 

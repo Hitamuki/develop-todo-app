@@ -1,10 +1,10 @@
-using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Moq;
 using TodoApp.Application.Services;
 using TodoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Tests.UnitTests.TestHelpers;
 using Xunit;
+using TodoApp.Domain.Entities;
 
 namespace ToDoApp.Tests.UnitTests.Application.Services
 {

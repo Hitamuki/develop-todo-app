@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities;
 using EFCoreGenerator = ToDoApp.Infrastructure.EFCoreGenerator;
+using TodoApp.Domain.Entities;
 
 namespace TodoApp.Infrastructure.Mappers
 {

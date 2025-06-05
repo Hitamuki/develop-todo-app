@@ -1,6 +1,6 @@
-using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using TodoApp.Application.Interfaces.IService;
+using TodoApp.Domain.Entities;
 using TodoApp.Domain.Interfaces.IRepository;
 
 namespace TodoApp.Application.Services;
