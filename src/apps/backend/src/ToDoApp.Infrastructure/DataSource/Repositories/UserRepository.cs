@@ -23,14 +23,6 @@ public class UserRepository : IUserRepository
         return user == null ? null : UserMapper.ToEntity(user);
     }
 
-    public async System.Threading.Tasks.Task<UserEntity> GetByUserNameAsync(string userName)
-    {
-        // EFCoreGenerator.User uses 'Name' property for the user's name.
-        var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.Name == userName);
-        return user == null ? null : UserMapper.ToEntity(user);
-    }
-
     public async System.Threading.Tasks.Task AddAsync(UserEntity userEntity)
     {
         if (userEntity == null) throw new ArgumentNullException(nameof(userEntity));

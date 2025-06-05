@@ -29,16 +29,6 @@ public class UserService : IUserService
         return userEntity;
     }
 
-    public async Task<UserEntity> GetUserByUserNameAsync(string userName)
-    {
-        var userEntity = await _userRepository.GetByUserNameAsync(userName);
-        if (userEntity == null)
-        {
-            return null;
-        }
-        return userEntity;
-    }
-
     public async Task RegisterUserAsync(UserEntity userEntity, string password)
     {
         // Ensure UserName is unique if necessary (database constraint or check here)

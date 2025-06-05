@@ -27,19 +27,15 @@ public class UsersController : UsersApiController
         {
             return NotFound();
         }
-        return Ok(user);
-    }
-
-    // GET api/users/username/{userName}
-    [HttpGet("username/{userName}")]
-    public async Task<ActionResult<UserGetResponseDto>> GetUserByUserName(string userName)
-    {
-        var user = await _userService.GetUserByUserNameAsync(userName);
-        if (user == null)
+        var userGetResponseDto = new UserGetResponseDto
         {
-            return NotFound();
-        }
-        return Ok(user);
+            Id = user.Id,
+            Name = user.UserName,
+            Email = user.Email,
+            CreatedAt = user.CreatedAt,
+            UpdatedAt = user.UpdatedAt
+        };
+        return Ok(userGetResponseDto);
     }
 
     public override async Task<IActionResult> PostUser([FromBody] UserPostRequestDto userPostRequestDto)
@@ -69,17 +65,7 @@ public class UsersController : UsersApiController
             return BadRequest(new { message = "Registration failed.", details = ex.Message }); // Avoid sending raw exception details in prod
         }
 
-        // Fetch the created user to return it (or have RegisterUserAsync return it)
-        // For simplicity, let's assume registrationRequest.UserName is unique and usable for retrieval here.
-        // A more robust approach would be for RegisterUserAsync to return the created UserEntity/UserDto or its Id.
-        var createdUser = await _userService.GetUserByUserNameAsync(userEntity.UserName);
-        if (createdUser == null)
-        {
-            // This case should ideally not happen if registration was successful and transactional
-            return Problem("User was registered but could not be retrieved immediately.");
-        }
-
-        // Return 201 Created with the location of the new resource and the resource itself
-        return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
+        // Return 201 Created
+        return Created();
     }
 }

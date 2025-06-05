@@ -5,6 +5,5 @@ namespace TodoApp.Application.Interfaces.IService;
 public interface IUserService
 {
     Task<UserEntity> GetUserByIdAsync(Guid id);
-    Task<UserEntity> GetUserByUserNameAsync(string userName);
-    Task RegisterUserAsync(UserEntity user, string password);
+    Task RegisterUserAsync(UserEntity userEntity, string password);
 }
