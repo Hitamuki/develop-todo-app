@@ -1,16 +1,32 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { CommonModule } from '@angular/common'; // Import CommonModule for *ngIf, etc.
-import { UsersService } from '../../api/api/users.service'; // Adjusted path
-import { UserPostRequestDto } from '../../api/model/user-post-request-dto'; // Adjusted path
-import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms'; // NgForm for #registerForm
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router'; // Added RouterLink
+import { UsersService } from '../../api/api/users.service';
+import { UserPostRequestDto } from '../../api/model/user-post-request-dto';
+
+// Angular Material Modules
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon'; // Optional
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss'], // Keep or create
   standalone: true,
-  imports: [FormsModule, CommonModule], // Add FormsModule and CommonModule
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink, // Added RouterLink
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule // Add if icons are used
+  ],
 })
 export class RegisterComponent {
   model: UserPostRequestDto = {
@@ -22,14 +38,21 @@ export class RegisterComponent {
   registrationError: string | null = null;
   registrationSuccess = false;
 
+  // For accessing form controls in template's mat-error
+  nameField: any;
+  emailField: any;
+  passwordField: any;
+  confirmPasswordField: any;
+
   constructor(private usersService: UsersService, private router: Router) {}
 
   onSubmit(): void {
     this.registrationError = null;
-    this.registrationSuccess = false;
+    // this.registrationSuccess = false; // Keep success message until next attempt
 
     if (this.model.password !== this.confirmPassword) {
       this.registrationError = 'Passwords must match.';
+      this.registrationSuccess = false; // Clear success on new error
       return;
     }
 
@@ -37,15 +60,16 @@ export class RegisterComponent {
       next: (response) => {
         console.log('User registered successfully', response);
         this.registrationSuccess = true;
-        // Optionally redirect to login page or show a success message
-        // For now, just show a success message and clear the form
+        this.registrationError = null;
+        // Clear form on success
         this.model = { name: '', email: '', password: '' };
         this.confirmPassword = '';
-        // Consider redirecting to login:
-        // this.router.navigate(['/login']);
+        // Reset form state as well if possible, or let ngModel handle it
+        // this.registerForm.resetForm(); // Would need ViewChild for registerForm
       },
       error: (error) => {
         console.error('Registration failed', error);
+        this.registrationSuccess = false;
         this.registrationError = 'Registration failed. Please try again.';
         if (error.error && typeof error.error.message === 'string') {
             this.registrationError = error.error.message;

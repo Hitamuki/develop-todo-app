@@ -2,7 +2,11 @@ import { http, HttpResponse, PathParams } from 'msw'; // Added PathParams
 import { faker } from '@faker-js/faker';
 import { sample, find } from 'lodash-es'; // Added find
 
-const basePath = 'https://localhost:7268/api/v1';
+// basePath for tasks (existing)
+const tasksBasePath = 'https://localhost:7268/api/v1'; // Keep existing for tasks
+
+// basePath for users, as per UsersService.ts
+const usersBasePath = 'https://localhost:3000/api/v1';
 
 const tasks = Array.from({ length: 10 }).map((_, index) => {
   return {
@@ -21,27 +25,27 @@ let users: any[] = [];
 
 export const handlers = [
   // === Task Handlers (existing) ===
-  http.get(`${basePath}/tasks`, async () => {
+  http.get(`${tasksBasePath}/tasks`, async () => {
     return HttpResponse.json(tasks);
   }),
-  http.get<{ id: string }>(`${basePath}/tasks/:id`, async ({ params }) => {
+  http.get<{ id: string }>(`${tasksBasePath}/tasks/:id`, async ({ params }) => {
     const { id } = params;
     const task = find(tasks, { id }); // Using find from lodash
     return task
       ? HttpResponse.json(task, { status: 200 })
       : HttpResponse.json({ message: 'Task not found' }, { status: 404 });
   }),
-  http.post(`${basePath}/tasks`, async () => {
+  http.post(`${tasksBasePath}/tasks`, async () => {
     return HttpResponse.json(null, { status: 201 });
   }),
-  http.put<{ id: string }>(`${basePath}/tasks/:id`, async ({ params }) => {
+  http.put<{ id: string }>(`${tasksBasePath}/tasks/:id`, async ({ params }) => {
     const { id } = params;
     if (id) { // Simplified check, actual update logic would be more complex
       return HttpResponse.json(null, { status: 200 });
     }
     return HttpResponse.json({ message: 'Task not found' }, { status: 404 });
   }),
-  http.delete<{ id: string }>(`${basePath}/tasks/:id`, async ({ params }) => {
+  http.delete<{ id: string }>(`${tasksBasePath}/tasks/:id`, async ({ params }) => {
     const { id } = params;
     if (id) { // Simplified check
       return HttpResponse.json(null, { status: 204 });
@@ -51,7 +55,7 @@ export const handlers = [
 
   // === User Handlers (new) ===
   // POST /users (User Registration)
-  http.post(`${basePath}/users`, async ({ request }) => {
+  http.post(`${usersBasePath}/users`, async ({ request }) => {
     const newUser = await request.json() as any; // Type assertion
     if (!newUser.email || !newUser.password) {
       return HttpResponse.json({ message: 'Email and password are required' }, { status: 400 });
@@ -75,7 +79,7 @@ export const handlers = [
 
   // GET /users/:userId (Get User / Pseudo-Login)
   // Note: The UsersService uses userId in the path, which we are treating as email for login.
-  http.get< { userId: string } >(`${basePath}/users/:userId`, async ({ params }) => {
+  http.get< { userId: string } >(`${usersBasePath}/users/:userId`, async ({ params }) => {
     const { userId } = params; // This will be the email address
     const user = find(users, { id: userId }); // Match against 'id' which we set to email
 

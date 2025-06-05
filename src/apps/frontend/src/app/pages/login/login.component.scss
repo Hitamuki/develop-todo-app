@@ -1,4 +1,31 @@
-// Styles for login component
-div {
-  text-align: center;
+.login-container {
+  // Using vh-100 from bootstrap for full viewport height
+  // background-color: #f5f5f5; // Optional: a light background for the whole page
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px; // Set a max-width for the card
+}
+
+// Ensure mat-card-header content (title) is centered if not by default with current theme
+.mat-mdc-card-header.justify-content-center {
+    justify-content: center;
+}
+
+// Make sure the form itself takes up width, and content is centered
+.mat-mdc-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; // Stretch form elements like inputs
+}
+
+.alert.alert-danger { // Bootstrap alert styling might need slight adjustments if Material overrides
+    text-align: center;
+}
+
+mat-card-actions p { // Center the text in card actions
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
 }

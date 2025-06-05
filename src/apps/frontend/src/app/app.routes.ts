@@ -6,7 +6,7 @@ import type { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home', // Or perhaps 'login' if you want login to be the default
     pathMatch: 'full',
   },
   {

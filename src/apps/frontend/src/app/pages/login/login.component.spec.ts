@@ -1,16 +1,24 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Added ReactiveFormsModule if any Material components use it internally for forms
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // Import NoopAnimationsModule for Material animations
 
 import { LoginComponent } from './login.component';
 import { UsersService } from '../../api/api/users.service';
 import { UserGetResponseDto } from '../../api/model/user-get-response-dto';
 
-// Mock UsersService
+// Import Angular Material Modules used in LoginComponent's template
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon'; // If used
+
+// Mock UsersService (remains the same)
 class MockUsersService {
   getUser(userId: string) {
     if (userId === 'test@example.com') {
@@ -24,11 +32,15 @@ class MockUsersService {
     } else if (userId === 'error@example.com') {
       return throwError(() => ({ status: 500, error: { message: 'Internal Server Error' } }));
     }
-    return throwError(() => ({ status: 400, error: { message: 'Bad Request' } })); // Default for other emails
+    return throwError(() => ({ status: 400, error: { message: 'Bad Request' } }));
   }
 }
 
-describe('LoginComponent', () => {
+// Dummy components for RouterTestingModule (remains the same)
+class DummyHomeComponent {}
+class DummyRegisterComponent {}
+
+describe('LoginComponent with Angular Material', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let usersService: UsersService;
@@ -37,19 +49,20 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        LoginComponent, // Standalone component
+        LoginComponent, // Standalone component, already imports its own Material modules
         FormsModule,
+        // ReactiveFormsModule, // Add if needed by MatFormField or other Material components under the hood
         CommonModule,
         RouterTestingModule.withRoutes([
-          // Define a dummy route for '/home' to test navigation
-          { path: 'home', component: class DummyHomeComponent {} },
-          { path: 'register', component: class DummyRegisterComponent {} }
+          { path: 'home', component: DummyHomeComponent {} },
+          { path: 'register', component: DummyRegisterComponent {} }
         ]),
-        HttpClientTestingModule, // UsersService uses HttpClient
+        HttpClientTestingModule,
+        NoopAnimationsModule, // For Material animations
+        // Material modules used by the component are already imported by LoginComponent itself as it's standalone
       ],
       providers: [
         { provide: UsersService, useClass: MockUsersService },
-        // Provide a basic ActivatedRoute if needed by any part of the component/template
         { provide: ActivatedRoute, useValue: {} }
       ],
     }).compileComponents();
@@ -58,40 +71,39 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     usersService = TestBed.inject(UsersService);
     router = TestBed.inject(Router);
-    fixture.detectChanges();
+    fixture.detectChanges(); // Initial data binding
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render login form with email and password fields', () => {
+  it('should render login form with Material components', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Login');
-    expect(compiled.querySelector('input[name="email"]')).toBeTruthy();
-    expect(compiled.querySelector('input[name="password"]')).toBeTruthy();
-    expect(compiled.querySelector('button[type="submit"]')).toBeTruthy();
+    expect(compiled.querySelector('mat-card-title')?.textContent).toContain('Login');
+    expect(compiled.querySelector('input[matInput][name="email"]')).toBeTruthy();
+    expect(compiled.querySelector('input[matInput][name="password"]')).toBeTruthy();
+    expect(compiled.querySelector('button[mat-raised-button][type="submit"]')).toBeTruthy();
   });
 
-  it('should show validation error if email is not provided', fakeAsync(() => {
-    const emailInput = fixture.nativeElement.querySelector('input[name="email"]');
+  it('should show Material validation error if email is not provided', fakeAsync(() => {
+    fixture.detectChanges(); // Ensure component is stable
+
+    const emailInput = fixture.nativeElement.querySelector('input[name="email"]') as HTMLInputElement;
     emailInput.value = '';
     emailInput.dispatchEvent(new Event('input'));
-    emailInput.dispatchEvent(new Event('blur')); // Trigger touched
-    fixture.detectChanges();
-    tick(); // allow time for async validation or update
+    emailInput.dispatchEvent(new Event('blur')); // Trigger touched for validation
+
+    // Manually set the ngModel control's state for testing errors
+    component.emailField = { invalid: true, dirty: true, touched: true, errors: { required: true } };
+
+    fixture.detectChanges(); // Re-run change detection to show mat-error
+    tick(); // Allow time for UI to update
+    fixture.detectChanges(); // One more for safety with async error display
 
     const compiled = fixture.nativeElement as HTMLElement;
-    // Check for a specific error message div related to email required
-    // This depends on how your HTML is structured for errors
-    // For example: <div *ngIf="emailField.errors?.['required']">Email is required.</div>
-    // A more robust way might be to check component.emailField.errors
-    component.emailField.control.markAsTouched(); // Ensure control is marked as touched
-    component.emailField.control.setValue('');
-    fixture.detectChanges();
-    expect(component.emailField.errors?.['required']).toBeTruthy();
-    const alertDiv = compiled.querySelector('input[name="email"] + div.alert-danger');
-    expect(alertDiv?.textContent).toContain('Email is required.');
+    const matError = compiled.querySelector('mat-form-field[class*="mb-3"] mat-error'); // More specific selector
+    expect(matError?.textContent).toContain('Email is required.');
   }));
 
   it('should call UsersService.getUser and navigate to /home on successful login', fakeAsync(() => {
@@ -102,16 +114,16 @@ describe('LoginComponent', () => {
     component.password = 'password123';
     fixture.detectChanges();
 
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    const loginButton = fixture.nativeElement.querySelector('button[mat-raised-button][type="submit"]');
     loginButton.click();
-    tick(); // Process async operations like service calls
+    tick();
 
     expect(usersService.getUser).toHaveBeenCalledWith('test@example.com');
     expect(router.navigate).toHaveBeenCalledWith(['/home']);
     expect(component.loginError).toBeNull();
   }));
 
-  it('should display error message if user is not found (404)', fakeAsync(() => {
+  it('should display error message in alert div if user is not found (404)', fakeAsync(() => {
     spyOn(usersService, 'getUser').and.callThrough();
     spyOn(router, 'navigate').and.stub();
 
@@ -119,19 +131,20 @@ describe('LoginComponent', () => {
     component.password = 'password123';
     fixture.detectChanges();
 
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    const loginButton = fixture.nativeElement.querySelector('button[mat-raised-button][type="submit"]');
     loginButton.click();
     tick();
 
     expect(usersService.getUser).toHaveBeenCalledWith('unknown@example.com');
     expect(router.navigate).not.toHaveBeenCalled();
     expect(component.loginError).toContain('Login failed. User not found.');
-    fixture.detectChanges(); // Update view with error
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.alert-danger')?.textContent).toContain('Login failed. User not found.');
+    // The error message is now in a specific div.alert.alert-danger
+    expect(compiled.querySelector('div.alert.alert-danger')?.textContent).toContain('Login failed. User not found.');
   }));
 
-  it('should display generic error message for other API errors (e.g., 500)', fakeAsync(() => {
+  it('should display generic error message in alert div for other API errors (e.g., 500)', fakeAsync(() => {
     spyOn(usersService, 'getUser').and.callThrough();
     spyOn(router, 'navigate').and.stub();
 
@@ -139,26 +152,22 @@ describe('LoginComponent', () => {
     component.password = 'password123';
     fixture.detectChanges();
 
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    const loginButton = fixture.nativeElement.querySelector('button[mat-raised-button][type="submit"]');
     loginButton.click();
     tick();
 
     expect(usersService.getUser).toHaveBeenCalledWith('error@example.com');
     expect(router.navigate).not.toHaveBeenCalled();
-    expect(component.loginError).toContain('Internal Server Error'); // Mock returns this message
+    expect(component.loginError).toContain('Internal Server Error');
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.alert-danger')?.textContent).toContain('Internal Server Error');
+    expect(compiled.querySelector('div.alert.alert-danger')?.textContent).toContain('Internal Server Error');
   }));
 
-  it('should have a link to the register page', () => {
+  it('should have a link to the register page in mat-card-actions', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    const registerLink = compiled.querySelector('a[routerLink="/register"]');
+    const registerLink = compiled.querySelector('mat-card-actions a[routerLink="/register"]');
     expect(registerLink).toBeTruthy();
     expect(registerLink?.textContent).toContain('Register here');
   });
 });
-
-// Dummy components for RouterTestingModule
-class DummyHomeComponent {}
-class DummyRegisterComponent {}

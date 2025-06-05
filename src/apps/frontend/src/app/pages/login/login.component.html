@@ -1,27 +1,42 @@
-<div>
-  <h1>Login</h1>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div>
-      <label for="email">Email (as User ID):</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">
-      <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="alert alert-danger">
-        <div *ngIf="emailField.errors?.['required']">Email is required.</div>
-        <div *ngIf="emailField.errors?.['email']">Email must be a valid email address.</div>
-      </div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required #passwordField="ngModel">
-      <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)" class="alert alert-danger">
-        Password is required.
-      </div>
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
-  <div *ngIf="loginError" class="alert alert-danger">
-    {{ loginError }}
-  </div>
-  <p>
-    Don't have an account? <a routerLink="/register">Register here</a>
-  </p>
+<div class="login-container d-flex justify-content-center align-items-center vh-100">
+  <mat-card class="login-card">
+    <mat-card-header class="justify-content-center">
+      <mat-card-title><h1>Login</h1></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="d-flex flex-column">
+        <mat-form-field appearance="outline" class="mb-3">
+          <mat-label>Email (as User ID)</mat-label>
+          <input matInput type="email" id="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">
+          <mat-error *ngIf="emailField.invalid && (emailField.dirty || emailField.touched) && emailField.errors?.['required']">
+            Email is required.
+          </mat-error>
+          <mat-error *ngIf="emailField.invalid && (emailField.dirty || emailField.touched) && emailField.errors?.['email']">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mb-3">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" name="password" [(ngModel)]="password" required #passwordField="ngModel">
+          <mat-error *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched) && passwordField.errors?.['required']">
+            Password is required.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="mb-3">
+          Login
+        </button>
+
+        <div *ngIf="loginError" class="alert alert-danger mt-2 mb-2">
+          {{ loginError }}
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="text-center">
+      <p>
+        Don't have an account? <a routerLink="/register">Register here</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
 </div>

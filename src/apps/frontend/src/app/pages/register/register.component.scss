@@ -1,4 +1,32 @@
-// Styles for register component
-div {
-  text-align: center;
+.register-container {
+  // Using vh-100 from bootstrap for full viewport height
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px; // Slightly wider for more fields
+  margin-top: 2rem; // Add some margin if content is too tall
+  margin-bottom: 2rem;
+}
+
+.mat-mdc-card-header.justify-content-center {
+    justify-content: center;
+}
+
+.mat-mdc-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.alert { // Bootstrap alert styling
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+mat-card-actions p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
 }
