@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup Condition="'$(MSBuildProjectName)' != 'Org.OpenAPITools'">
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <!-- コード分析設定 -->
     <!-- .NET Analyzers -->
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
