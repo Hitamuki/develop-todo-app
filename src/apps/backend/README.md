@@ -1,6 +1,64 @@
 # WebAPI
 
-## バックエンド（Web API）
+## コマンド
+
+よく使う
+
+```bash
+dotnet --version
+dotnet --list-sdks
+dotnet --info
+dotnet restore
+dotnet clean
+dotnet build
+dotnet test
+dotnet run
+```
+
+フォーマット TODO: shファイルで実行
+
+```bash
+# OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
+dotnet format style --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
+```
+
+MySQLコンテナのIPアドレスを確認
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo_db
+
+HTTPS 開発証明書 ※初回のみ
+
+```bash
+dotnet dev-certs https --trust
+```
+
+NuGetパッケージの更新状況をチェック
+
+```bash
+dotnet outdated
+# マイナーバージョンに制限してアップグレード
+dotnet outdated -u --version-lock Minor src/TodoApp.Application
+dotnet outdated -u --version-lock Minor src/TodoApp.Domain
+dotnet outdated -u --version-lock Minor src/ToDoApp.Infrastructure
+dotnet outdated -u --version-lock Minor src/ToDoApp.Presentation
+dotnet outdated -u tests/ToDoApp.Tests
+```
+
+## DB設定
+
+- 「…develop-todo-app/src/apps/backend」で「docker compose up -d」
+- DBeaver接続
+  - 「Public Key Retrieval is not allowed」が出たら「allowPublicKeyRetrieval=true」
+- DBeaverでER図表示
+  - テーブル右クリック
+  - View Diagram
+- DBeaverからDDLを生成
+  - 全テーブルを選択
+  - SQLの生成
+  - DDL
+- DB定義更新
+  - docker-compose down --volumes --rmi all --remove-orphans
+
+## Todo
 
 - C#(.NET8.0、ASP.NET Core)
   - ホットリロード
@@ -53,36 +111,3 @@
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
 memo.mdを作成し、参考にURLなどを記載
-
-## コマンド
-
-フォーマット TODO: shファイルで実行
-
-```bash
-# OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
-dotnet format style --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
-```
-
-MySQLコンテナのIPアドレスを確認
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo_db
-
-HTTPS 開発証明書 ※初回のみ
-
-```bash
-dotnet dev-certs https --trust
-```
-
-## DB設定
-
-- 「…develop-todo-app/src/apps/backend」で「docker compose up -d」
-- DBeaver接続
-  - 「Public Key Retrieval is not allowed」が出たら「allowPublicKeyRetrieval=true」
-- DBeaverでER図表示
-  - テーブル右クリック
-  - View Diagram
-- DBeaverからDDLを生成
-  - 全テーブルを選択
-  - SQLの生成
-  - DDL
-- DB定義更新
-  - docker-compose down --volumes --rmi all --remove-orphans

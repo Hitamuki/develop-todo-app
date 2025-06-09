@@ -12,7 +12,7 @@
 
   <!-- NuGet パッケージ参照 -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.5" />
   </ItemGroup>
 
