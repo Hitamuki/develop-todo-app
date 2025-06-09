@@ -13,16 +13,93 @@ info:
 servers:
   - url: https://localhost:3000/api/v1
     description: 開発環境
-  - url: https://todo-app.com/api/v1
-    description: 本番環境
+  # - url: https://todo-app.com/api/v1
+  #   description: 本番環境
 
 tags:
-  - name: tasks
-    description: タスクに関連する操作。一覧取得、1件取得、新規作成、更新、削除が含まれる。
+  - name: auth
+    description: 認証に関連する操作。ログインが含まれる。
   - name: users
     description: ユーザーに関連する操作。1件取得、新規作成が含まれる。
+  - name: tasks
+    description: タスクに関連する操作。一覧取得、1件取得、新規作成、更新、削除が含まれる。
 
+security:
+  - bearerAuth: []
 paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      security: []
+      summary: ログイン
+      description: メールアドレスとパスワードを使用してユーザーを認証し、アクセストークンを返す
+      operationId: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLoginRequestDto"
+      responses:
+        '200':
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserLoginResponseDto"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
+        # ユーザーが存在しない場合も401を返すのが一般的ですが、要件に応じて404も検討可能です
+        '404': # 例: ユーザーアカウント自体が見つからない場合
+          $ref: "#/components/responses/NotFound"
+  /users:
+    post:
+      tags:
+        - users
+      summary: ユーザー新規登録
+      operationId: PostUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPostRequestDto"
+      responses:
+        '201':
+          description: ユーザーが正常に作成された
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          description: リソースの競合
+          $ref: "#/components/responses/Conflict"
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: ユーザー情報取得
+      operationId: GetUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: 取得するユーザーのUUID
+          schema:
+            type: string
+            format: uuid
+            example: xxx-xxx-xxx-xxx
+      responses:
+        '200':
+          description: ユーザー情報を正常に取得した
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserGetResponseDto"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '404':
+          $ref: "#/components/responses/NotFound"
   /tasks:
     get:
       tags:
@@ -130,53 +207,14 @@ paths:
           $ref: "#/components/responses/BadRequest"
         404:
           $ref: "#/components/responses/NotFound"
-  /users:
-    post:
-      tags:
-        - users
-      summary: ユーザー新規登録
-      operationId: PostUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UserPostRequestDto"
-      responses:
-        '201':
-          description: ユーザーが正常に作成された
-        '400':
-          $ref: "#/components/responses/BadRequest"
-        '409':
-          description: リソースの競合
-          $ref: "#/components/responses/Conflict"
-  /users/{userId}:
-    get:
-      tags:
-        - users
-      summary: ユーザー情報取得
-      operationId: GetUser
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          description: 取得するユーザーのUUID
-          schema:
-            type: string
-            format: uuid
-            example: xxx-xxx-xxx-xxx
-      responses:
-        '200':
-          description: ユーザー情報を正常に取得した
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserGetResponseDto"
-        '400':
-          $ref: "#/components/responses/BadRequest"
-        '404':
-          $ref: "#/components/responses/NotFound"
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Token Authentication
+      scheme: bearer
+      bearerFormat: JWT
   responses:
     BadRequest:
       description: 400 Bad Request
@@ -231,6 +269,90 @@ components:
         - 1
         - 2
         - 3
+    UserLoginRequestDto:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: ユーザーのメールアドレス
+          example: john.doe@example.com
+        password:
+          type: string
+          # format: password # OpenAPI specでは password format は主にドキュメンテーション目的
+          description: ユーザーのパスワード
+          example: "strongpassword123"
+    UserLoginResponseDto:
+      type: object
+      required:
+        - id
+        - email
+        - accessToken
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ユーザーのUUID
+        email:
+          type: string
+          format: email
+          description: ユーザーのメールアドレス
+        accessToken:
+          type: string
+          description: アクセストークン
+    UserPostRequestDto:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: ユーザー名
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: ユーザーのメールアドレス
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          description: ユーザーのパスワード
+          example: strongpassword123
+    UserGetResponseDto:
+      type: object
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ユーザーのUUID
+          example: abc-123-def-456
+        name:
+          type: string
+          description: ユーザー名
+          example: John Doe
+        email:
+          type: string
+          format: email
+          description: ユーザーのメールアドレス
+          example: john.doe@example.com
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: 作成日時
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: 更新日時
     TaskGetResponseDto:
       type: object
       required:
@@ -317,56 +439,6 @@ components:
           example: 2024-11-18
         statusId:
           $ref: "#/components/schemas/StatusIdEnum"
-    UserPostRequestDto:
-      type: object
-      required:
-        - email
-        - password
-      properties:
-        name:
-          type: string
-          description: ユーザー名
-          example: John Doe
-        email:
-          type: string
-          format: email
-          description: ユーザーのメールアドレス
-          example: john.doe@example.com
-        password:
-          type: string
-          format: password
-          description: ユーザーのパスワード
-          example: strongpassword123
-    UserGetResponseDto:
-      type: object
-      required:
-        - id
-        - email
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: ユーザーのUUID
-          example: abc-123-def-456
-        name:
-          type: string
-          description: ユーザー名
-          example: John Doe
-        email:
-          type: string
-          format: email
-          description: ユーザーのメールアドレス
-          example: john.doe@example.com
-        createdAt:
-          type: string
-          format: date-time
-          nullable: true
-          description: 作成日時
-        updatedAt:
-          type: string
-          format: date-time
-          nullable: true
-          description: 更新日時
     ErrorResponseDto:
       type: object
       properties:

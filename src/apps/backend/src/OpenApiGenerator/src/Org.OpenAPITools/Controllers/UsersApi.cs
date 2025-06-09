@@ -36,6 +36,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">404 Not Found</response>
         [HttpGet]
         [Route("/api/v1/users/{userId}")]
+        [Authorize]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 200, type: typeof(UserGetResponseDto))]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
@@ -51,6 +52,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="409">409 Conflict</response>
         [HttpPost]
         [Route("/api/v1/users")]
+        [Authorize]
         [Consumes("application/json")]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]

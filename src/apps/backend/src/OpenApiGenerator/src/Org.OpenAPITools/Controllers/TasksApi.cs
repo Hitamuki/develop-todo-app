@@ -36,6 +36,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">404 Not Found</response>
         [HttpDelete]
         [Route("/api/v1/tasks/{taskId}")]
+        [Authorize]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
         [ProducesResponseType(statusCode: 404, type: typeof(ErrorResponseDto))]
@@ -50,6 +51,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">404 Not Found</response>
         [HttpGet]
         [Route("/api/v1/tasks/{taskId}")]
+        [Authorize]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 200, type: typeof(TaskGetResponseDto))]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
@@ -63,6 +65,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="200">200 OK</response>
         [HttpGet]
         [Route("/api/v1/tasks")]
+        [Authorize]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 200, type: typeof(List<TaskGetResponseDto>))]
         public abstract Task<IActionResult> GetTasks();
@@ -74,6 +77,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="201">201 Created</response>
         [HttpPost]
         [Route("/api/v1/tasks")]
+        [Authorize]
         [Consumes("application/json")]
         [ValidateModelState]
         public abstract Task<IActionResult> PostTask([FromBody]TaskPostRequestDto taskPostRequestDto);
@@ -88,6 +92,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">404 Not Found</response>
         [HttpPut]
         [Route("/api/v1/tasks/{taskId}")]
+        [Authorize]
         [Consumes("application/json")]
         [ValidateModelState]
         [ProducesResponseType(statusCode: 400, type: typeof(ErrorResponseDto))]
