@@ -2,5 +2,4 @@
 
 - 共通ライブラリを管理する。
 - C#
-  - CodeAnalysisRuleSetをnugetパッケージ
 - TypeScript

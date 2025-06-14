@@ -1,5 +1,22 @@
 # ToDo
 
+- 設計書
+  - 静的サイトジェネレーターMkDocs
+  - UMLでシーケンス図やクラス図、ユースケース図、状態遷移図などを作成
+    - PlantUML、Mermaid
+    - その他の図
+      - オブジェクト図
+      - ドメインモデル
+  - draw.ioで環境構成図作成
+  - OpenAPI Specification、Swagger UIでAPI設計書
+  - DB設計
+    - DBeaver
+    - ER図
+  - Figmaで画面設計書、ワイヤーフレーム、プロトタイプ、画面遷移図
+  - GitHubPagesにデプロイ
+  - GitHubActionsでCI/CD
+  - テスト設計
+
 ## Emergency
 
 - openapi-generatorで実行前にスクリプトを実行して上書きされるクラスを削除したい
