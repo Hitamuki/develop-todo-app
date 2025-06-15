@@ -1,6 +1,6 @@
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Application.Interfaces.IService;
+namespace ToDoApp.Application.Interfaces.IService;
 
 public interface ITaskService
 {

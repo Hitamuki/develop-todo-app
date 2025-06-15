@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity; // Required for IPasswordHasher
-using TodoApp.Application.DTOs;
-using TodoApp.Application.Interfaces.IService;
-using TodoApp.Domain.Entities;
-using TodoApp.Domain.Interfaces.IRepository;
+using ToDoApp.Application.DTOs;
+using ToDoApp.Application.Interfaces.IService;
+using ToDoApp.Domain.Entities;
+using ToDoApp.Domain.Interfaces.IRepository;
 
-namespace TodoApp.Application.Services;
+namespace ToDoApp.Application.Services;
 
 public class UserService : IUserService
 {

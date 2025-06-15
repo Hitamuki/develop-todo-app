@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EFCoreGenerator = ToDoApp.Infrastructure.EFCoreGenerator;
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Infrastructure.Mappers
+namespace ToDoApp.Infrastructure.Mappers
 {
     public static class TaskMapper
     {

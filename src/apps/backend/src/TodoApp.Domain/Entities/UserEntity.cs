@@ -1,4 +1,4 @@
-namespace TodoApp.Domain.Entities;
+namespace ToDoApp.Domain.Entities;
 
 public class UserEntity
 {

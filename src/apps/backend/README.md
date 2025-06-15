@@ -42,8 +42,8 @@ NuGetパッケージの更新状況をチェック
 ```bash
 dotnet outdated
 # マイナーバージョンに制限してアップグレード
-dotnet outdated -u --version-lock Minor src/TodoApp.Application
-dotnet outdated -u --version-lock Minor src/TodoApp.Domain
+dotnet outdated -u --version-lock Minor src/ToDoApp.Application
+dotnet outdated -u --version-lock Minor src/ToDoApp.Domain
 dotnet outdated -u --version-lock Minor src/ToDoApp.Infrastructure
 dotnet outdated -u --version-lock Minor src/ToDoApp.Presentation
 dotnet outdated -u tests/ToDoApp.Tests

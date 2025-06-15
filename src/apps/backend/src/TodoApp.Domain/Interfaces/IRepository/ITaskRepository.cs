@@ -1,6 +1,6 @@
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Domain.Interfaces.IRepository;
+namespace ToDoApp.Domain.Interfaces.IRepository;
 
 public interface ITaskRepository
 {

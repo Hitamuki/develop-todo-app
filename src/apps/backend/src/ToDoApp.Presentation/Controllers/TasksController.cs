@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Org.OpenAPITools.Controllers;
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 using Org.OpenAPITools.Models;
-using TodoApp.Application.Interfaces.IService;
+using ToDoApp.Application.Interfaces.IService;
 
 namespace ToDoApp.Presentation.Controllers;
 

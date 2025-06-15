@@ -1,4 +1,4 @@
-namespace TodoApp.Domain.ValueObjects.Task;
+namespace ToDoApp.Domain.ValueObjects.Task;
 
 public class TaskStatus
 {

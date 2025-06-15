@@ -28,8 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TodoApp.Application\TodoApp.Application.csproj" />
-    <ProjectReference Include="..\..\src\TodoApp.Domain\TodoApp.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ToDoApp.Presentation\ToDoApp.Presentation.csproj" />
+    <ProjectReference Include="..\..\src\ToDoApp.Application\ToDoApp.Application.csproj" />
+    <ProjectReference Include="..\..\src\ToDoApp.Domain\ToDoApp.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ToDoApp.Infrastructure\ToDoApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

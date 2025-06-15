@@ -7,7 +7,7 @@
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
-    <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
+    <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
   </ItemGroup>
 
   <!-- NuGet パッケージ参照 -->

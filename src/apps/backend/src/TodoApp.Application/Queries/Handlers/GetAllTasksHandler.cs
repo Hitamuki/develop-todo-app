@@ -1,4 +1,5 @@
-namespace TodoApp.Application.Queries.Handlers;
+namespace ToDoApp.Application.Queries.Handlers;
+
 public class GetAllTasksHandler
 {
 }

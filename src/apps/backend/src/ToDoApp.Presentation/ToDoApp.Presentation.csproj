@@ -8,13 +8,16 @@
   <!-- プロジェクト間参照  -->
   <ItemGroup>
     <ProjectReference Include="..\OpenApiGenerator\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
-    <ProjectReference Include="..\TodoApp.Application\TodoApp.Application.csproj" />
-    <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
-    <ProjectReference Include="..\TodoApp.Infrastructure/TodoApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\ToDoApp.Application\ToDoApp.Application.csproj" />
+    <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
+    <ProjectReference Include="..\ToDoApp.Infrastructure\ToDoApp.Infrastructure.csproj" />
   </ItemGroup>
 
   <!-- NuGet パッケージ参照 -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
   </ItemGroup>
 

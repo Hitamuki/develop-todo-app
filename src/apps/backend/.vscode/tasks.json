@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/TodoApp.sln",
+                "${workspaceFolder}/ToDoApp.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/TodoApp.sln",
+                "${workspaceFolder}/ToDoApp.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/TodoApp.sln"
+                "${workspaceFolder}/ToDoApp.sln"
             ],
             "problemMatcher": "$msCompile"
         }

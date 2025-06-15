@@ -1,6 +1,6 @@
-using TodoApp.Domain.Entities; // Required for UserEntity in RegisterUserAsync
+using ToDoApp.Domain.Entities; // Required for UserEntity in RegisterUserAsync
 
-namespace TodoApp.Application.Interfaces.IService;
+namespace ToDoApp.Application.Interfaces.IService;
 
 public interface IUserService
 {

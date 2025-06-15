@@ -1,7 +1,7 @@
 using EFCoreGenerator = ToDoApp.Infrastructure.EFCoreGenerator;
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Infrastructure.Mappers;
+namespace ToDoApp.Infrastructure.Mappers;
 
 public static class UserMapper
 {

@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 using Microsoft.OpenApi.Models;
-using TodoApp.Application.Interfaces.IService;
-using TodoApp.Application.Services;
-using TodoApp.Domain.Interfaces.IRepository;
-using TodoApp.Infrastructure.DataSource.Repositories;
+using ToDoApp.Application.Interfaces.IService;
+using ToDoApp.Application.Services;
+using ToDoApp.Domain.Interfaces.IRepository;
+using ToDoApp.Infrastructure.DataSource.Repositories;
 using ToDoApp.Infrastructure.EFCoreGenerator;
 using Microsoft.AspNetCore.Identity;
 

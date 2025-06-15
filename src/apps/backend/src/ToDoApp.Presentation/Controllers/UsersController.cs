@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using TodoApp.Application.DTOs;
-using TodoApp.Application.Interfaces.IService;
+using ToDoApp.Application.DTOs;
+using ToDoApp.Application.Interfaces.IService;
 using Org.OpenAPITools.Controllers;
 using Org.OpenAPITools.Models;
-using TodoApp.Domain.Entities;
+using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Presentation.Controllers;
 

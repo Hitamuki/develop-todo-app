@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using TodoApp.Domain.Interfaces.IRepository;
+using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.EFCoreGenerator;
-using TodoApp.Infrastructure.Mappers;
-using TodoApp.Domain.Entities;
+using ToDoApp.Infrastructure.Mappers;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Infrastructure.DataSource.Repositories;
+namespace ToDoApp.Infrastructure.DataSource.Repositories;
 
 public class TaskRepository : ITaskRepository
 {

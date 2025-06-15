@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Logging;
-using TodoApp.Application.Interfaces.IService;
-using TodoApp.Domain.Entities;
-using TodoApp.Domain.Interfaces.IRepository;
+using ToDoApp.Application.Interfaces.IService;
+using ToDoApp.Domain.Entities;
+using ToDoApp.Domain.Interfaces.IRepository;
 
-namespace TodoApp.Application.Services;
+namespace ToDoApp.Application.Services;
 
 public class TaskService : ITaskService
 {

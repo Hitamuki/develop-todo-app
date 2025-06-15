@@ -1,4 +1,4 @@
-namespace TodoApp.Domain.Services;
+namespace ToDoApp.Domain.Services;
 
 public class TaskDomainService
 {
