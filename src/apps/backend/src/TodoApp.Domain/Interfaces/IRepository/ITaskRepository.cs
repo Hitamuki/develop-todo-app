@@ -10,7 +10,7 @@ public interface ITaskRepository
 
     Task CreateAsync(TaskEntity entity);
 
-    Task UpdateAsync(Guid id, TaskEntity entity);
+    Task UpdateAsync(TaskEntity entity);
 
     Task DeleteAsync(Guid id);
 }

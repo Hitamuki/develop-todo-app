@@ -7,10 +7,8 @@
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
-    <ProjectReference Include="..\OpenApiGenerator\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
     <ProjectReference Include="..\ToDoApp.Application\ToDoApp.Application.csproj" />
-    <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
-    <ProjectReference Include="..\ToDoApp.Infrastructure\ToDoApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\ToDoApp.Infrastructure\ToDoApp.Infrastructure.csproj" /><!-- DIのサービス登録の用途のみで使用 -->
   </ItemGroup>
 
   <!-- NuGet パッケージ参照 -->

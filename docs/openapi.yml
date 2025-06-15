@@ -59,6 +59,7 @@ paths:
     post:
       tags:
         - users
+      security: []
       summary: ユーザー新規登録
       operationId: PostUser
       requestBody:

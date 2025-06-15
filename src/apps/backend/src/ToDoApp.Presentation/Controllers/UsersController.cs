@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces.IService;
 using Org.OpenAPITools.Controllers;
 using Org.OpenAPITools.Models;

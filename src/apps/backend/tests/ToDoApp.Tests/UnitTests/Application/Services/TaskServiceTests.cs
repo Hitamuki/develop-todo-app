@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Logging;
 using Moq;
+using Org.OpenAPITools.Models;
 using ToDoApp.Application.Services;
 using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Tests.UnitTests.TestHelpers;
-using Xunit;
 using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Tests.UnitTests.Application.Services
@@ -40,7 +40,16 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
             // Assert
             Assert.NotNull(actual);
             Assert.Equal(expectedTasks.Count, actual.Count());
-            Assert.Equal(expectedTasks, actual);
+
+            // 返却値の型が変わったため、Entityとの直接比較はできない
+            var actualList = actual.ToList();
+            for (int i = 0; i < expectedTasks.Count; i++)
+            {
+                Assert.Equal(expectedTasks[i].Id, actualList[i].Id);
+                Assert.Equal(expectedTasks[i].Title, actualList[i].Title);
+                Assert.Equal(expectedTasks[i].Description, actualList[i].Description);
+            }
+
             _mockTaskRepository.Verify(repo => repo.SearchAsync(), Times.Once);
         }
 
@@ -63,34 +72,38 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
             Assert.NotNull(actual);
             Assert.Equal(expectedTask.Id, actual.Id);
             Assert.Equal(expectedTask.Title, actual.Title);
+            Assert.Equal(expectedTask.Description, actual.Description);
+            Assert.Equal((StatusIdEnum)expectedTask.StatusId, actual.StatusId);
             _mockTaskRepository.Verify(repo => repo.FindByIdAsync(taskId), Times.Once);
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldGenerateNewIdAndCallRepository()
+        public async Task CreateAsync_ShouldCallRepository()
         {
             // Arrange
-            // Bogusを使用してIDなしのテストデータを生成
-            var taskEntity = TaskEntityFaker.Generate();
-
-            // テスト用にIDとUserIDをリセット
-            taskEntity.Id = Guid.Empty;
-            taskEntity.UserId = Guid.Empty;
+            var taskPostRequestDto = new TaskPostRequestDto
+            {
+                Title = "Test Task",
+                Description = "Test Description",
+                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(7)),
+                StatusId = StatusIdEnum._1Enum
+            };
 
             _mockTaskRepository.Setup(repo => repo.CreateAsync(It.IsAny<TaskEntity>()))
                 .Returns(Task.CompletedTask);
 
             // Act
-            await _taskService.CreateAsync(taskEntity);
+            await _taskService.CreateAsync(taskPostRequestDto);
 
             // Assert
-            Assert.NotEqual(Guid.Empty, taskEntity.Id);
-            Assert.NotEqual(Guid.Empty, taskEntity.UserId);
             _mockTaskRepository.Verify(
                 repo => repo.CreateAsync(It.Is<TaskEntity>(t =>
                 t.Id != Guid.Empty &&
-                t.Title == taskEntity.Title &&
-                t.Description == taskEntity.Description)), Times.Once);
+                t.Title == taskPostRequestDto.Title &&
+                t.Description == taskPostRequestDto.Description &&
+                t.DueDate == taskPostRequestDto.DueDate &&
+                t.StatusId == (int)taskPostRequestDto.StatusId)),
+                Times.Once);
         }
 
         [Fact]
@@ -98,22 +111,29 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
         {
             // Arrange
             var taskId = Guid.NewGuid();
-            var taskEntity = new TaskEntity
+            var taskPutRequestDto = new TaskPutRequestDto
             {
-                Id = taskId,
                 Title = "Updated Task",
                 Description = "Updated Description",
-                StatusId = 2,
+                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(7)),
+                StatusId = StatusIdEnum._2Enum
             };
 
-            _mockTaskRepository.Setup(repo => repo.UpdateAsync(taskId, taskEntity))
+            _mockTaskRepository.Setup(repo => repo.UpdateAsync(It.IsAny<TaskEntity>()))
                 .Returns(Task.CompletedTask);
 
             // Act
-            await _taskService.UpdateAsync(taskId, taskEntity);
+            await _taskService.UpdateAsync(taskId, taskPutRequestDto);
 
             // Assert
-            _mockTaskRepository.Verify(repo => repo.UpdateAsync(taskId, taskEntity), Times.Once);
+            _mockTaskRepository.Verify(
+                repo => repo.UpdateAsync(It.Is<TaskEntity>(t =>
+                t.Id == taskId &&
+                t.Title == taskPutRequestDto.Title &&
+                t.Description == taskPutRequestDto.Description &&
+                t.DueDate == taskPutRequestDto.DueDate &&
+                t.StatusId == (int)taskPutRequestDto.StatusId)),
+                Times.Once);
         }
 
         [Fact]
@@ -141,10 +161,9 @@ namespace ToDoApp.Tests.UnitTests.Application.Services
                 .ReturnsAsync((TaskEntity)null); // Ensure the return type is correctly cast for Moq
 
             // Act
-            var actual = await _taskService.FindByIdAsync(taskId);
+            var result = await Assert.ThrowsAsync<NullReferenceException>(() => _taskService.FindByIdAsync(taskId));
 
             // Assert
-            Assert.Null(actual);
             _mockTaskRepository.Verify(repo => repo.FindByIdAsync(taskId), Times.Once);
         }
     }

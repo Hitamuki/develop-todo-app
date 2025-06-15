@@ -7,6 +7,7 @@
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
+    <ProjectReference Include="..\OpenApiGenerator\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
     <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity; // Required for IPasswordHasher
-using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
@@ -31,9 +30,7 @@ public class UserService : IUserService
 
     public async Task RegisterUserAsync(UserEntity userEntity, string password)
     {
-        // Ensure UserName is unique if necessary (database constraint or check here)
-        // Ensure Email is unique if necessary (database constraint or check here)
-
+        // ハッシュ方式：PBKDF2 (Password-Based Key Derivation Function 2)、ハッシュ関数：HMAC-SHA256、ソルト、ストレッチング
         userEntity.PasswordHash = _passwordHasher.HashPassword(userEntity, password);
         userEntity.CreatedAt = DateTime.UtcNow;
         userEntity.UpdatedAt = DateTime.UtcNow;

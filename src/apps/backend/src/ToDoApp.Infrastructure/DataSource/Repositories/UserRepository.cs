@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Infrastructure.Mappers;
@@ -23,14 +21,17 @@ public class UserRepository : IUserRepository
         return user == null ? null : UserMapper.ToEntity(user);
     }
 
+    public async System.Threading.Tasks.Task<UserEntity> GetByEmailAsync(string email)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+        return user == null ? null : UserMapper.ToEntity(user);
+    }
+
     public async System.Threading.Tasks.Task AddAsync(UserEntity userEntity)
     {
         if (userEntity == null) throw new ArgumentNullException(nameof(userEntity));
 
         var user = UserMapper.ToEfCore(userEntity);
-        // Ensure required fields for DB are set if UserMapper doesn't cover them
-        // e.g. if EFCoreGenerator.User has non-nullable fields not in UserEntity
-        // For now, assume UserMapper handles all necessary direct mappings.
 
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();

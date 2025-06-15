@@ -1,4 +1,3 @@
-using EFCoreGenerator = ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Infrastructure.Mappers;

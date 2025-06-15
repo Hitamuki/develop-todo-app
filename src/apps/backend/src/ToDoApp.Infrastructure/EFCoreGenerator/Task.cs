@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ToDoApp.Infrastructure.EFCoreGenerator;
+﻿namespace ToDoApp.Infrastructure.EFCoreGenerator;
 
 /// <summary>
 /// タスク

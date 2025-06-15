@@ -1,16 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ToDoApp.Domain.Entities;
 using Microsoft.OpenApi.Models;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Application.Services;
 using ToDoApp.Domain.Interfaces.IRepository;
-using ToDoApp.Infrastructure.DataSource.Repositories;
-using ToDoApp.Infrastructure.EFCoreGenerator;
 using Microsoft.AspNetCore.Identity;
+using ToDoApp.Infrastructure.EFCoreGenerator;
+using ToDoApp.Infrastructure.DataSource.Repositories;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,4 @@
-using ToDoApp.Domain.Entities;
+using Org.OpenAPITools.Models;
 
 namespace ToDoApp.Application.Interfaces.IService;
 
@@ -8,13 +8,13 @@ public interface ITaskService
     /// すべてのタスクを取得する
     /// </summary>
     /// <returns>すべてのタスク</returns>
-    Task<IEnumerable<TaskEntity>> SearchAsync();
+    Task<IEnumerable<TaskGetResponseDto>> SearchAsync();
 
-    Task<TaskEntity> FindByIdAsync(Guid id);
+    Task<TaskGetResponseDto> FindByIdAsync(Guid id);
 
-    Task CreateAsync(TaskEntity entity);
+    Task CreateAsync(TaskPostRequestDto taskPostRequestDto);
 
-    Task UpdateAsync(Guid id, TaskEntity entity);
+    Task UpdateAsync(Guid id, TaskPutRequestDto taskPutRequestDto);
 
     Task DeleteAsync(Guid id);
 }

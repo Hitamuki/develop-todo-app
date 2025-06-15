@@ -33,9 +33,9 @@ public class TaskRepository : ITaskRepository
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task UpdateAsync(Guid id, TaskEntity entity)
+    public async System.Threading.Tasks.Task UpdateAsync(TaskEntity entity)
     {
-        var task = await _context.Tasks.FindAsync(id);
+        var task = await _context.Tasks.FindAsync(entity.Id);
         task.Title = entity.Title;
         task.Description = entity.Description;
         task.DueDate = entity.DueDate;
