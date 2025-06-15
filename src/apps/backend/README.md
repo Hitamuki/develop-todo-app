@@ -37,6 +37,8 @@ dotnet run
 ```bash
 # OpenAPIGeneratorとEFCoreのスキャフォールディングは対象外
 dotnet format style --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator
+# お任せのフォーマット
+dotnet format --exclude ./src/OpenApiGenerator ./src/ToDoApp.Infrastructure/EFCoreGenerator --severity info
 ```
 
 MySQLコンテナのIPアドレスを確認

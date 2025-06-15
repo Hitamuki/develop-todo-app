@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Infrastructure.Mappers;
-using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Infrastructure.DataSource.Repositories;
 

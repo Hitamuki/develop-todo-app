@@ -1,11 +1,11 @@
-using ToDoApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Application.Services;
+using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
-using Microsoft.AspNetCore.Identity;
-using ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Infrastructure.DataSource.Repositories;
+using ToDoApp.Infrastructure.EFCoreGenerator;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
@@ -15,14 +15,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         name: corsPolicy,
-      policy =>
-      {
-          policy
-        .WithOrigins("http://localhost:4200")
-        .WithOrigins("https://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-      });
+        policy =>
+        {
+            policy
+            .WithOrigins("https://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
 });
 
 builder.Services.AddControllers();

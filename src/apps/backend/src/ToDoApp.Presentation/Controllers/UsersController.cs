@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoApp.Application.Interfaces.IService;
 using Org.OpenAPITools.Controllers;
 using Org.OpenAPITools.Models;
+using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Presentation.Controllers;

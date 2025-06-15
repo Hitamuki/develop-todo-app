@@ -2,15 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Org.OpenAPITools.Controllers;
 using Org.OpenAPITools.Models;
 
-namespace ToDoApp.Presentation.Controllers
+namespace ToDoApp.Presentation.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class AuthController : AuthApiController
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class AuthController : AuthApiController
+    public override async Task<IActionResult> Login([FromBody] UserLoginRequestDto userLoginRequestDto)
     {
-        public override async Task<IActionResult> Login([FromBody] UserLoginRequestDto userLoginRequestDto)
-        {
-            return Ok();
-        }
+        return Ok();
     }
 }

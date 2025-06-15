@@ -1,5 +1,3 @@
 namespace ToDoApp.Application.Queries.Models;
 
-public class GetAllTasksQuery
-{
-}
+public class GetAllTasksQuery;
