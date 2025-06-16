@@ -4,4 +4,6 @@ export * from './task-get-response-dto';
 export * from './task-post-request-dto';
 export * from './task-put-request-dto';
 export * from './user-get-response-dto';
+export * from './user-login-request-dto';
+export * from './user-login-response-dto';
 export * from './user-post-request-dto';

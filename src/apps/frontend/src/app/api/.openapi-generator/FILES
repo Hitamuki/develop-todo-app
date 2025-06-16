@@ -3,6 +3,7 @@
 README.md
 api.module.ts
 api/api.ts
+api/auth.service.ts
 api/tasks.service.ts
 api/users.service.ts
 configuration.ts
@@ -16,6 +17,8 @@ model/task-get-response-dto.ts
 model/task-post-request-dto.ts
 model/task-put-request-dto.ts
 model/user-get-response-dto.ts
+model/user-login-request-dto.ts
+model/user-login-response-dto.ts
 model/user-post-request-dto.ts
 param.ts
 variables.ts
