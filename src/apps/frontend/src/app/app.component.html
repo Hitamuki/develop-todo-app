@@ -1,12 +1,1 @@
-<div class="d-flex flex-column flex-grow-1 h-100">
-  <app-header *ngIf="showLayout" />
-  <div class="d-flex flex-column flex-grow-1"> <!-- Ensure this container also grows if side-nav is hidden -->
-    <app-side-navigation *ngIf="showLayout; else noSideNavContent">
-      <router-outlet />
-    </app-side-navigation>
-    <ng-template #noSideNavContent>
-      <router-outlet /> <!-- Render router-outlet directly if showLayout is false -->
-    </ng-template>
-  </div>
-  <app-footer *ngIf="showLayout" />
-</div>
+<router-outlet />

@@ -18,9 +18,6 @@
     },
     "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {
       "fisher": true
-    },
-    "ghcr.io/devcontainers-extra/features/mysql-homebrew:1": {
-      "version": "latest"
     }
   },
   "postCreateCommand": "chmod +x .devcontainer/post-create.sh && /bin/bash .devcontainer/post-create.sh",
@@ -30,25 +27,18 @@
         "terminal.integrated.defaultProfile.linux": "fish"
       },
       "extensions": [
-        "MS-CEINTL.vscode-language-pack-ja",
-        "GitHub.github-vscode-theme",
         "vscode-icons-team.vscode-icons",
         "editorconfig.editorconfig",
         "streetsidesoftware.code-spell-checker",
         "ms-azuretools.vscode-docker",
-        "ms-dotnettools.csdevkit",
-        "kreativ-software.csharpextensions",
-        "jorgeserrano.vscode-csharp-snippets",
         "ms-dotnettools.csharp",
-        "k--kato.docomment",
         "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.csdevkit",
         "ms-dotnettools.vscodeintellicode-csharp",
-        "adrianwilczynski.namespace",
         "jmrog.vscode-nuget-package-manager",
-        "formulahendry.dotnet-test-explorer",
-        "inferrinizzard.prettier-sql-vscode",
+        "jorgeserrano.vscode-csharp-snippets",
         "usernamehw.errorlens",
-        "formulahendry.code-runner",
+        "inferrinizzard.prettier-sql-vscode",
         "Gruntfuggly.todo-tree",
         "wayou.vscode-todo-highlight",
         "mrmlnc.vscode-duplicate",
@@ -57,7 +47,11 @@
         "eamodio.gitlens",
         "mhutchie.git-graph",
         "GitHub.vscode-pull-request-github",
-        "github.vscode-github-actions"
+        "humao.rest-client",
+        "AmazonWebServices.amazon-q-vscode",
+        "google.geminicodeassist",
+        "Continue.continue",
+        "formulahendry.vscode-mysql"
       ]
     }
   }

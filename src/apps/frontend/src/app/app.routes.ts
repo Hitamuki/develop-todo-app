@@ -1,3 +1,4 @@
+import { LayoutComponent } from './layouts/layout/layout.component';
 import type { Routes } from '@angular/router';
 
 /**
@@ -19,6 +20,7 @@ export const routes: Routes = [
   },
   {
     path: '',
+    component: LayoutComponent,
     children: [
       {
         path: 'home', // This might be the task list page

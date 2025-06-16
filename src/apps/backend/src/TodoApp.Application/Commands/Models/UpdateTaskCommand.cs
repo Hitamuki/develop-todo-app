@@ -1,5 +1,3 @@
-namespace TodoApp.Application.Commands.Models;
+namespace ToDoApp.Application.Commands.Models;
 
-public class UpdateTaskCommand
-{
-}
+public class UpdateTaskCommand;

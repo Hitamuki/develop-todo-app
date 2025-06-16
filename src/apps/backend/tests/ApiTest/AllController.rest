@@ -1,0 +1,78 @@
+@baseUrl = https://localhost:7268/api/v1
+@contentType = application/json
+
+### Variables
+@authToken = {{login.response.body.accessToken}}
+@userId = {{login.response.body.id}}
+@taskId = {{getTasks.response.body.0.id}}
+
+### Auth Controller
+
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "kuma-adimin@example.com",
+  "password": "password"
+}
+
+### Users Controller
+
+### Create a new user
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+  "name": "New User",
+  "email": "newuser@example.com",
+  "password": "password"
+}
+
+### Get a user
+# @name getUser
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{authToken}}
+
+### Tasks Controller
+
+# @name getTasks
+GET {{baseUrl}}/tasks
+Authorization: Bearer {{authToken}}
+
+### Get a specific task
+# @name getTask
+GET {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{authToken}}
+
+### Create a new task
+# @name createTask
+POST {{baseUrl}}/tasks
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "New Task",
+  "description": "Task description",
+  "dueDate": "2025-06-16",
+  "statusId": 1
+}
+
+### Update a task
+# @name updateTask
+PUT {{baseUrl}}/tasks/{{taskId}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Updated Task",
+  "description": "Updated description",
+  "dueDate": "2025-06-16",
+  "statusId": 3
+}
+
+### Delete a task
+# @name deleteTask
+DELETE {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{authToken}}

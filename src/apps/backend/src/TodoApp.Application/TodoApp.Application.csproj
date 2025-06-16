@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
 
   <!-- プロジェクト間参照  -->
   <ItemGroup>
-    <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
+    <ProjectReference Include="..\OpenApiGenerator\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
+    <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
   </ItemGroup>
 
   <!-- NuGet パッケージ参照 -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.5" />
   </ItemGroup>
 
 </Project>

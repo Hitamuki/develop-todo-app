@@ -1,6 +1,6 @@
-using Domain.Entities;
+using ToDoApp.Domain.Entities;
 
-namespace TodoApp.Domain.Interfaces.IRepository;
+namespace ToDoApp.Domain.Interfaces.IRepository;
 
 public interface ITaskRepository
 {
@@ -10,7 +10,7 @@ public interface ITaskRepository
 
     Task CreateAsync(TaskEntity entity);
 
-    Task UpdateAsync(Guid id, TaskEntity entity);
+    Task UpdateAsync(TaskEntity entity);
 
     Task DeleteAsync(Guid id);
 }

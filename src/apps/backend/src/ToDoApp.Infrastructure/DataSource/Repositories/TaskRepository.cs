@@ -1,10 +1,10 @@
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using TodoApp.Domain.Interfaces.IRepository;
+using ToDoApp.Domain.Entities;
+using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.EFCoreGenerator;
-using TodoApp.Infrastructure.Mappers;
+using ToDoApp.Infrastructure.Mappers;
 
-namespace TodoApp.Infrastructure.DataSource.Repositories;
+namespace ToDoApp.Infrastructure.DataSource.Repositories;
 
 public class TaskRepository : ITaskRepository
 {
@@ -33,9 +33,9 @@ public class TaskRepository : ITaskRepository
         await _context.SaveChangesAsync();
     }
 
-    public async System.Threading.Tasks.Task UpdateAsync(Guid id, TaskEntity entity)
+    public async System.Threading.Tasks.Task UpdateAsync(TaskEntity entity)
     {
-        var task = await _context.Tasks.FindAsync(id);
+        var task = await _context.Tasks.FindAsync(entity.Id);
         task.Title = entity.Title;
         task.Description = entity.Description;
         task.DueDate = entity.DueDate;

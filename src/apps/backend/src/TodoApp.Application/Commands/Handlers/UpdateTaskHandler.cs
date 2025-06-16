@@ -1,5 +1,3 @@
-namespace TodoApp.Application.Commands.Handlers;
+namespace ToDoApp.Application.Commands.Handlers;
 
-public class UpdateTaskHandler
-{
-}
+public class UpdateTaskHandler;

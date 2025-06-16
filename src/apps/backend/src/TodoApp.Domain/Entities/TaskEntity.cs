@@ -1,4 +1,4 @@
-namespace Domain.Entities;
+namespace ToDoApp.Domain.Entities;
 
 public class TaskEntity
 {
