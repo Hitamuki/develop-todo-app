@@ -1,11 +1,16 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using TodoApp.Application.Interfaces.IService;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Application.Services;
 using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.DataSource.Repositories;
 using ToDoApp.Infrastructure.EFCoreGenerator;
+using ToDoApp.Infrastructure.Services;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +28,36 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
         });
 });
+
+// JWTの設定
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var secretKey = jwtSettings["Secret"];
+var issuer = jwtSettings["Issuer"];
+var audience = jwtSettings["Audience"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = true;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        // ClockSkew = TimeSpan.Zero, // トークンの有効期限に厳密にしたいとき
+    };
+});
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 
@@ -43,11 +78,14 @@ builder.Services.AddDbContext<TodoContext>();
 //     ServerVersion.Parse("8.0.40-mysql")));
 
 // サービスの登録
-builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordHasher<UserEntity>, PasswordHasher<UserEntity>>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 var app = builder.Build();
 
@@ -71,7 +109,10 @@ app.UseRouting();
 
 app.UseCors(corsPolicy);
 
-// 認可ミドルウェアを追加
+// 認証ミドルウェア
+app.UseAuthentication();
+
+// 認可ミドルウェア
 app.UseAuthorization();
 
 // コントローラーをエンドポイントにマップ

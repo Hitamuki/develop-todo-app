@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Org.OpenAPITools.Controllers;
 using Org.OpenAPITools.Models;
+using TodoApp.Application.Interfaces.IService;
 
 namespace ToDoApp.Presentation.Controllers;
 
@@ -8,8 +9,16 @@ namespace ToDoApp.Presentation.Controllers;
 [Route("[controller]")]
 public class AuthController : AuthApiController
 {
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
+    {
+        _authService = authService;
+    }
+
     public override async Task<IActionResult> Login([FromBody] UserLoginRequestDto userLoginRequestDto)
     {
-        return Ok();
+        var response = await _authService.LoginAsync(userLoginRequestDto);
+        return Ok(response);
     }
 }

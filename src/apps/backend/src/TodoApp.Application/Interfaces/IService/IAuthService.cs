@@ -4,5 +4,5 @@ namespace TodoApp.Application.Interfaces.IService;
 
 public interface IAuthService
 {
-    Task<string> LoginAsync(UserLoginRequestDto userLoginRequestDto);
+    Task<UserLoginResponseDto> LoginAsync(UserLoginRequestDto userLoginRequestDto);
 }

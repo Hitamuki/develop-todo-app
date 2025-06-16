@@ -4,6 +4,7 @@ INSERT INTO
     id,
     name,
     email,
+    password_hash,
     is_deleted,
     created_by,
     updated_by
@@ -13,7 +14,8 @@ VALUES
     UUID (),
     'くま',
     'kuma1@example.com',
-    FALSE,
+    'AQAAAAIAAYagAAAAEIzpZz8VLJ4ZCRV+li4RxFiEbSi87XjsAZs9PJG/XGP/z39hkuqmMI/vSPUiZ/xl/g==',
+    0,
     NULL,
     NULL
   ),
@@ -21,7 +23,8 @@ VALUES
     UUID (),
     'くま2',
     'kuma2@example.com',
-    FALSE,
+    'AQAAAAIAAYagAAAAEIzpZz8VLJ4ZCRV+li4RxFiEbSi87XjsAZs9PJG/XGP/z39hkuqmMI/vSPUiZ/xl/g==',
+    0,
     NULL,
     NULL
   ),
@@ -29,7 +32,8 @@ VALUES
     'ca62e350-b039-11ef-88cc-0242ac1a0002',
     'くま様',
     'kuma-adimin@example.com',
-    FALSE,
+    'AQAAAAIAAYagAAAAEIzpZz8VLJ4ZCRV+li4RxFiEbSi87XjsAZs9PJG/XGP/z39hkuqmMI/vSPUiZ/xl/g==',
+    0,
     NULL,
     NULL
   );
@@ -62,7 +66,7 @@ VALUES
     'Vercel、Fly.io',
     NULL,
     1,
-    FALSE,
+    0,
     (
       SELECT
         id
@@ -94,7 +98,7 @@ VALUES
     'DTO、Entity、Value Object',
     '2025-1-1',
     2,
-    FALSE,
+    0,
     (
       SELECT
         id
@@ -120,20 +124,20 @@ VALUES
       FROM
         users
       WHERE
-        email = 'kuma1@example.com'
+        email = 'kuma-adimin@example.com'
     ),
     'テスト導入',
     'xUnit、Jest、Testing Library、Cypress',
     '2024-12-17',
     1,
-    FALSE,
+    0,
     (
       SELECT
         id
       FROM
         users
       WHERE
-        email = 'kuma1@example.com'
+        email = 'kuma-adimin@example.com'
     ),
     (
       SELECT
@@ -141,6 +145,6 @@ VALUES
       FROM
         users
       WHERE
-        email = 'kuma2@example.com'
+        email = 'kuma-adimin@example.com'
     )
   );
