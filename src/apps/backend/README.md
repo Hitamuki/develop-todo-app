@@ -7,7 +7,7 @@
     - プレゼンテーション層でドメイン層を参照したまま放置してしまった
 - レイヤードアーキテクチャで作る場合、コードファーストの方がシンプルに作れたはず
   - OpenAPI Generator、EF Coreのスキャフォールディングは初期構築の段階では便利に感じたが、柔軟性が無いことや、整合性を保つためのマッピング処理が冗長
-  - レイヤー分けに悩む（OpenAPI Generatorで生成されたコードをプレゼンテーション層に紐付けてしまった。DDD原則違反。Contract層に分離する？）
+  - レイヤー分けに悩む（最初OpenAPI Generatorで生成されたコードをプレゼンテーション層に紐付けてしまった。DDD原則違反。現在はアプリケーション層に紐づけているが、インフラ層が適切だったかも）
 - ToDoアプリのタスクを表す「Task」は予約語と被っていて、名前空間指定が必要になり、コードの可読性が下がった
   - →Reserved Word チェックをすると良いらしい？
 
@@ -75,7 +75,11 @@ dotnet outdated -u tests/ToDoApp.Tests
   - SQLの生成
   - DDL
 - DB定義更新
-  - docker-compose down --volumes --rmi all --remove-orphans
+
+    ```bash
+    docker-compose down --volumes --rmi all --remove-orphans
+    docker-compose up -d
+   ```
 
 ## Todo
 

@@ -1,8 +1,13 @@
 {
+  // フォルダ・ファイルのアイコンテーマ
+  "workbench.iconTheme": "vscode-icons",
+  // エディタの配色テーマ
+  "workbench.colorTheme": "Visual Studio 2019 Dark",
   "[csharp]": {
+    // C#のフォーマッタ指定
     "editor.defaultFormatter": "ms-dotnettools.csharp",
+    // 自動フォーマット
     "editor.formatOnType": true,
     "editor.formatOnSave": true
-  },
-  "dotnet-test-explorer.autoWatch": true,
+  }
 }
