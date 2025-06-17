@@ -2,9 +2,11 @@ import { type ApplicationConfig, provideZoneChangeDetection } from '@angular/cor
 import { provideRouter } from '@angular/router';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { environment } from '../environments/environment';
+import { authInterceptor } from './interceptors/auth.interceptor';
+import { mockApiInterceptor } from './interceptors/mock-api.interceptor';
 import { routes } from './app.routes';
 import { BASE_PATH } from './api';
 import { provideToastr } from 'ngx-toastr';
@@ -19,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([mockApiInterceptor, authInterceptor])),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-center',

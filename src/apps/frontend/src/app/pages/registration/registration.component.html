@@ -1,0 +1,37 @@
+<div class="registration-container">
+  <h2>Register</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="name">Name (Optional):</label>
+      <input id="name" type="text" formControlName="name">
+      <!-- No specific validators for name in this example, but you could add them -->
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email">
+      <div *ngIf="registrationForm.controls['email'].invalid && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)" class="error-message">
+        <div *ngIf="registrationForm.controls['email'].errors?.['required']">Email is required.</div>
+        <div *ngIf="registrationForm.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password">
+      <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="error-message">
+        <div *ngIf="registrationForm.controls['password'].errors?.['required']">Password is required.</div>
+        <div *ngIf="registrationForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+
+    <div *ngIf="errorMessage" class="error-message server-error">
+      {{ errorMessage }}
+    </div>
+  </form>
+  <p>
+    Already have an account? <a routerLink="/login">Login here</a>
+  </p>
+</div>
