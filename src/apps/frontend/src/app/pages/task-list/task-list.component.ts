@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { AgGridModule } from 'ag-grid-angular';
@@ -6,6 +7,7 @@ import { ColDef, ClientSideRowModelModule, GridApi, GridReadyEvent } from 'ag-gr
 import { ToastrService } from 'ngx-toastr';
 import { TaskAddEditComponent } from '../../modals/task-add-edit/task-add-edit.component';
 import { TaskGetResponseDto, TasksService } from '../../api';
+import { AuthService } from '../../services/auth.service';
 import { TaskActionCellComponent } from './../components/task-action-cell.component';
 import { TaskStatusCellComponent } from './../components/task-status-cell.component';
 import { DateCellComponent } from './../components/date-cell.component';
@@ -23,6 +25,8 @@ export class TaskListComponent implements OnInit {
   private tasksService = inject(TasksService);
   private modalService = inject(NgbModal);
   private toastr = inject(ToastrService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   // ----------------------
   // パブリック変数
@@ -125,6 +129,15 @@ export class TaskListComponent implements OnInit {
    */
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+  }
+
+  /**
+   * ログアウト処理
+   */
+  logout(): void {
+    this.authService.logout();
+    // AuthService.logout() already navigates to /login
+    // If additional navigation or logic specific to TaskListComponent is needed after logout, add here.
   }
 
   // ----------------------
