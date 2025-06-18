@@ -1,24 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; // Verify path
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    RouterLink, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    MatButtonModule, 
+    MatCardModule,
+    MatIconModule
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'] // Corrected from styleUrl to styleUrls
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup; // Definite assignment assertion for ngOnInit
+  loginForm!: FormGroup;
   errorMessage: string | null = null;
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router // Router might not be needed if AuthService handles all navigation
+    private router: Router
   ) {}
 
   ngOnInit(): void {

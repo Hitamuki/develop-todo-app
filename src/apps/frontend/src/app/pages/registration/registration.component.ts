@@ -3,18 +3,33 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { UserPostRequestDto } from '../../api'; // Import the DTO
+import { UserPostRequestDto } from '../../api';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    RouterLink, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    MatButtonModule, 
+    MatCardModule,
+    MatIconModule
+  ],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  registrationForm!: FormGroup; // Definite assignment
+  registrationForm!: FormGroup;
   errorMessage: string | null = null;
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
-      name: [''], // Optional, maps to DTO's 'name'
+      name: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -38,7 +53,7 @@ export class RegistrationComponent implements OnInit {
         email: formValues.email,
         password: formValues.password
       };
-      // Add name to DTO if provided in the form
+      
       if (formValues.name) {
         userData.name = formValues.name;
       }
@@ -46,17 +61,14 @@ export class RegistrationComponent implements OnInit {
       this.authService.register(userData).subscribe({
         next: () => {
           // Navigation to login is handled by AuthService
-          // Optionally, show a success message here (e.g., using a toastr service)
-          // For example: this.toastr.success('Registration successful! Please login.');
         },
         error: (err) => {
           console.error('Registration failed:', err);
-          if (err.status === 400 || err.status === 409) { // 409 Conflict (e.g., email already exists)
+          if (err.status === 400 || err.status === 409) {
             this.errorMessage = 'Registration failed. The email may already be in use or the data is invalid.';
-          } else if (err.error && err.error.message) { // Check for backend error message
+          } else if (err.error && err.error.message) {
             this.errorMessage = err.error.message;
-          }
-           else {
+          } else {
             this.errorMessage = 'An unexpected error occurred. Please try again.';
           }
         }

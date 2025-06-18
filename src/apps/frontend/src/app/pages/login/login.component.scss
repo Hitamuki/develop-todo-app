@@ -1,1 +1,67 @@
-/* Empty SCSS file for LoginComponent */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+  max-width: 100%;
+}
+
+.login-card {
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+mat-card-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+mat-card-actions {
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// メディアクエリを追加して、小さい画面でのスタイルを調整
+@media (max-width: 767px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .col-md-6 {
+    padding: 0 0.5rem;
+  }
+}
+
+// 大きい画面での最大幅を設定
+@media (min-width: 992px) {
+  .col-lg-5 {
+    max-width: 550px;
+  }
+}

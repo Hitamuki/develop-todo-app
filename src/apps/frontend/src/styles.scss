@@ -45,6 +45,29 @@
   }
 }
 
+// フォーム関連のグローバルスタイル
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+// 入力フィールドのスタイル調整
+.mat-mdc-form-field-infix {
+  width: auto !important;
+  min-height: 50px;
+}
+
+// ボタンのスタイル調整
+.mat-mdc-raised-button {
+  height: 48px;
+  font-size: 16px;
+}
+
+// カードのスタイル調整
+.mat-mdc-card {
+  --mdc-elevated-card-container-elevation: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
 // All
 html,
 body {
@@ -53,4 +76,5 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5;
 }
