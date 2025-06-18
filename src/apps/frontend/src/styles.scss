@@ -1,14 +1,16 @@
 @use './styles/theme/material-theme';
 @use 'bootstrap-icons/font/bootstrap-icons';
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap';
+// ngx-toastr
+@use 'ngx-toastr/toastr';
+
+/* CSS imports */
 // ag-grid
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 // ng-select
 @import '@ng-select/ng-select/themes/default.theme.css';
-// ngx-toastr
-@import 'ngx-toastr/toastr';
 
 // Bootstrap toastr styling
 .toast-bootstrap {

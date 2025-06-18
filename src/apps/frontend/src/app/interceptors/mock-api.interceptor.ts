@@ -14,11 +14,8 @@ export const mockApiInterceptor: HttpInterceptorFn = (
     if (email === 'test@example.com' && password === 'password') {
       const mockLoginResponse: UserLoginResponseDto = {
         accessToken: 'fake-jwt-token',
-        user: {
-          id: '1',
-          name: 'Test User',
-          email: 'test@example.com'
-        } as UserGetResponseDto // Assuming UserGetResponseDto is the type for the 'user' object
+        id: '1',
+        email: 'test@example.com'
       };
       console.log('Mock API: Login success for test@example.com');
       return of(new HttpResponse({ status: 200, body: mockLoginResponse })).pipe(delay(500));

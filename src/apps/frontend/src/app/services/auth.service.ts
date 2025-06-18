@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   register(userData: UserPostRequestDto): Observable<any> { // Adjust 'any' to specific DTO if available
-    return this.apiUsersService.usersPost(userData).pipe(
+    return this.apiUsersService.postUser(userData).pipe(
       tap(() => {
         this.router.navigate(['/login']);
       }),
