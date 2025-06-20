@@ -71,25 +71,12 @@
 | エディタ | Visual Studio Code |      |
 | 開発環境 | Dev Container      |      |
 
-## 詳細
+## README
 
-- ドキュメント
-  - [README](docs/README.md)
-
-- フロントエンド（Web画面）
-  - [README](src/apps/frontend/README.md)
-
-- バックエンド（Web API）
-  - [README](src/apps/backend/README.md)
-
-- バッチ処理
-  - [README](src/batchs/README.md)
-
-- 共通パッケージ、ライブラリ
-  - [README](src/libs/README.md)
-
-- スクリプト
-  - [README](src/scripts/README.md)
-
-- ツール
-  - [README](src/tools/README.md)
+- [ドキュメント](docs/README.md)
+- [フロントエンド（Web画面）](src/apps/frontend/README.md)
+- [バックエンド（Web API）](src/apps/backend/README.md)
+- [バッチ処理](src/batchs/README.md)
+- [共通パッケージ、ライブラリ](src/libs/README.md)
+- [スクリプト](src/scripts/README.md)
+- [ツール](src/tools/README.md)
