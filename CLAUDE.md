@@ -24,7 +24,8 @@ yarn build                      # Build for production
 ```bash
 yarn test                       # Run Jest unit tests
 yarn test:watch                 # Run tests in watch mode
-yarn test:e2e                   # Run Playwright E2E tests
+yarn test:e2e                   # Run Cypress E2E tests
+yarn test:e2e:open              # Open Cypress test runner
 ```
 
 **Code Quality:**
@@ -96,5 +97,5 @@ docker compose up -d            # Start MySQL container
 
 ### Testing
 
-- **Frontend**: Jest for unit tests, Playwright for E2E
+- **Frontend**: Jest for unit tests, Cypress for E2E
 - **Backend**: xUnit with Moq and Bogus for test data generation
