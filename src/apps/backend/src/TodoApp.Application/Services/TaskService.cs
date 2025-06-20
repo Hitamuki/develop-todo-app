@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Org.OpenAPITools.Models;
+using ToDoApp.Application.Interfaces;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
@@ -9,13 +10,16 @@ namespace ToDoApp.Application.Services;
 public class TaskService : ITaskService
 {
     private readonly ITaskRepository _taskRepository;
+    private readonly IUserContext _userContext;
     private readonly ILogger<TaskService> _logger;
 
     public TaskService(
         ITaskRepository taskRepository,
+        IUserContext userContext,
         ILogger<TaskService> logger)
     {
         _taskRepository = taskRepository;
+        _userContext = userContext;
         _logger = logger;
     }
 
@@ -38,6 +42,11 @@ public class TaskService : ITaskService
     {
         // TODO: ステータスはマスタテーブルの文字列で返す
         var task = await _taskRepository.FindByIdAsync(id);
+        if (task == null)
+        {
+            return null;
+        }
+
         return new TaskGetResponseDto
         {
             Id = task.Id,
@@ -53,6 +62,7 @@ public class TaskService : ITaskService
     public async Task CreateAsync(TaskPostRequestDto taskPostRequestDto)
     {
         // TODO: バリデーション
+        var currentUserId = GetCurrentUserId();
         var taskEntity = new TaskEntity
         {
             Id = Guid.NewGuid(),
@@ -60,7 +70,9 @@ public class TaskService : ITaskService
             Description = taskPostRequestDto.Description,
             DueDate = taskPostRequestDto.DueDate,
             StatusId = (int)taskPostRequestDto.StatusId,
-            UserId = Guid.Parse("ca62e350-b039-11ef-88cc-0242ac1a0002") // TODO: ユーザー情報DIで取得
+            UserId = currentUserId,
+            CreatedAt = DateTime.UtcNow,
+            CreatedBy = currentUserId,
         };
 
         await _taskRepository.CreateAsync(taskEntity);
@@ -69,7 +81,7 @@ public class TaskService : ITaskService
     public async Task UpdateAsync(Guid id, TaskPutRequestDto taskPutRequestDto)
     {
         // TODO: バリデーション
-        // TODO: 更新ユーザー取得
+        var currentUserId = GetCurrentUserId();
         var taskEntity = new TaskEntity
         {
             Id = id,
@@ -77,6 +89,8 @@ public class TaskService : ITaskService
             Description = taskPutRequestDto.Description,
             DueDate = taskPutRequestDto.DueDate,
             StatusId = (int)taskPutRequestDto.StatusId,
+            UpdatedAt = DateTime.UtcNow,
+            UpdatedBy = currentUserId,
         };
 
         await _taskRepository.UpdateAsync(taskEntity);
@@ -85,5 +99,20 @@ public class TaskService : ITaskService
     public async Task DeleteAsync(Guid id)
     {
         await _taskRepository.DeleteAsync(id);
+    }
+
+    private Guid GetCurrentUserId()
+    {
+        if (!_userContext.IsAuthenticated || string.IsNullOrEmpty(_userContext.UserId))
+        {
+            throw new UnauthorizedAccessException("User is not authenticated");
+        }
+
+        if (!Guid.TryParse(_userContext.UserId, out var userId))
+        {
+            throw new InvalidOperationException("Invalid user ID format");
+        }
+
+        return userId;
     }
 }

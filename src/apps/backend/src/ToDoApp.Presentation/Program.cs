@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TodoApp.Application.Interfaces.IService;
+using ToDoApp.Application.Interfaces;
 using ToDoApp.Application.Interfaces.IService;
 using ToDoApp.Application.Services;
 using ToDoApp.Domain.Entities;
@@ -11,6 +12,7 @@ using ToDoApp.Domain.Interfaces.IRepository;
 using ToDoApp.Infrastructure.DataSource.Repositories;
 using ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Infrastructure.Services;
+using ToDoApp.Presentation.Services;
 
 var corsPolicy = "_cross_origin"; // CORS ポリシー
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +63,9 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 
+// HttpContextAccessorの登録
+builder.Services.AddHttpContextAccessor();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -86,6 +91,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
+// UserContextの登録
+builder.Services.AddScoped<IUserContext, HttpUserContext>();
 
 var app = builder.Build();
 

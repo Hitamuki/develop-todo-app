@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using Org.OpenAPITools.Models;
+using ToDoApp.Application.Interfaces;
 using ToDoApp.Application.Services;
 using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces.IRepository;
@@ -12,6 +13,7 @@ public class TaskServiceTests
 {
     private readonly Mock<ITaskRepository> _mockTaskRepository;
     private readonly Mock<ILogger<TaskService>> _mockLogger;
+    private readonly Mock<IUserContext> _mockUserContext;
     private readonly TaskService _taskService;
 
     public TaskServiceTests()
@@ -19,9 +21,12 @@ public class TaskServiceTests
         // Setup mocks
         _mockTaskRepository = new Mock<ITaskRepository>();
         _mockLogger = new Mock<ILogger<TaskService>>();
+        _mockUserContext = new Mock<IUserContext>();
 
-        // Create instance of the service with mocked dependencies
-        _taskService = new TaskService(_mockTaskRepository.Object, _mockLogger.Object);
+        _mockUserContext.Setup(uc => uc.IsAuthenticated).Returns(true);
+        _mockUserContext.Setup(uc => uc.UserId).Returns(Guid.NewGuid().ToString());
+
+        _taskService = new TaskService(_mockTaskRepository.Object, _mockUserContext.Object, _mockLogger.Object);
     }
 
     [Fact]
@@ -161,9 +166,10 @@ public class TaskServiceTests
             .ReturnsAsync((TaskEntity)null); // Ensure the return type is correctly cast for Moq
 
         // Act
-        var result = await Assert.ThrowsAsync<NullReferenceException>(() => _taskService.FindByIdAsync(taskId));
+        var result = await _taskService.FindByIdAsync(taskId);
 
         // Assert
+        Assert.Null(result);
         _mockTaskRepository.Verify(repo => repo.FindByIdAsync(taskId), Times.Once);
     }
 }
