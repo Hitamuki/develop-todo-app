@@ -29,7 +29,7 @@ dotnet restore
 dotnet clean
 dotnet build
 dotnet test
-dotnet run
+dotnet run --project src/ToDoApp.Presentation
 ```
 
 フォーマット TODO: shファイルで実行

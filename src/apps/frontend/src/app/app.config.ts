@@ -21,7 +21,12 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([mockApiInterceptor, authInterceptor])),
+    provideHttpClient(
+      withInterceptors([
+        ...(environment.mock ? [mockApiInterceptor] : []),
+        authInterceptor,
+      ]),
+    ),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-center',

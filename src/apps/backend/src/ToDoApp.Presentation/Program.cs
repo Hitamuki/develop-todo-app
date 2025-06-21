@@ -14,10 +14,10 @@ using ToDoApp.Infrastructure.EFCoreGenerator;
 using ToDoApp.Infrastructure.Services;
 using ToDoApp.Presentation.Services;
 
-var corsPolicy = "_cross_origin"; // CORS ポリシー
+const string corsPolicy = "_cross_origin";
 var builder = WebApplication.CreateBuilder(args);
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
 
-// Add services to the container.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
@@ -25,9 +25,9 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-            .WithOrigins("https://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+                .WithOrigins(allowedOrigins)
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 
@@ -86,14 +86,11 @@ builder.Services.AddDbContext<TodoContext>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordHasher<UserEntity>, PasswordHasher<UserEntity>>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserContext, HttpUserContext>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ITaskService, TaskService>(); // TODO: インターフェースなし
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-
-// UserContextの登録
-builder.Services.AddScoped<IUserContext, HttpUserContext>();
 
 var app = builder.Build();
 
