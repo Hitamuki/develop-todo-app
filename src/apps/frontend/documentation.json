@@ -7578,7 +7578,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  mock: false,\n  production: false,\n  // API_BASE_PATH: 'https://localhost:7268/api/v1', // VSCodeデバッグ\n  API_BASE_PATH: 'http://localhost:5035/api/v1', // dotnet run\n}"
+                "defaultValue": "{\n  mock: true,\n  production: false,\n  API_BASE_PATH: 'https://localhost:7268/api/v1', // VSCodeデバッグ\n  // API_BASE_PATH: 'http://localhost:5035/api/v1', // dotnet run\n}"
             },
             {
                 "name": "handlers",
@@ -7846,7 +7846,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  mock: false,\n  production: false,\n  // API_BASE_PATH: 'https://localhost:7268/api/v1', // VSCodeデバッグ\n  API_BASE_PATH: 'http://localhost:5035/api/v1', // dotnet run\n}"
+                    "defaultValue": "{\n  mock: true,\n  production: false,\n  API_BASE_PATH: 'https://localhost:7268/api/v1', // VSCodeデバッグ\n  // API_BASE_PATH: 'http://localhost:5035/api/v1', // dotnet run\n}"
                 }
             ],
             "src/app/interceptors/mock-api.interceptor.ts": [
