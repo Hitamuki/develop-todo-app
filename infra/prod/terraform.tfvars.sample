@@ -1,0 +1,2 @@
+db_password = "YOUR_DATABASE_PASSWORD"
+jwt_secret = "YOUR_JWT_SECRET"

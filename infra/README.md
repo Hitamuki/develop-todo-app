@@ -8,6 +8,14 @@ Infrastructure as Code (IaC) を活用し、Terraform によってAWS上にWeb�
 
 手作業のインフラ構築を排除し、コードによる一貫性・再現性・自動化を実現することで、運用コストの削減・信頼性向上・スケーラビリティ対応を目指す
 
+## ドキュメント
+
+| 名称                                                        | 概要                               | 備考 |
+| ----------------------------------------------------------- | ---------------------------------- | ---- |
+| [AWS](https://docs.aws.amazon.com/ja_jp/)                   | クラウドコンピューティングサービス |      |
+| [Terraform](https://developer.hashicorp.com/terraform/docs) | IaC                                |      |
+|                                                             |                                    |      |
+
 ## システム構成
 
 | レイヤー | 技術                | 説明                               |
@@ -32,10 +40,6 @@ Infrastructure as Code (IaC) を活用し、Terraform によってAWS上にWeb�
 | データベース     | Aurora MySQL        | 高可用性のMySQL互換RDB。スケーラブルかつバックアップ自動化                             |
 | パラメータ管理   | SSM Parameter Store | 環境変数・シークレット管理                                                             |
 | モニタリング     | CloudWatch Logs     | APIやアプリのログを収集・可視化。トラブルシュートや監視に使用                          |
-
-### 補足情報
-
-- モニタリングは将来対応
 
 ## 環境構築手順
 
@@ -92,6 +96,9 @@ terraform version
 1. ビルドしたイメージをECRにプッシュ
 
     ``` bash
+    # DockerがECRにアクセスできるように認証情報を取得する
+    aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin (AWSアカウントID).dkr.ecr.ap-northeast-1.amazonaws.com
+    # ローカルにビルドしたイメージに、ECRリポジトリのURIを別名としてタグ付け
     docker push $(terraform output -raw ecr_repository_url):latest
     ```
 

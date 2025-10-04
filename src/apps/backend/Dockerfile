@@ -9,7 +9,7 @@ COPY src/apps/backend/src/ToDoApp.Domain/*.csproj ./src/ToDoApp.Domain/
 COPY src/apps/backend/src/ToDoApp.Infrastructure/*.csproj ./src/ToDoApp.Infrastructure/
 COPY src/apps/backend/src/ToDoApp.Presentation/*.csproj ./src/ToDoApp.Presentation/
 COPY src/apps/backend/src/ToDoApp.Shared/*.csproj ./src/ToDoApp.Shared/
-COPY src/apps/backend/tests/ToDoApp.Tests/*.csproj ./tests/ToDoApp.Tests/
+# COPY src/apps/backend/tests/ToDoApp.Tests/*.csproj ./tests/ToDoApp.Tests/
 
 # Copy the rest of the source code
 COPY src/apps/backend/. .
